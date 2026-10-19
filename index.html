@@ -8,15 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3812378536373460" crossorigin="anonymous"></script>
 <style>
 :root{--nb:0;--ni:0;--sx:25%;--bg:color-mix(in srgb,#070a1c calc(var(--nb)*100%),#f5f6fc);--ink:color-mix(in srgb,#f2f4ff calc(var(--ni)*100%),#14173a);--mute:color-mix(in srgb,#9ea6da calc(var(--ni)*100%),#5a6088);--line:color-mix(in srgb,rgba(242,244,255,.18) calc(var(--ni)*100%),rgba(20,23,58,.16));--acc:color-mix(in srgb,#a597ff calc(var(--ni)*100%),#5b4bd6);--acc2:color-mix(in srgb,#5ad7ff calc(var(--ni)*100%),#0a7fae);--moon:radial-gradient(circle at 35% 35%,#fff,#dfe3ff 60%,#aab3f0);--glow:rgba(165,151,255,.38);--star:242,244,255;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a1c;--ink:#f2f4ff;--mute:#9ea6da;--line:rgba(242,244,255,.18);--acc:#a597ff;--acc2:#5ad7ff;--moon:radial-gradient(circle at 35% 35%,#fff,#dfe3ff 60%,#aab3f0);--glow:rgba(165,151,255,.38);--star:242,244,255;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#070a1c;--ink:#f2f4ff;--mute:#9ea6da;--line:rgba(242,244,255,.18);--acc:#a597ff;--acc2:#5ad7ff;--moon:radial-gradient(circle at 35% 35%,#fff,#dfe3ff 60%,#aab3f0);--glow:rgba(165,151,255,.38);--star:242,244,255;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html{overscroll-behavior-x:none;scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;max-width:100%;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 #stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .moon{position:fixed;z-index:0;right:8vw;top:14vh;width:clamp(170px,30vw,380px);aspect-ratio:1;border-radius:50%;background:var(--moon);box-shadow:0 0 90px 12px var(--glow);overflow:hidden;pointer-events:none;will-change:transform}
 .moon::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--bg);transform:translateX(var(--sx))}
@@ -29,7 +28,7 @@ button.t{font:500 .85rem inherit;font-family:inherit;color:var(--ink);background
 button.t:hover{border-color:var(--acc)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--acc2);outline-offset:3px}
 main,footer{position:relative;z-index:1}
-section{padding:clamp(90px,16vh,180px) clamp(20px,6vw,96px)}
+section{overflow-x:clip;padding:clamp(90px,16vh,180px) clamp(20px,6vw,96px)}
 .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center}
 .hi{transform-origin:30% 50%;will-change:transform,opacity}
 h1{margin:0;font-weight:700;font-size:clamp(3.2rem,12.5vw,10.5rem);line-height:1;letter-spacing:-.045em;animation:land 1.4s cubic-bezier(.16,1,.3,1) both}
@@ -58,12 +57,15 @@ h1{margin:0;font-weight:700;font-size:clamp(3.2rem,12.5vw,10.5rem);line-height:1
 .cta:hover{transform:scale(1.04);box-shadow:0 12px 40px var(--glow)}
 footer{padding:40px clamp(20px,6vw,96px) 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--mute);font-size:.88rem;border-top:1px solid var(--line)}
 [data-fx]{will-change:transform,opacity}
+#orb{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.gl .sun,.gl .moon{display:none}
 @media (max-width:720px){.row{grid-template-columns:1fr}.moon,.sun{right:-12vw}}
 @media (prefers-reduced-motion:reduce){h1{animation:none}.poem{height:auto;padding:90px clamp(20px,6vw,96px)}.stage{position:static;height:auto}.st{position:static;opacity:1!important;transform:none!important;filter:none!important;margin-bottom:12vh}.row::before{transform:none}.pill i{animation:none}}
 </style>
 </head>
 <body>
 <canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="orb" aria-hidden="true"></canvas>
 <div class="sun" id="sun" aria-hidden="true"></div>
 <div class="moon" id="moon" aria-hidden="true"></div>
 
@@ -130,7 +132,7 @@ function frame(){
   /* light mode: day at the top of the page, night at the bottom */
   var lt=!dark(),n=lt?clamp((p-.15)/.7):1,base=innerWidth<=720?.55:1;
   var nb=lt?(function(x){return x*x*(3-2*x)})(clamp((n-.25)/.35)):1,ni=lt?clamp((n-.38)/.12):1;
-  nightA=clamp((n-.4)/.4);
+  nightA=clamp((n-.4)/.4);window.S3={lt:lt,n:n,p:p,base:base};
   root.style.setProperty('--nb',nb);root.style.setProperty('--ni',ni);
   root.style.setProperty('--sx',(25+p*82)+'%');
   if(lt){
@@ -178,6 +180,68 @@ function draw(ts){
 }
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){readStar();frame()});
 addEventListener('resize',size);size();readStar();requestAnimationFrame(draw);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* 3D sun and moon (three.js). Falls back to the flat CSS discs if WebGL is unavailable. */
+(function(){
+if(!window.THREE)return;
+var T=THREE,cv=document.getElementById('orb'),R;
+try{R=new T.WebGLRenderer({canvas:cv,alpha:true,antialias:true})}catch(e){return}
+document.documentElement.classList.add('gl');
+R.outputEncoding=T.sRGBEncoding;
+var sc=new T.Scene(),cam=new T.PerspectiveCamera(35,1,.1,50),Z=9,U=.01,rnd=Math.random,i;
+cam.position.z=Z;
+var cl=function(v){return Math.max(0,Math.min(1,v))};
+function cvs(w,h){var c=document.createElement('canvas');c.width=w;c.height=h;return c}
+function blob(x,px,py,r,c0,c1){var g=x.createRadialGradient(px,py,0,px,py,r);g.addColorStop(0,c0);g.addColorStop(1,c1);x.fillStyle=g;x.beginPath();x.arc(px,py,r,0,6.283);x.fill()}
+function tex(c){var t=new T.CanvasTexture(c);t.encoding=T.sRGBEncoding;return t}
+/* moon surface: maria and craters, used as colour and as relief so the light rakes across it */
+var mc=cvs(1024,512),mx=mc.getContext('2d');
+mx.fillStyle='#b4b7c6';mx.fillRect(0,0,1024,512);
+for(i=0;i<12;i++)blob(mx,rnd()*1024,90+rnd()*330,50+rnd()*90,'rgba(72,76,96,.5)','rgba(72,76,96,0)');
+for(i=0;i<300;i++){var r=3+Math.pow(rnd(),3)*34,px=rnd()*1024,py=rnd()*512;blob(mx,px,py,r,'rgba(50,53,70,.55)','rgba(50,53,70,0)');mx.strokeStyle='rgba(245,246,255,.35)';mx.lineWidth=1.5;mx.beginPath();mx.arc(px,py,r*.9,0,6.283);mx.stroke()}
+var mt=tex(mc);
+var moon=new T.Mesh(new T.SphereGeometry(1,64,48),new T.MeshStandardMaterial({map:mt,bumpMap:mt,bumpScale:.06,roughness:1,metalness:0,transparent:true}));
+/* sun surface: granulation */
+var sc2=cvs(512,256),sx=sc2.getContext('2d');
+sx.fillStyle='#ffb23a';sx.fillRect(0,0,512,256);
+for(i=0;i<420;i++){var k=rnd()<.5;blob(sx,rnd()*512,rnd()*256,4+rnd()*22,k?'rgba(255,110,20,.35)':'rgba(255,244,170,.4)',k?'rgba(255,110,20,0)':'rgba(255,244,170,0)')}
+var sun=new T.Mesh(new T.SphereGeometry(1,48,36),new T.MeshBasicMaterial({map:tex(sc2),transparent:true}));
+function glow(c0,c1){var c=cvs(256,256);blob(c.getContext('2d'),128,128,128,c0,c1);var s=new T.Sprite(new T.SpriteMaterial({map:new T.CanvasTexture(c),transparent:true,depthWrite:false}));s.position.z=-1.2;return s}
+var sunGlow=glow('rgba(255,176,60,.9)','rgba(255,176,60,0)'),moonGlow=glow('rgba(165,151,255,.6)','rgba(165,151,255,0)');
+sunGlow.scale.setScalar(3.8);moonGlow.scale.setScalar(3);
+var sunG=new T.Group(),moonG=new T.Group();
+sunG.add(sunGlow,sun);moonG.add(moonGlow,moon);sc.add(sunG,moonG);
+var L=new T.DirectionalLight(0xffffff,1.7);sc.add(L,new T.AmbientLight(0x8d9bff,.28));
+var cx=0,cy=0,R0=1;
+function layout(){
+  var w=innerWidth,h=innerHeight;
+  R.setPixelRatio(Math.min(devicePixelRatio||1,2));R.setSize(w,h,false);
+  cam.aspect=w/h;cam.updateProjectionMatrix();
+  U=2*Math.tan(cam.fov*Math.PI/360)*Z/h;
+  var size=Math.max(170,Math.min(380,w*.3)),ccx=w<=720?w*1.12-size/2:w*.92-size/2,ccy=h*.14+size/2;
+  R0=size/2*U;cx=(ccx-w/2)*U;cy=-(ccy-h/2)*U;
+}
+var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function tick(t){
+  requestAnimationFrame(tick);
+  var s=window.S3||{lt:false,n:1,p:0,base:1},n=s.n,p=s.p,h=innerHeight,k=still?0:t/1000,sa,ma,sy,my;
+  if(s.lt){sa=(1-cl(n*2.2))*s.base;sy=-n*.34*h*U;ma=cl((n-.35)/.4)*s.base;my=-(1-n)*.38*h*U+p*160*U}
+  else{sa=0;ma=s.base;sy=0;my=p*160*U}
+  sunG.visible=sa>.01;moonG.visible=ma>.01;
+  sunG.position.set(cx,cy+sy,0);sunG.scale.setScalar(R0*(1-n*.2));
+  sun.material.opacity=sa;sunGlow.material.opacity=sa;
+  moonG.position.set(cx,cy+my,0);moonG.scale.setScalar(R0);
+  moon.material.opacity=ma;moonGlow.material.opacity=ma*.55;
+  sun.rotation.y=k*.12;sun.rotation.x=.15;
+  moon.rotation.y=p*3+k*.04;moon.rotation.x=.2;
+  /* the light swings round the moon as you scroll: thin crescent at the top of the page, full moon at the end */
+  var th=2.7*(1-p);L.position.set(-Math.sin(th)*6,1.2,Math.cos(th)*6);
+  R.render(sc,cam);
+}
+addEventListener('resize',layout);layout();requestAnimationFrame(tick);
 })();
 </script>
 </body>
