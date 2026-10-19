@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Midnight Poetry Studio</title>
+<meta name="description" content="Ideas arrive late. Midnight Poetry Studio is where they learn to sound like poems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--nb:0;--ni:0;--sx:25%;--bg:color-mix(in srgb,#070a1c calc(var(--nb)*100%),#f5f6fc);--ink:color-mix(in srgb,#f2f4ff calc(var(--ni)*100%),#14173a);--mute:color-mix(in srgb,#9ea6da calc(var(--ni)*100%),#5a6088);--line:color-mix(in srgb,rgba(242,244,255,.18) calc(var(--ni)*100%),rgba(20,23,58,.16));--acc:color-mix(in srgb,#a597ff calc(var(--ni)*100%),#5b4bd6);--acc2:color-mix(in srgb,#5ad7ff calc(var(--ni)*100%),#0a7fae);--moon:radial-gradient(circle at 35% 35%,#fff,#dfe3ff 60%,#aab3f0);--glow:rgba(165,151,255,.38);--star:242,244,255;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a1c;--ink:#f2f4ff;--mute:#9ea6da;--line:rgba(242,244,255,.18);--acc:#a597ff;--acc2:#5ad7ff;--moon:radial-gradient(circle at 35% 35%,#fff,#dfe3ff 60%,#aab3f0);--glow:rgba(165,151,255,.38);--star:242,244,255;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#070a1c;--ink:#f2f4ff;--mute:#9ea6da;--line:rgba(242,244,255,.18);--acc:#a597ff;--acc2:#5ad7ff;--moon:radial-gradient(circle at 35% 35%,#fff,#dfe3ff 60%,#aab3f0);--glow:rgba(165,151,255,.38);--star:242,244,255;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.moon{position:fixed;z-index:0;right:8vw;top:14vh;width:clamp(170px,30vw,380px);aspect-ratio:1;border-radius:50%;background:var(--moon);box-shadow:0 0 90px 12px var(--glow);overflow:hidden;pointer-events:none;will-change:transform}
+.moon::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--bg);transform:translateX(var(--sx))}
+.sun{position:fixed;z-index:0;right:8vw;top:14vh;width:clamp(170px,30vw,380px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 38%,#fff6c9,#ffd45e 55%,#ffa23a);box-shadow:0 0 120px 40px rgba(255,176,60,.45);pointer-events:none;will-change:transform,opacity}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sun{display:none}}
+:root[data-theme="dark"] .sun{display:none}
+header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 12px) clamp(18px,4vw,48px) 12px;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:color-mix(in srgb,var(--bg) 55%,transparent)}
+.mark{font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+button.t{font:500 .85rem inherit;font-family:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:99px;padding:7px 15px;cursor:pointer;transition:border-color .3s}
+button.t:hover{border-color:var(--acc)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acc2);outline-offset:3px}
+main,footer{position:relative;z-index:1}
+section{padding:clamp(90px,16vh,180px) clamp(20px,6vw,96px)}
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center}
+.hi{transform-origin:30% 50%;will-change:transform,opacity}
+h1{margin:0;font-weight:700;font-size:clamp(3.2rem,12.5vw,10.5rem);line-height:1;letter-spacing:-.045em;animation:land 1.4s cubic-bezier(.16,1,.3,1) both}
+@keyframes land{from{opacity:0;transform:scale(1.14)}}
+.sub{max-width:30ch;margin:32px 0 0;font-weight:500;font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.25;letter-spacing:-.02em;color:var(--mute)}
+.pill{display:inline-flex;gap:10px;align-items:center;margin-top:28px;padding:8px 16px;border-radius:99px;font-size:.88rem;color:var(--mute);background:color-mix(in srgb,var(--bg) 60%,transparent);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--acc2);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--acc2)}70%,100%{box-shadow:0 0 0 12px transparent}}
+.poem{height:700vh;padding:0}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.st{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 clamp(20px,6vw,96px);opacity:0;will-change:transform,opacity,filter}
+.st span{display:block;max-width:18ch;font-weight:700;font-size:clamp(2.1rem,6.6vw,5.6rem);line-height:1.06;letter-spacing:-.04em}
+.st span+span{color:var(--mute)}
+.st.last span+span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.rows{max-width:1100px}
+.row{position:relative;display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(16px,4vw,64px);padding:clamp(32px,6vh,60px) 0;transform-origin:50% 50%;will-change:transform,opacity}
+.row::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--ink);opacity:.45;transform:scaleX(var(--e,0));transform-origin:left}
+.row h2{margin:0;font-weight:700;font-size:clamp(1.9rem,4.5vw,3.6rem);letter-spacing:-.035em;line-height:1.05}
+.row p{margin:0;color:var(--mute);font-size:clamp(1.05rem,1.5vw,1.3rem);max-width:42ch}
+.build{max-width:900px;text-align:center;margin:0 auto}
+.build h2{margin:0 0 36px;font-weight:700;font-size:clamp(2.2rem,6.4vw,5rem);letter-spacing:-.04em;line-height:1.04}
+.track{height:6px;border-radius:9px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.build small{display:flex;justify-content:space-between;margin-top:12px;color:var(--mute);font-size:.88rem}
+.cta{display:inline-block;margin-top:44px;padding:14px 28px;border-radius:99px;background:var(--ink);color:var(--bg);font-weight:600;text-decoration:none;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+.cta:hover{transform:scale(1.04);box-shadow:0 12px 40px var(--glow)}
+footer{padding:40px clamp(20px,6vw,96px) 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--mute);font-size:.88rem;border-top:1px solid var(--line)}
+[data-fx]{will-change:transform,opacity}
+@media (max-width:720px){.row{grid-template-columns:1fr}.moon,.sun{right:-12vw}}
+@media (prefers-reduced-motion:reduce){h1{animation:none}.poem{height:auto;padding:90px clamp(20px,6vw,96px)}.stage{position:static;height:auto}.st{position:static;opacity:1!important;transform:none!important;filter:none!important;margin-bottom:12vh}.row::before{transform:none}.pill i{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="sun" id="sun" aria-hidden="true"></div>
+<div class="moon" id="moon" aria-hidden="true"></div>
+
+<header>
+  <a class="mark" href="#top">midnightpoetry.studio</a>
+  <button class="t" id="theme" type="button" aria-label="Switch between light and dark mode">Switch theme</button>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hi" id="hi">
+      <h1>Midnight<br>Poetry<br>Studio</h1>
+      <p class="sub">Ideas arrive late. This is where they learn to sound like poems.</p>
+      <div class="pill"><i></i>Temporary page. Products are being built nearby.</div>
+    </div>
+  </section>
+
+  <section class="poem" id="poem" aria-label="A poem about working at midnight">
+    <div class="stage">
+      <div class="st"><span>When the day lets go of me,</span><span>the quiet begins to talk.</span></div>
+      <div class="st"><span>Nobody watches the work at midnight,</span><span>so it has no reason to lie.</span></div>
+      <div class="st"><span>These are the hours the world gave up.</span><span>I took them, and they built me.</span></div>
+      <div class="st"><span>An idea comes like a lit window</span><span>in a city I thought was asleep.</span></div>
+      <div class="st"><span>I am not chasing the sound of a poem.</span><span>I keep the lamp on until it finds me.</span></div>
+      <div class="st last"><span>So I build the way a poem speaks:</span><span>slowly, honestly, and after dark.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rows">
+      <div class="row" data-fx="-1"><h2>The hours</h2><p>Late-night sessions for ideas that need quiet to arrive. Midnight is when the noise drops and the work gets honest.</p></div>
+      <div class="row" data-fx="1"><h2>The voice</h2><p>Writing, design and tools that sound the way poems feel: spare, rhythmic and a little unexpected.</p></div>
+      <div class="row" data-fx="-1"><h2>The products</h2><p>Small, careful things are in the works. This page holds the place until they’re ready to share.</p></div>
+    </div>
+  </section>
+
+  <section class="build" id="build">
+    <h2 data-fx="0">Still building, by moonlight.</h2>
+    <div class="track" data-fx="0"><div class="fill" id="fill"></div></div>
+    <small data-fx="0"><span>Placeholder page live</span><span>Products in progress</span></small>
+  </section>
+</main>
+
+<footer><span>© 2026 Midnight Poetry Studio</span><span>Made after dark.</span></footer>
+
+<script>
+(function(){
+var root=document.documentElement,moon=document.getElementById('moon'),sun=document.getElementById('sun'),nightA=1,fill=document.getElementById('fill'),hi=document.getElementById('hi'),poem=document.getElementById('poem');
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var clamp=function(v){return Math.max(0,Math.min(1,v))};
+
+function dark(){var a=root.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+try{var sv=localStorage.getItem('mp-theme');if(sv)root.setAttribute('data-theme',sv)}catch(e){}
+document.getElementById('theme').addEventListener('click',function(){
+  var n=dark()?'light':'dark';root.setAttribute('data-theme',n);
+  try{localStorage.setItem('mp-theme',n)}catch(e){}
+  readStar();frame();
+});
+
+var sts=document.querySelectorAll('.st'),fx=document.querySelectorAll('[data-fx]'),build=document.getElementById('build'),ticking=false;
+function frame(){
+  ticking=false;
+  var h=innerHeight,max=root.scrollHeight-h,p=max>0?clamp(scrollY/max):0;
+  /* light mode: day at the top of the page, night at the bottom */
+  var lt=!dark(),n=lt?clamp((p-.15)/.7):1,base=innerWidth<=720?.55:1;
+  var nb=lt?(function(x){return x*x*(3-2*x)})(clamp((n-.25)/.35)):1,ni=lt?clamp((n-.38)/.12):1;
+  nightA=clamp((n-.4)/.4);
+  root.style.setProperty('--nb',nb);root.style.setProperty('--ni',ni);
+  root.style.setProperty('--sx',(25+p*82)+'%');
+  if(lt){
+    sun.style.opacity=(1-clamp(n*2.2))*base;sun.style.transform='translateY('+(n*34)+'vh) scale('+(1-n*.2)+')';
+    moon.style.opacity=clamp((n-.35)/.4)*base;moon.style.transform='translateY(calc('+((1-n)*38)+'vh - '+(p*160)+'px)) rotate('+(p*50)+'deg)';
+  }else{moon.style.opacity=base;moon.style.transform='translateY('+(-p*160)+'px) rotate('+(p*50)+'deg)'}
+  var r=build.getBoundingClientRect();
+  fill.style.width=(clamp((h-r.top)/(h*.9))*100)+'%';
+  if(reduce){fx.forEach(function(el){el.style.setProperty('--e',1)});return}
+  /* hero: zoom in and fade as you leave */
+  var hp=clamp(scrollY/h);
+  hi.style.transform='scale('+(1+hp*.6)+') translateY('+(-hp*8)+'vh)';
+  hi.style.opacity=1-hp*1.25;
+  /* poem: each stanza pans in from the side, holds, then zooms through */
+  var pr=poem.getBoundingClientRect(),sp=clamp(-pr.top/(pr.height-h)),pos=sp*(sts.length-1);
+  sts.forEach(function(s,i){
+    var d=pos-i,a=clamp(-d/.5),b=clamp(d/.5),dir=i%2?-1:1;
+    s.style.opacity=1-clamp((Math.abs(d)-.18)/.32);
+    s.style.transform='translateX('+(dir*(a-b)*22)+'vw) scale('+(1-.22*a+.4*b)+')';
+    s.style.filter='blur('+((a+b)*9)+'px)';
+  });
+  /* sections: pan in from the side while zooming up to full size */
+  fx.forEach(function(el){
+    var t=el.getBoundingClientRect().top,e=clamp((h*.95-t)/(h*.45)),dir=+el.getAttribute('data-fx');
+    el.style.setProperty('--e',e);
+    el.style.opacity=e;
+    el.style.transform='translateX('+(dir*(1-e)*14)+'vw) scale('+(.86+.14*e)+')';
+  });
+}
+function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+addEventListener('scroll',req,{passive:true});addEventListener('resize',req);frame();
+
+var cv=document.getElementById('stars'),cx=cv.getContext('2d'),S=[],col='242,244,255',W,H;
+function readStar(){col=getComputedStyle(root).getPropertyValue('--star').trim()||col}
+function size(){var d=devicePixelRatio||1;W=cv.width=innerWidth*d;H=cv.height=innerHeight*d;S=[];
+  for(var k=0;k<110;k++)S.push({x:Math.random()*W,y:Math.random()*H*1.6,r:(Math.random()*1.4+.4)*d,z:Math.random()*.5+.1,t:Math.random()*6.28})}
+function draw(ts){
+  cx.clearRect(0,0,W,H);var d=devicePixelRatio||1;
+  S.forEach(function(s){
+    var y=((s.y-scrollY*s.z*d)%(H*1.6)+H*1.6)%(H*1.6);
+    var a=(reduce?.6:.25+.6*Math.abs(Math.sin(ts/1400+s.t)))*(dark()?1:nightA);
+    cx.beginPath();cx.arc(s.x,y,s.r,0,6.283);cx.fillStyle='rgba('+col+','+a+')';cx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){readStar();frame()});
+addEventListener('resize',size);size();readStar();requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
