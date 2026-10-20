@@ -195,10 +195,23 @@ var cv=document.getElementById('stars'),cx=cv.getContext('2d'),S=[],col='242,244
 function readStar(){col=getComputedStyle(root).getPropertyValue('--star').trim()||col}
 function size(){var d=devicePixelRatio||1;W=cv.width=innerWidth*d;H=cv.height=innerHeight*d;S=[];
   for(var k=0;k<300;k++)S.push({an:Math.random()*6.283,rad:Math.sqrt(Math.random())*Math.hypot(W*.5,H*.8)*1.02,r:(Math.random()*1.5+.4)*d*(Math.random()<.06?1.8:1),t:Math.random()*6.28,x:0})}
+/* wishing stars: an occasional streak across the night sky */
+var SH=[],nextSh=0,lastT=0;
+function shoot(ts,vis){
+  var dt=Math.min(.05,(ts-lastT)/1000||.016),d=devicePixelRatio||1;lastT=ts;
+  if(!reduce&&vis>.6&&ts>nextSh){nextSh=ts+4000+Math.random()*7000;var dir=Math.random()<.5?1:-1,ang=.35+Math.random()*.3;SH.push({x:W*(.15+Math.random()*.7),y:H*(.05+Math.random()*.35),vx:dir*Math.cos(ang)*1100*d,vy:Math.sin(ang)*1100*d,t:0,L:.9+Math.random()*.4})}
+  SH=SH.filter(function(s){
+    s.t+=dt;s.x+=s.vx*dt;s.y+=s.vy*dt;var k=s.t/s.L;if(k>=1)return false;
+    var a=Math.sin(k*3.14159)*vis,tl=150*d*(1-k*.3),mg=Math.hypot(s.vx,s.vy),tx=s.x-s.vx/mg*tl,ty=s.y-s.vy/mg*tl,g=cx.createLinearGradient(tx,ty,s.x,s.y);
+    g.addColorStop(0,'rgba('+col+',0)');g.addColorStop(1,'rgba('+col+','+a+')');
+    cx.strokeStyle=g;cx.lineWidth=2*d;cx.lineCap='round';cx.beginPath();cx.moveTo(tx,ty);cx.lineTo(s.x,s.y);cx.stroke();
+    cx.beginPath();cx.arc(s.x,s.y,2*d,0,6.283);cx.fillStyle='rgba(255,255,255,'+a+')';cx.fill();
+    return true});
+}
 function draw(ts){
-  cx.clearRect(0,0,W,H);var d=devicePixelRatio||1;
+  cx.clearRect(0,0,W,H);var d=devicePixelRatio||1;shoot(ts,dark()?1:nightA);
   S.forEach(function(s){
-    var s3=window.S3||{lt:false,n:1,p:0},rot=s3.lt?s3.n*3.752+Math.max(0,s3.p-.85)*2.36:s3.p*2.36,an=s.an+rot,y=H*.74+s.rad*Math.sin(an);s.x=W*.5+s.rad*Math.cos(an);
+    var s3=window.S3||{lt:false,n:1,p:0},rot=s3.lt?s3.n*3.752+Math.max(0,s3.p-.85)*2.36:s3.p*2.36,an=s.an+rot+(reduce?0:ts/1000*.015),y=H*.74+s.rad*Math.sin(an);s.x=W*.5+s.rad*Math.cos(an);
     var a=(reduce?.6:.25+.6*Math.abs(Math.sin(ts/1400+s.t)))*(dark()?1:nightA);
     cx.beginPath();cx.arc(s.x,y,s.r,0,6.283);cx.fillStyle='rgba('+col+','+a+')';cx.fill();
   });
