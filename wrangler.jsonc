@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "midnightpoetry-studio",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": { "enabled": true },
+  // Attach the domain once DNS for midnightpoetry.studio is on Cloudflare:
+  // "routes": [{ "pattern": "midnightpoetry.studio", "custom_domain": true }],
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://midnightpoetry.studio"
+  }
+  // Secrets (never in this file): RESEND_API_KEY, EMAIL_FROM, OWNER_NOTIFY_EMAIL
+  //   npx wrangler secret put RESEND_API_KEY
+}
