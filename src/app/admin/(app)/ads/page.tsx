@@ -1,3 +1,4 @@
+import { SavedVersion } from "@/components/admin/SavedVersion";
 import Link from "next/link";
 import { atLeast, requireAdmin } from "@/lib/auth";
 import type { Ad, AdSettings, Category } from "@/lib/content/types";
@@ -33,7 +34,9 @@ export default async function AdsPage() {
       </div>
       <div className="a-layout">
         <div className="main">
-          {s ? <AdSettingsForm settings={s} categories={categories} isOwner={profile.role === "owner"} /> : <p className="a-alert err">Ad settings are missing — run the database migration.</p>}
+          {s ? <SavedVersion version={String((s as { updated_at?: string }).updated_at ?? JSON.stringify(s))}>
+              <AdSettingsForm settings={s} categories={categories} isOwner={profile.role === "owner"} />
+            </SavedVersion> : <p className="a-alert err">Ad settings are missing — run the database migration.</p>}
         </div>
         <div className="aside">
           <section className="a-panel" aria-labelledby="lib-h" style={{ display: "flex", flexDirection: "column", gap: 12 }}>

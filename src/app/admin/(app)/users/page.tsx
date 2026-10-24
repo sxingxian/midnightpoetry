@@ -1,3 +1,4 @@
+import { SavedVersion } from "@/components/admin/SavedVersion";
 import { requireAdmin } from "@/lib/auth";
 import { RoleForm } from "@/components/admin/RoleForm";
 import { fmtDate } from "@/components/admin/ui";
@@ -54,7 +55,9 @@ export default async function UsersPage() {
                   </div>
                 </td>
                 <td data-label="Role">
-                  <RoleForm id={r.id} role={r.role} label={r.email} ready={!!ready.get(r.id)?.email && !!ready.get(r.id)?.totp} />
+                  <SavedVersion version={r.role}>
+                    <RoleForm id={r.id} role={r.role} label={r.email} ready={!!ready.get(r.id)?.email && !!ready.get(r.id)?.totp} />
+                  </SavedVersion>
                 </td>
               </tr>
             ))}

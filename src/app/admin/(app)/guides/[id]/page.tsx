@@ -1,3 +1,4 @@
+import { SavedVersion } from "@/components/admin/SavedVersion";
 import { notFound } from "next/navigation";
 import { z } from "zod";
 import { atLeast, requireAdmin } from "@/lib/auth";
@@ -23,7 +24,9 @@ export default async function EditGuidePage({ params }: { params: Promise<{ id: 
   const env = publicEnv();
   return (
     <>
-      <GuideEditor guide={normaliseGuide(data)} products={products} categories={categories} canEdit={atLeast(profile.role, "editor")} siteUrl={env.siteUrl} supabaseUrl={env.supabaseUrl} defaultAuthor={profile.display_name} />
+      <SavedVersion version={String(data.updated_at)}>
+        <GuideEditor guide={normaliseGuide(data)} products={products} categories={categories} canEdit={atLeast(profile.role, "editor")} siteUrl={env.siteUrl} supabaseUrl={env.supabaseUrl} defaultAuthor={profile.display_name} />
+      </SavedVersion>
       {revisions?.length ? (
         <section className="a-section a-panel" aria-labelledby="hist-h">
           <h2 id="hist-h" style={{ margin: "0 0 8px", fontSize: 13 }}>

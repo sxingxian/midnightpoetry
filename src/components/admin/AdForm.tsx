@@ -28,7 +28,7 @@ async function toWebp(file: File): Promise<File> {
 }
 
 export function AdForm({ ad, canEdit, supabaseUrl }: { ad?: Ad; canEdit: boolean; supabaseUrl: string }) {
-  const [state, action, pending] = useKeptForm(saveAd, {});
+  const [state, action, pending, discard] = useKeptForm(saveAd, {});
   const [kind, setKind] = useState(ad?.kind ?? "sponsor");
   const [headline, setHeadline] = useState(ad?.headline ?? "");
   const [url, setUrl] = useState(ad?.url ?? "");
@@ -73,7 +73,7 @@ export function AdForm({ ad, canEdit, supabaseUrl }: { ad?: Ad; canEdit: boolean
         <input type="hidden" name="image_path" value={image} />
         <input type="hidden" name="starts_at" value={starts ? new Date(starts).toISOString() : ""} />
         <input type="hidden" name="ends_at" value={ends ? new Date(ends).toISOString() : ""} />
-        <Result state={state} />
+        <Result state={state} onDiscard={discard} />
         <div className="a-two">
           <div className="a-field">
             <label htmlFor="name">Name (only you see this)</label>

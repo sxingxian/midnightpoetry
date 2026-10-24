@@ -1,3 +1,4 @@
+import { SavedVersion } from "@/components/admin/SavedVersion";
 import { notFound } from "next/navigation";
 import { z } from "zod";
 import { atLeast, requireAdmin } from "@/lib/auth";
@@ -29,7 +30,9 @@ export default async function EditProductPage({ params, searchParams }: { params
       </div>
       <div className="a-layout">
         <div className="main">
-          <ProductForm product={product} canEdit={canEdit} />
+          <SavedVersion version={String(data.updated_at)}>
+            <ProductForm product={product} canEdit={canEdit} />
+          </SavedVersion>
         </div>
         <div className="aside">
           <CategoryEditor productId={product.id} categories={(cats ?? []) as Category[]} canEdit={canEdit} />

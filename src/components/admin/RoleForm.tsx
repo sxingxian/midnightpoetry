@@ -5,7 +5,7 @@ import { setRole } from "@/app/admin/(app)/users/actions";
 import { Result } from "./ui";
 
 export function RoleForm({ id, role, label, ready }: { id: string; role: string; label: string; ready: boolean }) {
-  const [state, action, pending] = useKeptForm(setRole, {});
+  const [state, action, pending, discard] = useKeptForm(setRole, {});
   return (
     <form onSubmit={action} className="a-row">
       <input type="hidden" name="id" value={id} />
@@ -24,7 +24,7 @@ export function RoleForm({ id, role, label, ready }: { id: string; role: string;
       <button className="a-btn sm" disabled={pending}>
         Save
       </button>
-      <Result state={state} />
+      <Result state={state} onDiscard={discard} />
     </form>
   );
 }

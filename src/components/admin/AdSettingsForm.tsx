@@ -14,7 +14,7 @@ const SPOT_LABELS = [
 ] as const;
 
 export function AdSettingsForm({ settings, categories, isOwner }: { settings: AdSettings; categories: (Category & { product: string })[]; isOwner: boolean }) {
-  const [state, action, pending] = useKeptForm(saveAdSettings, {});
+  const [state, action, pending, discard] = useKeptForm(saveAdSettings, {});
   const [network, setNetwork] = useState(settings.network_enabled);
   const [client, setClient] = useState(settings.adsense_client ?? "");
   const pub = /^ca-pub-\d{16}$/.test(client) ? client.replace(/^ca-/, "") : "pub-[your ID]";
@@ -22,7 +22,7 @@ export function AdSettingsForm({ settings, categories, isOwner }: { settings: Ad
     <form onSubmit={action} style={{ display: "flex", flexDirection: "column", gap: 22 }}>
       <fieldset disabled={!isOwner} style={{ border: 0, padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 22 }}>
         {!isOwner ? <p className="a-alert warn">Only owners can change ad settings. You can still manage the ads themselves below.</p> : null}
-        <Result state={state} />
+        <Result state={state} onDiscard={discard} />
         <section className="a-panel">
           <label className="a-check" style={{ fontSize: 16, fontWeight: 600, color: "var(--a-ink)" }}>
             <input type="checkbox" name="enabled" defaultChecked={settings.enabled} />

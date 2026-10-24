@@ -1,11 +1,19 @@
 import type { ActionResult } from "@/lib/admin/result";
 
-export function Result({ state }: { state: ActionResult }) {
+export function Result({ state, onDiscard }: { state: ActionResult; onDiscard?: () => void }) {
   if (state.error)
     return (
-      <p className="a-alert err" role="alert">
-        {state.error}
-      </p>
+      <div className="a-alert err" role="alert" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+        <span>
+          <strong>Not saved.</strong> {state.error}
+          {onDiscard ? " Your edits are still on screen." : ""}
+        </span>
+        {onDiscard ? (
+          <button type="button" className="a-btn sm" onClick={onDiscard}>
+            Discard changes
+          </button>
+        ) : null}
+      </div>
     );
   if (state.ok)
     return (

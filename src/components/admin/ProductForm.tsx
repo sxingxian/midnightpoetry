@@ -19,13 +19,13 @@ const DEFAULTS: Partial<Product> = {
 
 export function ProductForm({ product, canEdit }: { product?: Product; canEdit: boolean }) {
   const p = { ...DEFAULTS, ...product } as Product;
-  const [state, action, pending] = useKeptForm(saveProduct, {});
+  const [state, action, pending, discard] = useKeptForm(saveProduct, {});
   const hl = [0, 1, 2].map((i) => p.highlights?.[i] ?? { label: "", value: "" });
   return (
     <form onSubmit={action} className="a-panel" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <fieldset disabled={!canEdit} style={{ border: 0, padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
         {product ? <input type="hidden" name="id" value={product.id} /> : null}
-        <Result state={state} />
+        <Result state={state} onDiscard={discard} />
         <div className="a-two">
           <div className="a-field">
             <label htmlFor="name">Name</label>

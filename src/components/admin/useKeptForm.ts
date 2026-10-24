@@ -1,18 +1,34 @@
 "use client";
 
-import { startTransition, useActionState, type FormEvent } from "react";
+import { startTransition, useActionState, useState, type FormEvent } from "react";
+import { useSavedVersion } from "./SavedVersion";
+
+type Result = { ok?: string; error?: string };
 
 /**
- * Like useActionState, but the form keeps what's on screen after it's sent.
+ * Form submission for the admin.
  *
- * With <form action={…}>, React resets the form's fields to their initial values
- * once the action finishes — so a saved setting appeared to "revert" until the
- * page was reloaded, and a failed save wiped what had been typed. Submitting
- * through onSubmit instead leaves the fields exactly as the person left them.
- * The pressed button's name/value (e.g. intent=publish) is still included.
+ * - Submits through onSubmit, so React doesn't reset the fields to the values
+ *   the page first loaded with (that made saves look reverted).
+ * - Inside <SavedVersion>, a successful save rebuilds the form from what the
+ *   database now holds, and the "Saved" message carries over to the rebuilt form.
+ * - A failed save leaves your edits on screen, marked as not saved, with a
+ *   "Discard changes" option that goes back to the saved values.
+ * The pressed button's name/value (e.g. intent=publish) is still sent.
  */
 export function useKeptForm<S>(action: (state: Awaited<S>, form: FormData) => S | Promise<S>, initial: Awaited<S>) {
-  const [state, dispatch, pending] = useActionState(action, initial);
+  const saved = useSavedVersion();
+  const [start] = useState<Awaited<S>>(() => {
+    const f = saved?.flash.current as Awaited<S> | null | undefined;
+    if (saved) saved.flash.current = null;
+    return f ?? initial;
+  });
+  const [state, dispatch, pending] = useActionState(async (prev: Awaited<S>, form: FormData) => {
+    const next = await action(prev, form);
+    const r = next as Result | undefined;
+    if (saved && r && r.ok && !r.error) saved.flash.current = next; // shown again after the form is rebuilt
+    return next;
+  }, start);
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (pending) return;
@@ -20,5 +36,5 @@ export function useKeptForm<S>(action: (state: Awaited<S>, form: FormData) => S 
     const data = new FormData(e.currentTarget, submitter);
     startTransition(() => dispatch(data));
   };
-  return [state, onSubmit, pending] as const;
+  return [state, onSubmit, pending, saved?.discard] as const;
 }

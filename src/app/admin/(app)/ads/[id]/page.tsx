@@ -1,3 +1,4 @@
+import { SavedVersion } from "@/components/admin/SavedVersion";
 import { notFound } from "next/navigation";
 import { z } from "zod";
 import { atLeast, requireAdmin } from "@/lib/auth";
@@ -23,7 +24,9 @@ export default async function EditAdPage({ params, searchParams }: { params: Pro
         {sp.saved ? <span className="pill ok">Created</span> : null}
       </div>
       <div className="a-section" style={{ maxWidth: 820 }}>
-        <AdForm ad={ad} canEdit={atLeast(profile.role, "editor")} supabaseUrl={publicEnv().supabaseUrl} />
+        <SavedVersion version={String(data.updated_at)}>
+          <AdForm ad={ad} canEdit={atLeast(profile.role, "editor")} supabaseUrl={publicEnv().supabaseUrl} />
+        </SavedVersion>
       </div>
     </>
   );

@@ -40,7 +40,7 @@ async function toWebp(file: File): Promise<File> {
 }
 
 export function GuideEditor({ guide, products, categories, canEdit, siteUrl, supabaseUrl, defaultAuthor }: Props) {
-  const [state, action, pending] = useKeptForm(saveGuide, {});
+  const [state, action, pending, discard] = useKeptForm(saveGuide, {});
   // Each block keeps a stable key so reordering never mixes up half-typed fields.
   const [items, setItems] = useState<{ key: string; b: Block }[]>(() =>
     (guide?.blocks ?? [emptyBlock("callout"), emptyBlock("heading"), emptyBlock("paragraph")]).map((b, i) => ({ key: `k${i}-${Math.random().toString(36).slice(2)}`, b })),
@@ -125,7 +125,7 @@ export function GuideEditor({ guide, products, categories, canEdit, siteUrl, sup
 
       <div className="a-layout">
         <fieldset className="main" disabled={!canEdit} style={{ border: 0, padding: 0, margin: 0 }}>
-          <Result state={state} />
+          <Result state={state} onDiscard={discard} />
           <div className="a-field">
             <label htmlFor="title">Title</label>
             <input

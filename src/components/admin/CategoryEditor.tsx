@@ -1,13 +1,14 @@
 "use client";
 
 import { useKeptForm } from "@/components/admin/useKeptForm";
+import { SavedVersion } from "@/components/admin/SavedVersion";
 import { deleteCategory, saveCategory } from "@/app/admin/(app)/products/actions";
 import type { Category } from "@/lib/content/types";
 import { Result } from "./ui";
 
 function Row({ c, canEdit }: { c: Category; canEdit: boolean }) {
-  const [state, save, saving] = useKeptForm(saveCategory, {});
-  const [delState, del, deleting] = useKeptForm(deleteCategory, {});
+  const [state, save, saving, discard] = useKeptForm(saveCategory, {});
+  const [delState, del, deleting, discardDelState] = useKeptForm(deleteCategory, {});
   return (
     <li style={{ display: "flex", flexDirection: "column", gap: 6 }}>
       <form onSubmit={save} className="a-row" style={{ flexWrap: "wrap" }}>
@@ -30,13 +31,13 @@ function Row({ c, canEdit }: { c: Category; canEdit: boolean }) {
           </button>
         </form>
       ) : null}
-      <Result state={state.error ? state : delState} />
+      <Result state={state.error ? state : delState} onDiscard={state.error ? discard : discardDelState} />
     </li>
   );
 }
 
 export function CategoryEditor({ productId, categories, canEdit }: { productId: string; categories: Category[]; canEdit: boolean }) {
-  const [state, add, adding] = useKeptForm(saveCategory, {});
+  const [state, add, adding, discard] = useKeptForm(saveCategory, {});
   return (
     <section className="a-panel" aria-labelledby="cat-h" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <h2 id="cat-h" style={{ margin: 0, fontSize: 14 }}>
@@ -44,7 +45,9 @@ export function CategoryEditor({ productId, categories, canEdit }: { productId: 
       </h2>
       <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
         {categories.map((c) => (
-          <Row key={c.id} c={c} canEdit={canEdit} />
+          <SavedVersion key={c.id} version={`${c.name}|${c.slug}|${c.sort_order}`}>
+            <Row c={c} canEdit={canEdit} />
+          </SavedVersion>
         ))}
       </ul>
       {canEdit ? (
@@ -56,7 +59,7 @@ export function CategoryEditor({ productId, categories, canEdit }: { productId: 
           </button>
         </form>
       ) : null}
-      <Result state={state} />
+      <Result state={state} onDiscard={discard} />
     </section>
   );
 }
