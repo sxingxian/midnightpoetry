@@ -115,6 +115,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--glass); color: var(--ink); cursor: pointer; }
 
 /* Site header / footer */
+.scene-toggle { display: inline-flex; align-items: center; gap: 2px; height: 44px; box-sizing: border-box; padding: 3px; margin-left: 6px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--glass); }
+.scene-toggle button { min-width: 44px; height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: var(--ink-2); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; cursor: pointer; transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out); }
+.scene-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.scene-toggle button:disabled { color: var(--muted); opacity: 0.7; text-decoration: line-through; cursor: not-allowed; }
 .site-header { position: relative; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 18px clamp(16px, 4vw, 56px); }
 .site-header.overlay { position: absolute; top: 0; left: 0; right: 0; }
 .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font-family: var(--font-serif); font-size: 26px; color: var(--ink); }

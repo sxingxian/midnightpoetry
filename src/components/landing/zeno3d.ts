@@ -326,5 +326,6 @@ export class Zeno3D {
       }
     });
     this.ren.dispose();
+    this.ren.forceContextLoss();
   }
 }

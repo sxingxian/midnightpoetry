@@ -34,8 +34,9 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-// Runs before paint so the saved theme never flashes. Static string, no user input.
-const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem('mp-theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();`;
+// Runs before paint so the saved theme and 2D/3D scene never flash. Static string, no user input.
+// Scene: the visitor's saved choice, else 2D for reduced motion, else 3D.
+const THEME_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('mp-theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}d.setAttribute('data-theme',t)}catch(e){d.setAttribute('data-theme','dark')}try{var s=localStorage.getItem('mp-scene');if(s!=='2d'&&s!=='3d'){s=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'2d':'3d'}d.setAttribute('data-scene',s)}catch(e){d.setAttribute('data-scene','3d')}})();`;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nonce = (await headers()).get("x-nonce") ?? undefined;

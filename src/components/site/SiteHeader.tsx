@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
+import { SceneToggle } from "./SceneToggle";
 
 export function MoonMark({ size = 22 }: { size?: number }) {
   return (
@@ -9,7 +10,7 @@ export function MoonMark({ size = 22 }: { size?: number }) {
   );
 }
 
-export function SiteHeader({ current, overlay = false }: { current?: "products" | "guides"; overlay?: boolean }) {
+export function SiteHeader({ current, overlay = false, sceneToggle = false }: { current?: "products" | "guides"; overlay?: boolean; sceneToggle?: boolean }) {
   return (
     <header className={`site-header${overlay ? " overlay" : ""}`}>
       <Link href="/" className="brand">
@@ -23,6 +24,7 @@ export function SiteHeader({ current, overlay = false }: { current?: "products" 
         <Link href="/guides" aria-current={current === "guides" ? "page" : undefined}>
           Guides
         </Link>
+        {sceneToggle ? <SceneToggle /> : null}
         <ThemeToggle />
       </nav>
     </header>

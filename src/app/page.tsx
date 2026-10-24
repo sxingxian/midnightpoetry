@@ -105,7 +105,7 @@ export default async function Home() {
       </a>
       <NightSky />
       <ScrollFx />
-      <SiteHeader overlay current="products" />
+      <SiteHeader overlay current="products" sceneToggle />
 
       <main style={{ position: "relative", zIndex: 1 }}>
         <section id="top" className="hero wrap">

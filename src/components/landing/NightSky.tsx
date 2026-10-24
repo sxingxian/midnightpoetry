@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Sky, sampleSky } from "./sky";
 import type { Clouds } from "./clouds";
+import { FlatClouds } from "./clouds2d";
 import type { Pose, Zeno3D } from "./zeno3d";
 import { ZenoFallback } from "./ZenoFallback";
+import { SCENE_EVENT, hasWebgl, markWebglOff, readScene, webglOff, type Scene } from "@/components/site/scene";
 
 const NIGHT = { start: 21 * 60 + 10, end: 30 * 60 + 10 };
 const DAY = { start: 7 * 60, end: 19 * 60 };
@@ -20,17 +22,24 @@ function progress() {
 }
 
 /**
- * Fixed background layers for the landing page: the 2D sky, the WebGL clouds,
- * the clock and Zeno. three.js is loaded after first paint; if WebGL isn't
- * available Zeno falls back to the flat drawing and the sky stays clear.
+ * Fixed background layers for the landing page: the sky, the clouds, the clock and Zeno.
+ * - 3D scene: shader clouds and the 3D Zeno (three.js, loaded after first paint).
+ * - 2D scene: flat layered clouds and the flat Zeno from the mascot sheet; no WebGL at all.
+ * The header's 2D / 3D toggle switches between them; devices without WebGL always get 2D.
  */
 export function NightSky() {
   const skyRef = useRef<HTMLCanvasElement>(null);
   const cloudRef = useRef<HTMLCanvasElement>(null);
+  const cloud2dRef = useRef<HTMLCanvasElement>(null);
   const zenoCanvasRef = useRef<HTMLCanvasElement>(null);
   const zenoBoxRef = useRef<HTMLDivElement>(null);
   const clockRef = useRef<HTMLSpanElement>(null);
-  const [flat, setFlat] = useState(false);
+  // null until mounted (the server can't know the choice); the 3D canvas renders meanwhile, empty.
+  const [scene, setScene] = useState<Scene | null>(null);
+  const [noWebgl, setNoWebgl] = useState(false);
+  const flat = scene === "2d" || noWebgl;
+  const engine = useRef<{ clouds: Clouds | null; flatClouds: FlatClouds | null; zeno: Zeno3D | null }>({ clouds: null, flatClouds: null, zeno: null });
+  const drawStillRef = useRef<() => void>(() => {});
   const [pose, setPose] = useState<Pose>("run");
   const [dir, setDir] = useState(1);
   const [bubble, setBubble] = useState<string | null>(null);
@@ -73,12 +82,10 @@ export function NightSky() {
     const S = state.current;
     S.reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const sky = new Sky(skyCanvas);
-    let clouds: Clouds | null = null;
-    let zeno: Zeno3D | null = null;
+    const E = engine.current;
     let raf = 0;
     let frame = 0;
     let prev = performance.now();
-    let disposed = false;
 
     const clampX = (x: number) => Math.max(0, Math.min(window.innerWidth - 150, x));
     const place = () => {
@@ -97,17 +104,20 @@ export function NightSky() {
       const p = progress();
       sky.draw(0, dark, p);
       const s = sampleSky(dark, p);
-      clouds?.render(40, p, s, sky.light);
-      if (zeno) {
-        zeno.pose(poseRef.current === "run" ? "sit" : poseRef.current, 1, 1, S.look, 0.35);
-        zeno.render(dark, s);
+      E.clouds?.render(40, p, s, sky.light);
+      E.flatClouds?.render(40, p, s);
+      if (E.zeno) {
+        E.zeno.pose(poseRef.current === "run" ? "sit" : poseRef.current, 1, 1, S.look, 0.35);
+        E.zeno.render(dark, s);
       }
       syncClock();
     };
+    drawStillRef.current = drawStill;
 
     const resize = () => {
       sky.resize(window.innerWidth, window.innerHeight);
-      clouds?.resize(window.innerWidth, window.innerHeight);
+      E.clouds?.resize(window.innerWidth, window.innerHeight);
+      E.flatClouds?.resize(window.innerWidth, window.innerHeight);
       S.x = clampX(S.x);
       place();
       drawStill();
@@ -154,12 +164,15 @@ export function NightSky() {
       const p = progress();
       sky.draw(t, dark, p);
       const s = sampleSky(dark, p);
-      if (clouds && (frame++ & 1) === 0) clouds.render(t / 1000 + 40, p, s, sky.light);
-      if (zeno) {
+      if ((frame++ & 1) === 0) {
+        E.clouds?.render(t / 1000 + 40, p, s, sky.light);
+        E.flatClouds?.render(t / 1000 + 40, p, s);
+      }
+      if (E.zeno) {
         const pz = poseRef.current;
         const facing = pz === "run" ? S.dir * 0.95 : pz === "nap" ? 0.35 : S.dir * 0.45;
-        zeno.pose(pz, t / 1000, dt, S.look, facing);
-        zeno.render(dark, s);
+        E.zeno.pose(pz, t / 1000, dt, S.look, facing);
+        E.zeno.render(dark, s);
       }
     };
 
@@ -204,60 +217,99 @@ export function NightSky() {
       raf = requestAnimationFrame(tick);
     }
 
-    // three.js after first paint, in its own chunk.
-    const load = async () => {
-      try {
-        const T = await import("three");
-        if (disposed) return;
-        const { Clouds } = await import("./clouds");
-        const { Zeno3D } = await import("./zeno3d");
-        if (disposed) return;
-        if (cloudRef.current) {
-          try {
-            clouds = new Clouds(T, cloudRef.current);
-            clouds.resize(window.innerWidth, window.innerHeight);
-            cloudRef.current.addEventListener("webglcontextlost", (e) => {
-              e.preventDefault();
-              clouds = null;
-            });
-          } catch {
-            clouds = null;
-          }
-        }
-        if (!zenoCanvasRef.current) throw new Error("no canvas");
-        zeno = new Zeno3D(T, zenoCanvasRef.current, { shells: window.innerWidth < 700 ? 5 : 8 });
-        zenoCanvasRef.current.addEventListener("webglcontextlost", (e) => {
-          e.preventDefault();
-          zeno = null;
-          setFlat(true);
-        });
-        if (S.reduced) drawStill();
-      } catch {
-        setFlat(true);
-      }
+    // Which scene: the visitor's choice, unless this device can't do WebGL.
+    if (!hasWebgl()) markWebglOff();
+    const syncScene = () => {
+      setScene(readScene());
+      setNoWebgl(webglOff());
     };
-    const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
-    if (idle) idle(() => void load());
-    else window.setTimeout(() => void load(), 200);
+    syncScene();
+    window.addEventListener(SCENE_EVENT, syncScene);
 
     return () => {
-      disposed = true;
       cancelAnimationFrame(raf);
+      window.removeEventListener(SCENE_EVENT, syncScene);
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onPointer);
       window.removeEventListener("mp-theme", onTheme);
       footIO.disconnect();
       window.clearTimeout(bubbleTimer.current);
-      clouds?.dispose();
-      zeno?.dispose();
     };
   }, [say, setPoseBoth]);
+
+  // Build the chosen scene's clouds and Zeno; tear them down when the scene changes.
+  useEffect(() => {
+    if (!scene) return;
+    const E = engine.current;
+    const size = () => [window.innerWidth, window.innerHeight] as const;
+
+    if (flat) {
+      if (cloud2dRef.current) {
+        try {
+          E.flatClouds = new FlatClouds(cloud2dRef.current);
+          E.flatClouds.resize(...size());
+        } catch {
+          E.flatClouds = null;
+        }
+      }
+      drawStillRef.current();
+      return () => {
+        E.flatClouds?.dispose();
+        E.flatClouds = null;
+      };
+    }
+
+    let disposed = false;
+    const cloudCanvas = cloudRef.current;
+    const zenoCanvas = zenoCanvasRef.current;
+    const lost = (e: Event) => {
+      e.preventDefault();
+      if (!disposed) markWebglOff(); // the GPU gave up: fall back to 2D for this visit
+    };
+    // three.js after first paint, in its own chunk.
+    const load = async () => {
+      try {
+        const T = await import("three");
+        const { Clouds } = await import("./clouds");
+        const { Zeno3D } = await import("./zeno3d");
+        if (disposed) return;
+        if (cloudCanvas) {
+          try {
+            E.clouds = new Clouds(T, cloudCanvas);
+            E.clouds.resize(...size());
+            cloudCanvas.addEventListener("webglcontextlost", lost);
+          } catch {
+            E.clouds = null;
+          }
+        }
+        if (!zenoCanvas) throw new Error("no canvas");
+        E.zeno = new Zeno3D(T, zenoCanvas, { shells: window.innerWidth < 700 ? 5 : 8 });
+        zenoCanvas.addEventListener("webglcontextlost", lost);
+        drawStillRef.current();
+      } catch {
+        if (!disposed) markWebglOff();
+      }
+    };
+    const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
+    const timer = idle ? (idle(() => void load()), 0) : window.setTimeout(() => void load(), 200);
+
+    return () => {
+      disposed = true;
+      window.clearTimeout(timer);
+      cloudCanvas?.removeEventListener("webglcontextlost", lost);
+      zenoCanvas?.removeEventListener("webglcontextlost", lost);
+      E.clouds?.dispose();
+      E.zeno?.dispose();
+      E.clouds = null;
+      E.zeno = null;
+    };
+  }, [scene, flat]);
 
   return (
     <>
       <canvas ref={skyRef} className="sky-layer" aria-hidden="true" />
-      <canvas ref={cloudRef} className="sky-layer" aria-hidden="true" />
+      {flat ? <canvas key="clouds-2d" ref={cloud2dRef} className="sky-layer" aria-hidden="true" /> : <canvas key="clouds-3d" ref={cloudRef} className="sky-layer" aria-hidden="true" />}
       <svg className="ground" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1440 120">
         <path d="M0 70 L40 52 L60 64 L86 40 L110 62 L140 50 L170 66 L210 58 L250 70 C400 60 520 76 680 68 C820 62 900 74 1040 66 L1080 50 L1100 62 L1130 36 L1160 60 L1190 48 L1220 64 L1260 56 L1300 66 L1440 60 V120 H0 Z" fill="var(--ground-2)" />
         <path d="M0 92 C220 80 420 96 680 88 C940 80 1180 98 1440 86 V120 H0 Z" fill="var(--ground)" />

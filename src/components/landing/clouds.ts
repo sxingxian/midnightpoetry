@@ -100,5 +100,6 @@ export class Clouds {
   dispose() {
     this.mat.dispose();
     this.ren.dispose();
+    this.ren.forceContextLoss(); // free the GPU context now, so switching 2D/3D never piles them up
   }
 }
