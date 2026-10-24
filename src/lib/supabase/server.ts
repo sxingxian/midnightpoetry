@@ -2,7 +2,7 @@ import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { createClient as createPlainClient, type SupabaseClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
-import { publicEnv } from "@/lib/env";
+import { publicEnv, supabaseEnv } from "@/lib/env";
 import { authCookieOptions } from "./cookies";
 
 /** Per-request client that carries the signed-in user's session (admin + auth). */
@@ -27,7 +27,7 @@ export async function createSessionClient(): Promise<SupabaseClient> {
 
 /** Cookie-less anonymous client for public pages: only sees what RLS exposes to anon. */
 export function createPublicClient(): SupabaseClient {
-  const env = publicEnv();
+  const env = supabaseEnv();
   return createPlainClient(env.supabaseUrl, env.supabaseAnonKey, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });

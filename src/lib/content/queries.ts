@@ -8,17 +8,28 @@ const PRODUCT_COLUMNS =
   "id, slug, name, kind, headline, headline_em, headline_style, description, highlights, cta_label, cta_url, site_url, accent_dark, accent_light, button_dark, button_light, status, sort_order, created_at, updated_at";
 const GUIDE_COLUMNS =
   "id, product_id, category_id, slug, title, standfirst, blocks, start_here, meta_title, meta_description, author_name, status, publish_at, published_at, ads_enabled, ad_spots, version, created_at, updated_at";
+/** Server log line for a failed public query (shows in Cloudflare → Workers → Logs). Never sent to the browser. */
+function logFailure(what: string, error: { code?: string; message?: string } | null) {
+  console.error(`[content] ${what} failed`, { code: error?.code ?? "unknown", message: error?.message ?? "" });
+}
+
 const GUIDE_LIST_COLUMNS = "id, product_id, category_id, slug, title, standfirst, start_here, status, publish_at, published_at, updated_at";
 
 export const getLiveProducts = cache(async (): Promise<Product[]> => {
   const { data, error } = await createPublicClient().from("products").select(PRODUCT_COLUMNS).eq("status", "live").order("sort_order");
-  if (error) throw new Error("Could not load products");
+  if (error) {
+    logFailure("products", error);
+    throw new Error("Could not load products");
+  }
   return (data ?? []).map(normaliseProduct);
 });
 
 export const getCategories = cache(async (): Promise<Category[]> => {
   const { data, error } = await createPublicClient().from("categories").select("id, product_id, name, slug, sort_order").order("sort_order");
-  if (error) throw new Error("Could not load categories");
+  if (error) {
+    logFailure("categories", error);
+    throw new Error("Could not load categories");
+  }
   return (data ?? []) as Category[];
 });
 
@@ -27,7 +38,10 @@ export type GuideListItem = Pick<Guide, "id" | "product_id" | "category_id" | "s
 export const getPublishedGuides = cache(async (): Promise<GuideListItem[]> => {
   // RLS already limits anon to published / due guides.
   const { data, error } = await createPublicClient().from("guides").select(GUIDE_LIST_COLUMNS).order("published_at", { ascending: false, nullsFirst: false });
-  if (error) throw new Error("Could not load guides");
+  if (error) {
+    logFailure("guides", error);
+    throw new Error("Could not load guides");
+  }
   return (data ?? []) as GuideListItem[];
 });
 

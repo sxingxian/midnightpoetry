@@ -33,6 +33,23 @@ export function publicEnv(): PublicEnv {
   return cachedPublic;
 }
 
+const supabaseSchema = z.object({ supabaseUrl: z.url(), supabaseAnonKey: z.string().min(20) });
+
+/**
+ * Just the Supabase address and public key. Public pages only need these, so a missing
+ * Turnstile key (only used by the admin sign-in forms) never takes the guides down.
+ */
+export function supabaseEnv(): z.infer<typeof supabaseSchema> {
+  const parsed = supabaseSchema.safeParse({
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  });
+  if (!parsed.success) {
+    throw new Error("Missing or invalid Supabase settings: " + parsed.error.issues.map((i) => i.path.join(".")).join(", "));
+  }
+  return parsed.data;
+}
+
 /** Same as publicEnv() but returns null instead of throwing (for pages that can degrade). */
 export function maybePublicEnv(): PublicEnv | null {
   try {
