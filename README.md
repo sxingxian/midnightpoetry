@@ -66,7 +66,14 @@ Create a widget for `midnightpoetry.studio` (add `localhost` while developing). 
    npx wrangler secret put RESEND_API_KEY
    npx wrangler secret put EMAIL_FROM          # e.g. Midnight Poetry Studio <hello@midnightpoetry.studio>
    npx wrangler secret put OWNER_NOTIFY_EMAIL  # who hears about new registrations
+   npx wrangler secret put AD_CLICK_SECRET     # any long random string: openssl rand -hex 32
    ```
+   Then tell the database the same click secret once (SQL Editor): `select public.set_click_secret('the same value');` — only the Worker can then count ad clicks.
+4. **Rate limiting** (Security → WAF → Rate limiting rules; the free plan includes one rule). Add:
+   - *If* `URI Path` starts with `/admin/` **and** `Request Method` equals `POST`
+   - *When rate exceeds* 10 requests per 10 seconds, counting by IP → **Block** for 10 seconds.
+
+   This slows down password and authenticator-code guessing on top of Supabase's own auth limits and Turnstile.
 
 ### 5. GitHub (automatic deploys)
 
@@ -90,7 +97,7 @@ Every push to `main` then runs **CI** (lint, types, tests, audit, Worker build) 
 
 1. Open `/admin/register`, create your account, and confirm your email.
 2. In Supabase SQL Editor: `select public.promote_owner('you@example.com');`
-3. Sign in at `/admin/login`, scan the QR code with an authenticator app, and you're in. Everyone after you registers the same way and waits for you to give them a role in **People & roles**.
+3. Sign in at `/admin/login`, scan the QR code with an authenticator app, and you're in. Everyone after you registers the same way and waits for you to give them a role in **People & roles** — which only lets you do that once they've confirmed their email and set up their authenticator app.
 
 ---
 
@@ -123,7 +130,8 @@ When AdSense is on, guide pages use Google's documented security policy (nonce +
 - Auth cookies are `httpOnly`, `__Host-` prefixed and `SameSite=Lax`; every auth step runs in server actions.
 - Guide content is typed blocks validated with zod and rendered by React — no raw HTML anywhere. Links must be `https://` (or site-relative).
 - Image uploads: re-encoded to WebP in the browser (strips location data), checked by their bytes on the server, PNG/JPG/WebP only, 3 MB max, no SVG.
-- Ad clicks go through `/api/ads/click/[id]`, which only redirects to a running ad's stored link (no open redirect).
+- Ad clicks go through `/api/ads/click/[id]`, which only redirects to a running ad's stored link (no open redirect). Clicks count only when the database sees the Worker's secret, and once per visitor per ad per day (a salted one-way hash — no IP addresses are stored).
+- The public can only read live products, their categories and their published guides, and only the columns the site shows (no internal ad names or editor IDs). Who-changed-what, version numbers and dates are set by the database, not the browser.
 - Row-level security on every table; see `tests/db.test.ts` for the rules being exercised.
 
 ## Local development

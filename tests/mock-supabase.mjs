@@ -8,7 +8,8 @@ import { PGlite } from "@electric-sql/pglite";
 const STUBS = `
 create schema if not exists auth; create schema if not exists storage; create schema if not exists extensions;
 create role anon nologin; create role authenticated nologin;
-create table auth.users (id uuid primary key, email text, raw_user_meta_data jsonb default '{}'::jsonb);
+create table auth.users (id uuid primary key, email text, email_confirmed_at timestamptz, raw_user_meta_data jsonb default '{}'::jsonb);
+create table auth.mfa_factors (id uuid primary key default gen_random_uuid(), user_id uuid, factor_type text, status text);
 create function auth.uid() returns uuid language sql stable as $$ select null::uuid $$;
 create function auth.jwt() returns jsonb language sql stable as $$ select '{}'::jsonb $$;
 create table storage.buckets (id text primary key, name text, public boolean, file_size_limit bigint, allowed_mime_types text[]);
@@ -18,12 +19,13 @@ create table storage.objects (id uuid primary key default gen_random_uuid(), buc
 const db = new PGlite();
 await db.exec(STUBS);
 await db.exec(readFileSync("supabase/migrations/20261024000000_init.sql", "utf8").replace(/create extension if not exists pgcrypto[^;]*;/, ""));
+await db.exec(readFileSync("supabase/migrations/20261024000100_hardening.sql", "utf8"));
 await db.exec(readFileSync("supabase/seed.sql", "utf8"));
 
 const ADMIN = process.env.MOCK_ADMIN === "1";
 const OWNER = "00000000-0000-0000-0000-0000000000aa";
 if (ADMIN) {
-  await db.exec(`insert into auth.users (id, email, raw_user_meta_data) values ('${OWNER}', 'owner@example.com', '{"display_name":"Owner"}');
+  await db.exec(`insert into auth.users (id, email, email_confirmed_at, raw_user_meta_data) values ('${OWNER}', 'owner@example.com', now(), '{"display_name":"Owner"}');
     insert into auth.users (id, email) values ('00000000-0000-0000-0000-0000000000bb', 'new@example.com');
     select public.promote_owner('owner@example.com');
     update public.guides set title = title || ' ' where true; update public.guides set title = trim(title) where true;`);
@@ -48,9 +50,13 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === "/rest/v1/rpc/record_ad_click") {
       let raw = "";
       for await (const c of req) raw += c;
-      const { p_ad } = JSON.parse(raw || "{}");
-      const r = await db.query("select public.record_ad_click($1) as url", [p_ad]);
+      const { p_ad, p_visitor, p_key } = JSON.parse(raw || "{}");
+      const r = await db.query("select public.record_ad_click($1, $2, $3) as url", [p_ad, p_visitor ?? "", p_key ?? ""]);
       return send(200, r.rows[0]?.url ?? null);
+    }
+    if (url.pathname === "/rest/v1/rpc/admin_user_status" && ADMIN) {
+      const r = await db.query("select u.id, u.email_confirmed_at is not null as email_confirmed, u.email = 'owner@example.com' as has_totp from auth.users u");
+      return send(200, r.rows);
     }
     const m = url.pathname.match(/^\/rest\/v1\/(\w+)$/);
     if (!m || !TABLES.has(m[1])) return send(404, { message: "not found" });

@@ -15,7 +15,8 @@ create schema if not exists extensions;
 create role anon nologin;
 create role authenticated nologin;
 create role service_role nologin;
-create table auth.users (id uuid primary key, email text, raw_user_meta_data jsonb default '{}'::jsonb);
+create table auth.users (id uuid primary key, email text, email_confirmed_at timestamptz, raw_user_meta_data jsonb default '{}'::jsonb);
+create table auth.mfa_factors (id uuid primary key default gen_random_uuid(), user_id uuid, factor_type text, status text);
 create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;
 create function auth.jwt() returns jsonb language sql stable as $$ select coalesce(nullif(current_setting('request.jwt.claims', true), ''), '{}')::jsonb $$;
 create table storage.buckets (id text primary key, name text, public boolean, file_size_limit bigint, allowed_mime_types text[]);
@@ -31,6 +32,10 @@ alter default privileges in schema public grant all on sequences to anon, authen
 const OWNER = "00000000-0000-0000-0000-000000000001";
 const EDITOR = "00000000-0000-0000-0000-000000000002";
 const PENDING = "00000000-0000-0000-0000-000000000003";
+
+const CLICK_KEY = "k".repeat(40);
+const VISITOR_A = "a".repeat(64);
+const VISITOR_B = "b".repeat(64);
 
 let db: PGlite;
 
@@ -51,6 +56,7 @@ beforeAll(async () => {
     "",
   );
   await db.exec(migration);
+  await db.exec(readFileSync("supabase/migrations/20261024000100_hardening.sql", "utf8"));
   await db.exec(readFileSync("supabase/seed.sql", "utf8"));
   await db.exec(`
     insert into auth.users (id, email, raw_user_meta_data) values
@@ -59,6 +65,9 @@ beforeAll(async () => {
       ('${PENDING}', 'new@example.com', '{"display_name":"${"x".repeat(200)}"}');
     select public.promote_owner('owner@example.com');
     update public.profiles set role = 'editor' where id = '${EDITOR}';
+    update auth.users set email_confirmed_at = now() where id in ('${OWNER}', '${EDITOR}');
+    insert into auth.mfa_factors (user_id, factor_type, status) values ('${OWNER}', 'totp', 'verified'), ('${EDITOR}', 'totp', 'verified');
+    select public.set_click_secret('${CLICK_KEY}');
   `);
 });
 
@@ -138,19 +147,25 @@ describe("database security", () => {
     expect((await db.query(`select * from public.audit_events`)).rows.length).toBeGreaterThan(0);
   });
 
-  it("counts clicks only for running ads and returns their link", async () => {
+  it("redirects only for running ads, and counts verified clicks once per visitor", async () => {
     await as("anon");
     const live = await db.query<{ id: string }>(`select id from public.ads limit 1`);
     const id = live.rows[0]!.id;
-    const r = await db.query<{ url: string }>(`select public.record_ad_click($1) as url`, [id]);
-    expect(r.rows[0]?.url).toBe("https://zyra.midnightpoetry.studio/");
+    const click = async (visitor: string, key: string) =>
+      (await db.query<{ url: string | null }>(`select public.record_ad_click($1, $2, $3) as url`, [id, visitor, key])).rows[0]?.url;
+    expect(await click(VISITOR_A, "wrong")).toBe("https://zyra.midnightpoetry.studio/"); // still redirects…
+    expect(await click(VISITOR_A, CLICK_KEY)).toBe("https://zyra.midnightpoetry.studio/");
+    await click(VISITOR_A, CLICK_KEY); // same visitor again
+    await click(VISITOR_B, CLICK_KEY);
     await as("postgres");
+    const n = await db.query<{ clicks: number }>(`select clicks from public.ad_clicks where ad_id = $1`, [id]);
+    expect(n.rows[0]?.clicks).toBe(2); // …but only A once and B once are counted
     await db.exec(`update public.ads set status = 'paused' where id = '${id}'`);
     await as("anon");
-    const r2 = await db.query<{ url: string | null }>(`select public.record_ad_click($1) as url`, [id]);
-    expect(r2.rows[0]?.url).toBeNull();
-    await expect(db.query(`select * from public.ad_clicks`)).resolves.toBeDefined();
+    expect(await click(VISITOR_B, CLICK_KEY)).toBeNull();
     expect((await db.query(`select * from public.ad_clicks`)).rows.length).toBe(0); // anon can't read clicks
+    await expect(db.query(`select * from public.click_secret`)).rejects.toThrow();
+    await expect(db.query(`select public.set_click_secret('${"z".repeat(40)}')`)).rejects.toThrow();
   });
 
   it("only owners can change ad settings, and AdSense IDs must look real", async () => {
@@ -166,5 +181,57 @@ describe("database security", () => {
     await as("authenticated", EDITOR, "aal2");
     await expect(db.exec(`insert into public.ads (name, kind, headline, url) values ('a', 'house', 'h', 'javascript:alert(1)')`)).rejects.toThrow();
     await expect(db.exec(`insert into public.products (slug, name) values ('Bad Slug', 'X')`)).rejects.toThrow();
+  });
+
+  it("hides internal columns and guides of products that aren't live", async () => {
+    await as("anon");
+    await expect(db.query(`select updated_by from public.guides`)).rejects.toThrow(/permission/);
+    await expect(db.query(`select name from public.ads`)).rejects.toThrow(/permission/);
+    await expect(db.query(`select * from public.products`)).rejects.toThrow(/permission/);
+    await as("postgres");
+    await db.exec(`insert into public.products (slug, name, status) values ('secret-app', 'Secret', 'draft');
+      insert into public.categories (product_id, name, slug) select id, 'Hidden', 'hidden' from public.products where slug = 'secret-app';
+      insert into public.guides (product_id, slug, title, status) select id, 'teaser', 'Teaser', 'published' from public.products where slug = 'secret-app';`);
+    await as("anon");
+    expect((await db.query(`select slug from public.guides where slug = 'teaser'`)).rows.length).toBe(0);
+    expect((await db.query(`select slug from public.categories where slug = 'hidden'`)).rows.length).toBe(0);
+    await as("authenticated", EDITOR, "aal2");
+    expect((await db.query(`select slug from public.guides where slug = 'teaser'`)).rows.length).toBe(1);
+  });
+
+  it("sets who-changed-what and version numbers itself", async () => {
+    await as("authenticated", EDITOR, "aal2");
+    await db.exec(`update public.guides set title = 'Forged', version = 99, updated_by = '${OWNER}', published_at = '2000-01-01' where slug = 'split-gst-service-charge'`);
+    await db.exec(`update public.products set name = 'Zeno', updated_by = '${OWNER}', created_at = '2000-01-01' where slug = 'zeno'`);
+    await as("postgres");
+    const g = await db.query<{ version: number; updated_by: string; y: number }>(
+      `select version, updated_by, extract(year from published_at)::int as y from public.guides where slug = 'split-gst-service-charge'`,
+    );
+    expect(g.rows[0]?.version).toBeLessThan(99);
+    expect(g.rows[0]?.updated_by).toBe(EDITOR);
+    expect(g.rows[0]?.y).not.toBe(2000);
+    const p = await db.query<{ updated_by: string; y: number }>(`select updated_by, extract(year from created_at)::int as y from public.products where slug = 'zeno'`);
+    expect(p.rows[0]?.updated_by).toBe(EDITOR);
+    expect(p.rows[0]?.y).not.toBe(2000);
+  });
+
+  it("only owners see other people's profiles and sign-in status", async () => {
+    await as("authenticated", EDITOR, "aal2");
+    const mine = await db.query<{ id: string }>(`select id from public.profiles`);
+    expect(mine.rows.map((r) => r.id)).toEqual([EDITOR]);
+    await expect(db.query(`select * from public.admin_user_status()`)).rejects.toThrow(/owners only/);
+    await as("authenticated", OWNER, "aal2");
+    const st = await db.query<{ id: string; email_confirmed: boolean; has_totp: boolean }>(`select * from public.admin_user_status() order by id`);
+    expect(st.rows.find((r) => r.id === PENDING)).toEqual({ id: PENDING, email_confirmed: false, has_totp: false });
+    expect(st.rows.find((r) => r.id === EDITOR)).toEqual({ id: EDITOR, email_confirmed: true, has_totp: true });
+  });
+
+  it("keeps the file-name rule when media is renamed", async () => {
+    await as("postgres");
+    await db.exec(`insert into storage.objects (bucket_id, name) values ('media', 'guides/abc.webp');
+      create policy "test reads media" on storage.objects for select to authenticated using (bucket_id = 'media');`);
+    await as("authenticated", EDITOR, "aal2");
+    await expect(db.exec(`update storage.objects set name = '../evil.svg' where name = 'guides/abc.webp'`)).rejects.toThrow();
+    await db.exec(`update storage.objects set name = 'guides/abd.webp' where name = 'guides/abc.webp'`);
   });
 });

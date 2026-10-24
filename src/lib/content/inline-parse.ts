@@ -11,6 +11,8 @@ export type InlineToken =
 const PATTERN = /\*\*([^*]+)\*\*|\*([^*]+)\*|\[([^\]]{1,200})\]\(([^)\s]{1,500})\)/g;
 
 export function safeHref(href: string): string | null {
+  // Browsers treat "\" like "/" and ignore control characters, so "/\evil.com" would leave the site.
+  if (/[\\\x00-\x20\x7f]/.test(href)) return null;
   if (href.startsWith("/") && !href.startsWith("//")) return href;
   try {
     const u = new URL(href);

@@ -9,3 +9,6 @@ NEXT_PUBLIC_TURNSTILE_SITE_KEY=your-turnstile-site-key
 RESEND_API_KEY=re_xxx
 EMAIL_FROM="Midnight Poetry Studio <hello@midnightpoetry.studio>"
 OWNER_NOTIFY_EMAIL=you@example.com
+# Any long random string (openssl rand -hex 32). Also run once in Supabase SQL:
+#   select public.set_click_secret('the same value');
+AD_CLICK_SECRET=

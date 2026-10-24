@@ -55,6 +55,8 @@ export async function middleware(request: NextRequest) {
         getAll: () => request.cookies.getAll(),
         setAll: (list) => {
           list.forEach(({ name, value }) => request.cookies.set(name, value));
+          // Forward the refreshed session to the page render, not the stale one.
+          requestHeaders.set("cookie", request.headers.get("cookie") ?? "");
           response = NextResponse.next({ request: { headers: requestHeaders } });
           list.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
         },

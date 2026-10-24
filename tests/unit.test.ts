@@ -72,6 +72,9 @@ describe("inline text", () => {
     expect(links).toEqual([{ kind: "link", text: "docs", href: "https://x.com/" }]);
     expect(safeHref("javascript:alert(1)")).toBeNull();
     expect(safeHref("//evil.com")).toBeNull();
+    expect(safeHref("/\\evil.com")).toBeNull();
+    expect(safeHref("/\tevil")).toBeNull();
+    expect(safeHref("https://x.com/a\\b")).toBeNull();
     expect(safeHref("/guides")).toBe("/guides");
     expect(safeHref("https://user:pw@x.com")).toBeNull();
   });
