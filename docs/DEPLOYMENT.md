@@ -4,7 +4,7 @@ The studio site follows Zyra's set-up (`sxingxian/zyra` → `docs/DEPLOYMENT.md`
 
 | Host | Serves | Cloudflare Worker | Supabase project |
 | --- | --- | --- | --- |
-| `midnightpoetry.studio` | Landing page, guides (every product's, Zyra included), admin at `/admin` | `midnightpoetry-studio` | its own (not Zyra's or Zeno's) |
+| `midnightpoetry.studio` | Landing page, guides (every product's, Zyra included), admin at `/admin` | `midnightpoetry` (the existing one) | its own (not Zyra's or Zeno's) |
 
 ## 1. Supabase project
 
@@ -89,24 +89,29 @@ For local work, use Turnstile's test keys (README).
 
 As with Zyra, Cloudflare builds and deploys the Worker itself on every push, so no Cloudflare token is stored in GitHub. The Worker settings are in `wrangler.jsonc`.
 
-Workers & Pages → **Create** → **Import a repository** → `sxingxian/midnightpoetry`:
+The studio already has a Worker, **`midnightpoetry`**, connected to this repository. It served the old one-page site as static files only, which is why its *Variables and secrets* section says "Variables cannot be added to a Worker that only has static assets". Keep that Worker (it already owns the domain) and change its build settings. After the first successful build it becomes a full Worker, and the variables section opens up.
 
-- **Project name:** `midnightpoetry-studio` (must match `name` in `wrangler.jsonc`)
-- **Production branch:** `main`
+**Step 1: build settings.** Workers & Pages → `midnightpoetry` → Settings → **Build**:
+
+- **Git repository:** `sxingxian/midnightpoetry`, production branch `main`
 - **Root directory:** `/`
 - **Build command:** `npm ci && npx opennextjs-cloudflare build`
 - **Deploy command:** `npx opennextjs-cloudflare deploy`
 - **Non-production branch deploy command:** `npx opennextjs-cloudflare upload`
-- **Build variables:** these are public values; never put the service-role key here.
+- **Build variables** (Settings → Build → *Variables and secrets*, which is not the runtime one). These are public values; never put the service-role key here.
   - `NODE_VERSION=22`
   - `NEXT_TELEMETRY_DISABLED=1`
   - `NEXT_PUBLIC_SITE_URL=https://midnightpoetry.studio`
   - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (from the **studio** project)
   - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` (from the studio widget)
 
-> Don't keep the default deploy command `npx wrangler deploy`. OpenNext's `deploy` uploads the Worker together with its cache in the right order.
+> Don't keep the default deploy command `npx wrangler deploy`: there is no build output for it to upload. OpenNext's `deploy` uploads the Worker together with its cache in the right order. The Worker name must stay `midnightpoetry` to match `name` in `wrangler.jsonc`, or the build stops.
 
-Then add the runtime **secrets** under the Worker → Settings → **Variables and secrets**, with type *Secret*. `keep_vars` in `wrangler.jsonc` keeps them across deploys.
+Set up Supabase and Turnstile (sections 1 and 3) first, so the build variables have real values. The site's public pages and sign-in need them.
+
+**Step 2: first deploy.** Deployments → the latest failed build → **Retry build**, or push a commit. Builds that failed before this never replaced the old page, so the old page stays up until this one succeeds.
+
+**Step 3: runtime secrets.** Once the deploy has succeeded, Settings → **Variables and secrets** accepts entries. Add these with type *Secret*; `keep_vars` in `wrangler.jsonc` keeps them across deploys.
 
 | Secret | Value |
 | --- | --- |
@@ -115,11 +120,11 @@ Then add the runtime **secrets** under the Worker → Settings → **Variables a
 | `OWNER_NOTIFY_EMAIL` | where new-registration notices go |
 | `AD_CLICK_SECRET` | the value from section 1, step 4 |
 
-After saving them, redeploy: Deployments → Retry, or push a commit.
+Saving a secret redeploys the current version with it. Until the secrets are set, the site works but sends no notification emails and counts no ad clicks.
 
 ### Custom domain
 
-`wrangler.jsonc` claims `midnightpoetry.studio` as a Worker custom domain. The first deploy creates the DNS record and certificate, because `midnightpoetry.studio` is already a zone in this Cloudflare account (Zyra's hosts live under it). If the old studio page is still attached to the apex domain, remove it there first, or the deploy can't claim it:
+`wrangler.jsonc` claims `midnightpoetry.studio` as a Worker custom domain. The first deploy creates the DNS record and certificate, because `midnightpoetry.studio` is already a zone in this Cloudflare account (Zyra's hosts live under it). The existing `midnightpoetry` Worker most likely owns it already, so nothing changes. If the domain is attached somewhere else, remove it there first, or the deploy can't claim it:
 
 - a Pages project → Custom domains;
 - an older Worker → Domains & Routes;

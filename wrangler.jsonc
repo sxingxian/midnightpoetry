@@ -2,7 +2,7 @@
 // Same set-up as Zyra's Workers: connected to Git, custom domain only, settings kept between deploys.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "midnightpoetry-studio",
+  "name": "midnightpoetry", // the existing Git-connected Worker that already serves midnightpoetry.studio
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
