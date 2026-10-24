@@ -22,7 +22,8 @@ The previous single-page site is preserved in the `archives` branch and in git h
 | `/admin` | Studio admin (sign-in, two-step code, role required) |
 | `/ads.txt` | Generated from the AdSense publisher ID set in the admin |
 | `supabase/migrations` | Database schema, security rules, audit log, storage bucket |
-| `supabase/seed.sql` | Starter content: Zyra & Zeno, Zeno's categories, the first guide, the Zyra house ad (add Zyra's categories in the admin) |
+| `content/guides/*.json` | The shipped Zyra and Zeno guides (12 each) and product cards; `node scripts/content-sql.mjs` turns them into a migration |
+| `supabase/seed.sql` | Optional extras: the Zyra house ad and default ad settings |
 | `src/components/landing` | Sky, clouds, 3D Zeno, scroll effects |
 | `tests/` | Database security tests (real migration in PGlite) and unit tests |
 
@@ -33,7 +34,7 @@ The previous single-page site is preserved in the `archives` branch and in git h
 Follow **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**. It uses the same set-up as Zyra: a Cloudflare Worker connected to Git, Supabase in Singapore with a **Deploy Supabase** workflow, Resend sending from `sxingxian.com`, and Turnstile. The studio has its own Supabase project, Turnstile widget and Resend key, so its admin accounts never mix with Zyra's or Zeno's.
 
 In short:
-1. A new Supabase project → `db push` → `seed.sql` → auth settings → `set_click_secret`.
+1. A new Supabase project → `db push` (adds the products and guides) → optional `seed.sql` → auth settings → `set_click_secret`.
 2. A new Resend API key on `sxingxian.com`, used for Supabase SMTP and as a Worker secret.
 3. A new Turnstile widget for `midnightpoetry.studio`.
 4. A Cloudflare Worker imported from this repository, with build variables and secrets, plus one rate-limit rule.

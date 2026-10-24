@@ -1,0 +1,402 @@
+{
+  "product": {
+    "slug": "zeno",
+    "name": "Zeno",
+    "kind": "Split the bill, item by item",
+    "headline": "Every line,",
+    "headline_em": "fairly yours.",
+    "headline_style": "serif",
+    "description": "Snap any receipt. Zeno shares the GST, service charge and discounts by what each person ordered, and sends everyone their part. No sign-up needed to start.",
+    "highlights": [
+      { "label": "Split", "value": "By item" },
+      { "label": "Friends", "value": "No app needed" },
+      { "label": "Receipt photo", "value": "Never stored" }
+    ],
+    "cta_label": "Scan a receipt",
+    "cta_url": "https://zenoapp.midnightpoetry.studio/scan",
+    "site_url": "https://zeno.midnightpoetry.studio/",
+    "accent_dark": "#F0A684",
+    "accent_light": "#A04A2A",
+    "button_dark": "#F8F0E1",
+    "button_light": "#1F1D1A",
+    "sort_order": 2
+  },
+  "categories": [
+    { "name": "Fair splits", "slug": "fair-splits" },
+    { "name": "Settling up", "slug": "settling-up" },
+    { "name": "Using Zeno", "slug": "using-zeno" },
+    { "name": "Privacy", "slug": "privacy" }
+  ],
+  "guides": [
+    {
+      "slug": "split-gst-service-charge",
+      "category": "fair-splits",
+      "start_here": true,
+      "title": "How to split GST and service charge fairly",
+      "standfirst": "An even split overcharges whoever ordered least. Here is the order receipts usually apply charges in, and how to share each one by what people actually ate.",
+      "meta_title": "How to split GST and service charge fairly | Zeno",
+      "meta_description": "Why an even split overcharges the light eater, the order receipts apply discounts, service charge and GST in, and a worked example.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Share every discount, service charge and GST by each person's share of the food, not by headcount. On a typical restaurant receipt, the discount comes off first, service charge is added next, and GST is charged on both." },
+        { "type": "heading", "text": "Why an even split isn't fair" },
+        { "type": "paragraph", "text": "Three friends share a $129.49 dinner. Split evenly, each pays about $43.16. But Ben only had chicken rice, his share of the satay and teh tarik, and half a chendol. By what he actually ordered, he owes $36.51 — so an even split quietly charges him $6.65 for food he never ate." },
+        { "type": "heading", "text": "The order charges are applied" },
+        { "type": "table", "caption": "How a typical receipt adds up.", "header": ["Line", "Amount"], "rows": [["Subtotal", "120.00"], ["Member discount 10%", "-12.00"], ["Service charge 10% on 108.00", "10.80"], ["GST 9% on 118.80", "10.69"], ["Total", "129.49"]] },
+        { "type": "paragraph", "text": "Because every charge is a percentage of the food, each person's share of the charges is simply their share of the food. Work out what each person ordered, then scale it by the same factor the receipt used." },
+        { "type": "heading", "text": "A worked example" },
+        { "type": "table", "caption": "Shared dishes are divided between the people who had them.", "header": ["Person", "What they had", "Food", "Pays"], "rows": [["Alicia", "Laksa, grilled fish, ⅓ satay, ⅓ teh tarik, ½ chendol", "51.83", "55.93"], ["Ben", "Chicken rice, ⅓ satay, ⅓ teh tarik, ½ chendol", "33.83", "36.51"], ["Chen", "Nasi lemak, kopi C, ⅓ satay, ⅓ teh tarik", "34.33", "37.05"]] },
+        { "type": "paragraph", "text": "Each person's food is multiplied by 0.9 for the discount, 1.1 for service charge and 1.09 for GST. The three amounts add back up to the $129.49 on the receipt." },
+        { "type": "heading", "text": "When the cents don't divide" },
+        { "type": "paragraph", "text": "A $28.00 platter shared three ways is $9.333… each. Round two shares down and give the leftover cent to the third person, so the total still matches the receipt to the cent." },
+        { "type": "heading", "text": "Common questions" },
+        { "type": "faq", "items": [
+          { "q": "Is GST charged on the service charge?", "a": "On a typical restaurant bill with GST, yes: GST is worked out on the food plus the service charge, which is why it comes last." },
+          { "q": "What if a discount only applies to one dish?", "a": "Take it off that dish first, then share the dish as usual." },
+          { "q": "Do my friends need Zeno to see the split?", "a": "No. They get a picture of who owes what and why, and settle up however your group usually does." }
+        ] },
+        { "type": "cta", "title": "Let the monkey do the maths.", "text": "No sign-up needed to start.", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "even-split-or-itemised",
+      "category": "fair-splits",
+      "title": "Even split or itemised? When each one is fair",
+      "standfirst": "Splitting evenly is quick and sometimes exactly right. Here is how to tell when it is, and how to switch between the two in Zeno.",
+      "meta_title": "Even split or itemised bill? When each is fair | Zeno",
+      "meta_description": "When an even split is fair, when it quietly overcharges someone, and how to switch between By item and Split equally in Zeno.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Split evenly when everyone shared everything, or when the difference is too small to matter to your group. Split by item when people ordered different things — especially when one person skipped the drinks or the dessert." },
+        { "type": "heading", "text": "When an even split is fair" },
+        { "type": "list", "ordered": false, "items": [
+          "Everyone shared every dish, family style.",
+          "Everyone ordered roughly the same thing, like a set menu.",
+          "The group has agreed it doesn't mind a few dollars either way."
+        ] },
+        { "type": "heading", "text": "When it isn't" },
+        { "type": "paragraph", "text": "An even split adds up everyone's food and divides it by headcount, so whoever ordered least pays for part of someone else's meal. The gap grows with the bill: one person skipping a round of cocktails can easily be $20 out of pocket. Discounts, service charge and tax make it worse, because they are percentages of the food — an even split shares those evenly too." },
+        { "type": "table", "caption": "The same $100 dinner for two, split both ways.", "header": ["Person", "Ate", "Even split", "By item"], "rows": [["Mei", "$70 of food", "$50", "$70"], ["Jun", "$30 of food", "$50", "$30"]] },
+        { "type": "heading", "text": "Switching in Zeno" },
+        { "type": "list", "ordered": true, "items": [
+          "Scan the receipt and check it on the **Check the receipt** screen.",
+          "On **Who had what?**, use the toggle at the top: **By item** or **Split equally**.",
+          "With **By item**, tap each person's dot on the things they had. With **Split equally**, just add the people.",
+          "Tap **Review summary** to see everyone's part, then share it."
+        ] },
+        { "type": "paragraph", "text": "You can change your mind before you share: switch the toggle and the totals update straight away." },
+        { "type": "heading", "text": "Where the odd cent goes" },
+        { "type": "paragraph", "text": "When a total doesn't divide evenly, Zeno rounds everyone down to the cent and hands the leftover cents out one at a time, so the shares always add up to the receipt exactly. With an even split, any leftover cent goes to whoever paid the bill." },
+        { "type": "faq", "items": [
+          { "q": "Can I split most things evenly but keep one dish separate?", "a": "Yes — use **By item**, tap everyone onto the shared dishes, and only the person who had the separate dish onto that one." },
+          { "q": "Does an even split still include service charge and tax?", "a": "Yes. The full total on the receipt, charges included, is what gets divided." }
+        ] },
+        { "type": "cta", "title": "Itemised, not averaged.", "text": "Scan your next receipt and see the difference.", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "sharing-a-platter",
+      "category": "fair-splits",
+      "title": "Sharing a platter between some of the table",
+      "standfirst": "The satay was for three of you, the jug of juice for everyone, the cake for two. Here is how to share a dish between just the people who had it.",
+      "meta_title": "Sharing a dish between some of the table | Zeno",
+      "meta_description": "How to share a platter, a jug or a dessert between only the people who had it, and how Zeno divides it to the cent.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "On **Who had what?**, tap every person who shared the dish. Zeno divides that line equally between them and shows “Shared by 3 · $4.00 each” under it." },
+        { "type": "heading", "text": "Sharing a line" },
+        { "type": "list", "ordered": true, "items": [
+          "Make sure **By item** is selected at the top of **Who had what?**.",
+          "Find the shared dish and tap the dot of each person who had some.",
+          "Check the line now reads “Shared by N” with each person's part.",
+          "With more than three people, tap **All** to put everyone on a line in one go."
+        ] },
+        { "type": "paragraph", "text": "Each person's charges — discount, service charge and tax — follow their food, so someone who shared a $12 platter three ways pays the charges on $4, not on $12." },
+        { "type": "heading", "text": "Uneven portions" },
+        { "type": "paragraph", "text": "Zeno shares a line equally between the people tapped on it. If one person clearly had most of a dish, the fairest fix is usually to split it on the receipt first: tap the pencil on the line on the **Check the receipt** screen, lower its quantity or line total, and use **+ Add an item** to add the other portion as its own line." },
+        { "type": "heading", "text": "When the cents don't divide" },
+        { "type": "paragraph", "text": "A $10.00 jug shared three ways is $3.333… each. Zeno shows $3.33, $3.33 and $3.34, giving the spare cent to someone later in the list, so the first person never pays the extra cent and the line still adds up to $10.00." },
+        { "type": "heading", "text": "Things nobody claims" },
+        { "type": "paragraph", "text": "Lines nobody has been tapped onto show “Not assigned”, and you can't continue until every line belongs to someone. A quick way to tidy up: tap the person who should take them and choose **Give the N unassigned items to…**." },
+        { "type": "faq", "items": [
+          { "q": "How many people can share one bill?", "a": "Up to 30 people on a bill." },
+          { "q": "Can a dish be shared by just one person?", "a": "Yes — that's simply their dish. Tap only their dot." }
+        ] },
+        { "type": "cta", "title": "Tap who had what.", "text": "Zeno does the dividing.", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "discounts-tips-and-other-charges",
+      "category": "fair-splits",
+      "title": "Discounts, tips and other charges on the receipt",
+      "standfirst": "Vouchers, member discounts, service charge, tax, tips and rounding all change what people owe. Here is how Zeno reads each one and shares it.",
+      "meta_title": "Discounts, tips and charges on a split bill | Zeno",
+      "meta_description": "How Zeno applies discounts, service charge, tax, tips and rounding, and why each person's share follows what they ordered.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Check the **Discounts, service charge and tax** card before you assign anything. Every charge on it is shared in proportion to each person's items, so the person with the bigger order carries more of the charges and also gets more of the discount." },
+        { "type": "heading", "text": "What goes on the card" },
+        { "type": "table", "caption": "The charges Zeno understands, in the order they are worked out.", "header": ["Charge", "Worked out on"], "rows": [
+          ["Discount (% or amount)", "The items, before service charge"],
+          ["Service charge %", "The items after the discount"],
+          ["Tax % (GST, VAT, SST or sales tax)", "The items after the discount, plus service charge"],
+          ["Tip (% or amount)", "The items, after discounts"],
+          ["Another charge or rounding", "Added as a fixed amount"]
+        ] },
+        { "type": "paragraph", "text": "Zeno reads these from the receipt when it can. If one is missing or wrong, fill it in on the card — the label shows the right local name for tax." },
+        { "type": "heading", "text": "Discounts on one dish" },
+        { "type": "paragraph", "text": "A discount on the card is shared across the whole bill. If a voucher only applied to one dish, take it off that dish instead: tap the pencil on the line and lower its **Line total**. Then share the dish as usual." },
+        { "type": "heading", "text": "Free items and rounding" },
+        { "type": "list", "ordered": false, "items": [
+          "A free dessert or birthday dish can stay at $0.00 — assign it to whoever had it, or leave it with the birthday person.",
+          "Cash rounding (a few cents up or down) belongs under **+ Another charge or rounding**, so the total matches what you actually paid.",
+          "A delivery or corkage fee is also an extra charge — it is shared by each person's items like the rest."
+        ] },
+        { "type": "heading", "text": "How it is shared" },
+        { "type": "paragraph", "text": "Zeno works out the final total with every charge included, then shares it by each person's items in one exact step and rounds only once, at the end. That way the shares always add up to the receipt to the cent, however many charges there are." },
+        { "type": "faq", "items": [
+          { "q": "Can I split the tip evenly but the food by item?", "a": "Not within one bill — every charge follows each person's items. If your group prefers an even tip, settle the tip separately." },
+          { "q": "The receipt total doesn't match. What now?", "a": "The **Check the receipt** screen compares the items and charges with the printed total and tells you the difference. Fix the line or charge that's off, or tap **Use** to accept the total Zeno worked out." }
+        ] },
+        { "type": "cta", "title": "Every charge, shared fairly.", "text": "", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "settling-up-without-awkward-messages",
+      "category": "settling-up",
+      "start_here": true,
+      "title": "Settling up without awkward messages",
+      "standfirst": "One message, one picture, no chasing: how Zeno sends everyone their part and what friends see without the app.",
+      "meta_title": "Settle up a group bill without awkward messages | Zeno",
+      "meta_description": "Send one itemised picture to the group chat, let friends pay their own way, and mark people paid as the money comes in.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "On **Share the bill**, send the itemised picture to your group chat. Everyone sees what they had and what they owe, pays you however your group usually does, and you tap **Mark paid** as it comes in." },
+        { "type": "heading", "text": "Send one picture" },
+        { "type": "list", "ordered": true, "items": [
+          "After **Review summary**, you reach **Share the bill**.",
+          "Pick **Chat** for a picture that fits a group chat, or **Story** for a tall one.",
+          "Tap **WhatsApp** or **Telegram** to send it straight there, **Save** to keep it in your photos, or **More** for any other app.",
+          "Tap **Done** to save the bill."
+        ] },
+        { "type": "paragraph", "text": "The picture is itemised, uses first names only, and looks the same in light or dark mode. It is drawn on your phone — nothing is uploaded to make it." },
+        { "type": "heading", "text": "What your friends need" },
+        { "type": "paragraph", "text": "Nothing. They don't need Zeno or an account to read the picture. Because it shows who had what, there is nothing to argue about and no need to explain the maths." },
+        { "type": "heading", "text": "Getting paid" },
+        { "type": "paragraph", "text": "Zeno never handles money and no payment details are shared. People settle their own way, then you mark them paid. Each person on the bill has a **Mark paid** button, and the bill shows as **Settled** once everyone has paid. In **History**, chips such as **To pay** and **N to settle** show which bills still need attention." },
+        { "type": "heading", "text": "A message that doesn't feel like chasing" },
+        { "type": "paragraph", "text": "If you do need a nudge, send the picture again from the bill — **Share again** — with a light line like “Here's dinner from Friday, no rush.” The picture does the explaining for you." },
+        { "type": "faq", "items": [
+          { "q": "Do I pay my friends through Zeno?", "a": "No. Zeno works out the split; you settle up however you normally would." },
+          { "q": "Can someone mark themselves as paid?", "a": "Yes, if they are on Zeno and have accepted the bill. Otherwise the person who owns the bill marks them paid." }
+        ] },
+        { "type": "cta", "title": "One picture. Everyone knows.", "text": "", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "adding-people-to-a-bill",
+      "category": "settling-up",
+      "title": "Adding people: names, usernames and Zeno friends",
+      "standfirst": "Type a name for anyone, or link people who use Zeno so the bill shows up for them too. Here is the difference.",
+      "meta_title": "Add people to a bill: names, usernames, friends | Zeno",
+      "meta_description": "Add people to a Zeno bill by name, by Zeno username or from your friends, or invite them by email — and what each option means.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Names are quickest and work for everyone. Add someone by **Username** or from **Friends** if they use Zeno and you want the bill to appear in their history too." },
+        { "type": "heading", "text": "Three ways to add people" },
+        { "type": "table", "caption": "In the **Add people** sheet on **Who had what?**.", "header": ["Tab", "What it does", "Who sees the bill"], "rows": [
+          ["Names", "Type a name and press Enter. Add as many as you like.", "Only you — names are saved on this bill"],
+          ["Username", "Their Zeno username, like @meilin", "They get a request to accept"],
+          ["Friends", "Search people who have accepted a bill from you", "They get a request to accept"]
+        ] },
+        { "type": "paragraph", "text": "Names you've used before appear under **Previously added**, so regulars are one tap away. Requests to linked people are sent when you tap **Done** on the share screen." },
+        { "type": "heading", "text": "Inviting someone who isn't on Zeno" },
+        { "type": "paragraph", "text": "On the **Friends** tab, choose **Not on Zeno yet? Invite by email**. They get an email with a link that works for 14 days; after they sign in and accept, the bill appears in their history. Zeno never tells you whether an email address already has an account." },
+        { "type": "heading", "text": "Linking a name later" },
+        { "type": "paragraph", "text": "Started with just a name? Open the saved bill, tap the person and choose **Link Zeno account**, then **Send request**." },
+        { "type": "heading", "text": "Paying for the table" },
+        { "type": "paragraph", "text": "Tap a person to open their sheet and choose **I paid the bill** (or **{name} paid the bill**). The payer is the one who collects; on an even split, any leftover cent goes to them." },
+        { "type": "faq", "items": [
+          { "q": "I'm using Zeno as a guest. Why can I only add names?", "a": "Usernames, friends and invites need an account so the request can be sent from you. Create a free account to use them." },
+          { "q": "Can I change someone's name or colour?", "a": "Yes — tap the person and edit **Name on the bill** or pick another colour." },
+          { "q": "How many people can be on a bill?", "a": "Up to 30." }
+        ] },
+        { "type": "cta", "title": "Add the table, then tap who had what.", "text": "", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "when-someone-adds-you-to-a-bill",
+      "category": "settling-up",
+      "title": "When someone adds you to a bill",
+      "standfirst": "A friend split dinner in Zeno and added you. Here is what you can see, what to tap, and how it counts in your own spending.",
+      "meta_title": "Someone added you to a Zeno bill — what now? | Zeno",
+      "meta_description": "Accept a shared bill or say it isn't yours, see exactly what you had, mark yourself paid, and leave a bill you no longer need.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Open **History**, find the card “{name} added you to a bill”, check **Your share**, then tap **Accept** — or **Not me** if it isn't yours." },
+        { "type": "heading", "text": "If you got an email" },
+        { "type": "paragraph", "text": "The link opens “Someone added you to a bill”. Tap **Continue with email** and sign in (or create a free account). The link works for 14 days." },
+        { "type": "heading", "text": "What you can see" },
+        { "type": "paragraph", "text": "Only that bill: its items, who had what, and the totals. You never see the other person's other bills, and they never see yours." },
+        { "type": "heading", "text": "After you accept" },
+        { "type": "list", "ordered": false, "items": [
+          "The bill appears under **Shared with you**, and the person who added you becomes a Zeno friend.",
+          "Only your share counts towards your own spending — not the whole bill.",
+          "If the owner corrects the receipt later, your share updates by itself.",
+          "When you've paid them back, you can mark yourself paid."
+        ] },
+        { "type": "heading", "text": "If it isn't yours" },
+        { "type": "paragraph", "text": "Tap **Not me**. The owner sees “Said not me” next to your name and can fix it. Already accepted and don't want it any more? Open the bill and tap **Leave this bill**." },
+        { "type": "faq", "items": [
+          { "q": "Do I have to accept to pay my share?", "a": "No. Accepting just keeps the bill in your history. You can pay your friend however you like either way." },
+          { "q": "Can I change what I'm down for?", "a": "Only the bill's owner can edit it. Let them know and your share updates when they do." }
+        ] },
+        { "type": "cta", "title": "Your share, and only yours.", "text": "", "label": "Open Zeno", "url": "https://zenoapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "scanning-long-faded-or-crumpled-receipts",
+      "category": "using-zeno",
+      "title": "Scanning long, faded or crumpled receipts",
+      "standfirst": "Thermal paper fades, long bills curl and restaurant lighting is dim. A few habits get a clean read almost every time.",
+      "meta_title": "Scan long, faded or crumpled receipts | Zeno",
+      "meta_description": "Tips for getting a clean scan of long, faded or crumpled receipts, using Long bill mode, and what to do when a scan fails.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Flatten the receipt on a dark surface, fill the frame, avoid glare, and use **Long bill** for anything longer than your hand. If a read fails, it doesn't use up a scan." },
+        { "type": "heading", "text": "Before you tap the shutter" },
+        { "type": "list", "ordered": false, "items": [
+          "Smooth it flat on the table — a dark table makes the paper's edges stand out.",
+          "Fill the frame with the receipt, top to bottom, holding the phone straight above it.",
+          "Turn on the flash if the room is dim, but tilt slightly if it causes a bright glare.",
+          "Make sure the totals at the bottom are in the picture."
+        ] },
+        { "type": "heading", "text": "Long receipts" },
+        { "type": "paragraph", "text": "Tap **Long bill** on the scan screen before taking the photo. Zeno keeps more detail for tall receipts so small lines stay readable." },
+        { "type": "heading", "text": "Using a photo you already took" },
+        { "type": "paragraph", "text": "Tap **Photos** to pick one from your phone. Drag and pinch to fit the receipt in the frame, then tap ✓ — or **Another** to choose a different picture." },
+        { "type": "heading", "text": "Faded or crumpled paper" },
+        { "type": "paragraph", "text": "Faded thermal paper reads best in bright, even light. If parts are unreadable, Zeno flags the lines it wasn't sure about on the next screen so you can fix them in a few taps." },
+        { "type": "heading", "text": "If the scan fails" },
+        { "type": "paragraph", "text": "You'll see “Zeno couldn't read that receipt. Try a flatter, brighter photo.” Failed reads don't count towards your scans, so just try again. If the receipt is beyond saving, tap **Type it in** and enter the lines yourself." },
+        { "type": "faq", "items": [
+          { "q": "Does the photo get stored anywhere?", "a": "No. It is resized on your phone with location data removed, read, then deleted." },
+          { "q": "Can I scan from a computer?", "a": "Scanning is on your phone. Plus members can add bills by hand on the desktop dashboard." }
+        ] },
+        { "type": "cta", "title": "Snap it flat, Zeno reads the rest.", "text": "", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "fixing-a-misread-line",
+      "category": "using-zeno",
+      "title": "Fixing a misread line before you split",
+      "standfirst": "Zeno checks the arithmetic and flags anything it wasn't sure about. Here is how to correct a line, add a missing one and make the total match.",
+      "meta_title": "Fix a misread receipt line before splitting | Zeno",
+      "meta_description": "Correct items Zeno wasn't sure about, add or remove lines, and make the items and charges match the printed total.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "On **Check the receipt**, tap any line flagged in amber, correct it with the pencil, and look for “Matches the total printed on the receipt” before you tap **Looks right · assign items**." },
+        { "type": "heading", "text": "Lines Zeno wasn't sure about" },
+        { "type": "paragraph", "text": "A banner such as “2 things to check” sits at the top, and the lines in question are marked in amber. Some ask a direct question — “Price unclear: 8.50 or 6.50?” — so you can answer with a glance at the paper." },
+        { "type": "heading", "text": "Editing, adding and removing" },
+        { "type": "list", "ordered": true, "items": [
+          "Tap the pencil on a line to change its **Name**, **Quantity** or **Line total**, then **Save item**.",
+          "Tap **+ Add an item** for anything Zeno missed.",
+          "Open a line and tap **Remove item** for anything that isn't really an item, like a table number.",
+          "Every item needs a name before you can carry on."
+        ] },
+        { "type": "heading", "text": "Making the total match" },
+        { "type": "paragraph", "text": "Zeno adds up the items and charges and compares them with the total printed on the receipt. If they agree you'll see “Matches the total printed on the receipt”. If not, it shows both numbers so you can find the difference — usually a misread price, a missing line or a charge on the **Discounts, service charge and tax** card. If the printed total itself was misread, correct **Total printed on the receipt**, or tap **Use** to accept the total Zeno worked out." },
+        { "type": "heading", "text": "The rest of the details" },
+        { "type": "paragraph", "text": "The same screen holds the merchant, date, time and a category (Dining, Groceries, Retail, Transport, Travel, Fun or Other), which keep your history tidy. If the photo was hopeless, the camera button **Retake photo** goes back to the scanner." },
+        { "type": "faq", "items": [
+          { "q": "Can I edit a bill after I've shared it?", "a": "Yes. Open it from **History** and tap the pencil to edit the receipt. People who accepted the bill see their share update." },
+          { "q": "Why does Zeno care if the total matches?", "a": "Because everyone's share is worked out from it. A matching total means nobody pays for a misread line." }
+        ] },
+        { "type": "cta", "title": "Check every line. Then split.", "text": "", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "guest-free-or-plus",
+      "category": "using-zeno",
+      "title": "Guest, free account or Plus: which one you need",
+      "standfirst": "You can split tonight's dinner without signing up. Here is what an account adds, what Plus adds, and how to keep the bills you made as a guest.",
+      "meta_title": "Zeno as a guest, free account or Plus | Zeno",
+      "meta_description": "What you can do as a guest, why a free account keeps your bills safe, what Plus adds, and how to move guest bills into an account.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Start as a guest to try it tonight. Create a free account to keep your history safe and add friends by username. Get Plus for more scans, the desktop dashboard and monthly reports." },
+        { "type": "table", "caption": "Scan allowances are shown on the plan card in **History** as “X of Y scans left this month”.", "header": ["Feature", "Guest", "Free account", "Plus"], "rows": [
+          ["Scans", "A few each month", "More each month", "Many more each month"],
+          ["Where bills are kept", "This phone only", "Your account", "Your account, kept for longer"],
+          ["Add people", "By name", "Names, usernames, friends, email", "Names, usernames, friends, email"],
+          ["Extras", "—", "—", "Desktop dashboard, spending insights, PDF and CSV reports, no ads"]
+        ] },
+        { "type": "heading", "text": "As a guest" },
+        { "type": "paragraph", "text": "Tap **Start as a guest** on the welcome screen. Your bills are saved on this phone only — clear the browser or lose the phone and they're gone. **End guest session** in Account deletes them, and asks first if any bills would be lost." },
+        { "type": "heading", "text": "Signing in" },
+        { "type": "paragraph", "text": "Zeno emails you a 6-digit code to sign in — tap **Email me a code**, then **Verify and continue**. The code works once and expires after 10 minutes. You can always use your password instead, and you can add an authenticator app in Account › **Security**." },
+        { "type": "heading", "text": "Keeping your guest bills" },
+        { "type": "paragraph", "text": "Sign in on the same phone and Zeno asks “Move your guest bills?” — tap **Move to account** to keep them, or **Keep on phone**." },
+        { "type": "heading", "text": "Out of scans" },
+        { "type": "paragraph", "text": "Failed reads never count. If you do run out, you can still **Type it in** by hand, create a free account, or get Plus. Allowances reset each month." },
+        { "type": "faq", "items": [
+          { "q": "Do my friends need an account?", "a": "No. Only the person splitting the bill needs Zeno." },
+          { "q": "How long are bills kept?", "a": "Free accounts keep about three months of history, Plus about five years. The exact periods are in the privacy notice." },
+          { "q": "Can I use Plus on a computer?", "a": "Yes — Plus includes a desktop dashboard with your receipts, splits and reports. Scanning stays on your phone." }
+        ] },
+        { "type": "cta", "title": "Try it tonight. No account needed.", "text": "", "label": "Open Zeno", "url": "https://zenoapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "foreign-currency-receipts",
+      "category": "using-zeno",
+      "title": "Splitting a receipt in another currency",
+      "standfirst": "Dinner abroad, card statement at home. Zeno can split a bill in the currency you'll actually pay back in, using the rate for the receipt date.",
+      "meta_title": "Split a foreign currency receipt | Zeno",
+      "meta_description": "Convert a receipt to your home currency with the rate for the receipt date, use your card's exact rate, and keep shares adding up.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "On **Check the receipt**, set **Paid in** to the receipt's currency and **Split in** to the one your group settles in. Zeno fetches the rate for the receipt date — or tap **Edit rate** to use the exact rate from your card statement." },
+        { "type": "heading", "text": "Setting the currencies" },
+        { "type": "list", "ordered": true, "items": [
+          "Scan as usual. On **Check the receipt**, find the currency card.",
+          "Set **Paid in** to the currency printed on the receipt.",
+          "Set **Split in** to the currency your group will pay back in. It starts as your profile's currency.",
+          "Check the rate, then carry on to **Who had what?**."
+        ] },
+        { "type": "heading", "text": "Which rate to use" },
+        { "type": "paragraph", "text": "Zeno looks up the rate for the date on the receipt. Card companies add their own fees, so if you want everyone to repay exactly what your card charged, tap **Edit rate**, type the rate from your statement, and tap **Use this rate**." },
+        { "type": "heading", "text": "Cents still add up" },
+        { "type": "paragraph", "text": "Converted shares are rounded the same careful way as any other bill, so they add up exactly to the converted total. Currencies without cents, like yen and won, are rounded to whole units." },
+        { "type": "faq", "items": [
+          { "q": "How many currencies does Zeno support?", "a": "Around three dozen of the most common ones, chosen from the pickers on the currency card." },
+          { "q": "The rate changed after we paid. Can I update it?", "a": "Yes. Edit the bill and enter the new rate; everyone's share updates." }
+        ] },
+        { "type": "cta", "title": "Paid in one, split in another.", "text": "", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    },
+    {
+      "slug": "what-happens-to-your-receipt-photo",
+      "category": "privacy",
+      "title": "What happens to your receipt photo",
+      "standfirst": "Your receipt is read, then deleted. Here is every step the photo goes through, what Zeno keeps, and how to download or delete your data.",
+      "meta_title": "What happens to your receipt photo | Zeno",
+      "meta_description": "How Zeno reads a receipt without storing the photo, what it keeps from the bill, and how to download or delete your data.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "The photo is resized on your phone with its location data removed, read in memory, and thrown away. Zeno keeps the bill — the lines, people and amounts — not the picture." },
+        { "type": "heading", "text": "Step by step" },
+        { "type": "list", "ordered": true, "items": [
+          "On your phone, Zeno shrinks the photo and re-saves it, which strips the location and camera details stored inside it.",
+          "The smaller image is sent over an encrypted connection to be read.",
+          "It is read in memory, the lines and totals are checked, and the image is dropped. It is never written to storage.",
+          "You check the lines and save the bill."
+        ] },
+        { "type": "heading", "text": "What Zeno keeps" },
+        { "type": "paragraph", "text": "For an account, the bill: merchant, date, items, charges, the people on it and who had what. As a guest, the bill stays on your phone only. The AI service that reads receipts doesn't train on them." },
+        { "type": "heading", "text": "The picture you share" },
+        { "type": "paragraph", "text": "The itemised picture you send to friends is drawn on your phone and uses first names only. Nothing is uploaded to make it, and no payment details are on it." },
+        { "type": "heading", "text": "Download or delete" },
+        { "type": "list", "ordered": false, "items": [
+          "Account › **Your data and privacy** › **Download my data** gives you everything in your account as a file.",
+          "**Delete my account** (type DELETE, then **Delete forever**) removes your account and the bills you own. On bills other people own, you stay as a name only.",
+          "As a guest, **End guest session** deletes the bills on your phone."
+        ] },
+        { "type": "faq", "items": [
+          { "q": "Can people I share a bill with see my other bills?", "a": "No. They only see the bill they were added to." },
+          { "q": "How long are bills kept?", "a": "For as long as your plan's history lasts, then they are deleted automatically. The privacy notice lists the exact periods." }
+        ] },
+        { "type": "cta", "title": "Read, then deleted.", "text": "Your receipt photo is never stored.", "label": "Scan a receipt", "url": "https://zenoapp.midnightpoetry.studio/scan" }
+      ]
+    }
+  ]
+}

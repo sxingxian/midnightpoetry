@@ -19,7 +19,7 @@ The studio site follows Zyra's set-up (`sxingxian/zyra` → `docs/DEPLOYMENT.md`
    npx supabase db push
    ```
 
-3. Load the starter content once: SQL editor → paste `supabase/seed.sql` → Run. It adds Zyra and Zeno, Zeno's categories, the first guide and the Zyra house ad. Add Zyra's guide categories later in the admin.
+3. The migrations already add Zyra and Zeno, their guide categories and 24 published guides (written in `content/guides/*.json`; `node scripts/content-sql.mjs` rebuilds the migration). Optionally run `supabase/seed.sql` once in the SQL editor for the Zyra house ad and default ad settings.
 4. Ad-click secret: generate a long random value with `openssl rand -hex 32`. Run `select public.set_click_secret('<value>');` in the SQL editor, and put the same value in the Worker secret `AD_CLICK_SECRET` (section 4). Only the Worker can then count ad clicks.
 
 ### Auth settings (Dashboard → Authentication)

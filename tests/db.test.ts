@@ -82,8 +82,10 @@ describe("database security", () => {
     await as("anon");
     const products = await db.query(`select slug from public.products order by sort_order`);
     expect((products.rows as { slug: string }[]).map((r) => r.slug)).toEqual(["zyra", "zeno"]);
-    const guides = await db.query(`select slug from public.guides`);
-    expect((guides.rows as { slug: string }[]).map((r) => r.slug)).toEqual(["split-gst-service-charge"]);
+    const guides = (await db.query<{ slug: string }>(`select slug from public.guides`)).rows.map((r) => r.slug);
+    expect(guides).toContain("split-gst-service-charge");
+    expect(guides).not.toContain("draft-one");
+    expect(guides.length).toBe(24); // the shipped studio guides: 12 for Zyra, 12 for Zeno
   });
 
   it("shows scheduled guides only once they are due", async () => {
@@ -238,7 +240,8 @@ describe("database security", () => {
     await db.exec(`insert into public.guides (product_id, slug, title, status) select id, 'swap-a-shift', 'Swap a shift', 'published' from public.products where slug = 'zyra'`);
     await as("anon");
     const r = await db.query<{ slug: string }>(`select g.slug from public.guides g join public.products p on p.id = g.product_id where p.slug = 'zyra'`);
-    expect(r.rows.map((x) => x.slug)).toEqual(["swap-a-shift"]);
+    expect(r.rows.map((x) => x.slug)).toContain("swap-a-shift");
+    expect(r.rows.length).toBe(13);
     await expect(db.query(`select guides_url from public.products`)).rejects.toThrow();
   });
 });
