@@ -1,10 +1,11 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireActionRole } from "@/lib/auth";
 import { httpsUrl } from "@/lib/content/blocks";
-import { failure, optUrl, str, type ActionResult } from "@/lib/admin/result";
+import { describeIssue, failure, optUrl, str, type ActionResult } from "@/lib/admin/result";
 
 const slug = z.string().trim().toLowerCase().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "Use lowercase letters, numbers and dashes.").max(60);
 const hexColour = z.string().regex(/^#[0-9A-Fa-f]{6}$/, "Colours look like #A1B2C3.");
@@ -54,7 +55,7 @@ export async function saveProduct(_prev: ActionResult, form: FormData): Promise<
     status: str(form.get("status")),
     sort_order: str(form.get("sort_order")) || "0",
   });
-  if (!parsed.success) return { error: `${parsed.error.issues[0]?.path.join(" ")}: ${parsed.error.issues[0]?.message}` };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]) };
   let newId = id;
   try {
     const { supabase, user } = await requireActionRole("editor");
@@ -72,6 +73,7 @@ export async function saveProduct(_prev: ActionResult, form: FormData): Promise<
     return failure(e);
   }
   if (!id) redirect(`/admin/products/${newId}?saved=1`);
+  revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
   return { ok: "Saved." };
 }
 
@@ -86,12 +88,13 @@ export async function saveCategory(_prev: ActionResult, form: FormData): Promise
     slug: str(form.get("slug")) || name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
     sort_order: str(form.get("sort_order")) || "0",
   });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]) };
   try {
     const { supabase } = await requireActionRole("editor");
     const q = id ? supabase.from("categories").update(parsed.data).eq("id", id) : supabase.from("categories").insert(parsed.data);
     const { error } = await q;
     if (error) throw error;
+    revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
     return { ok: "Category saved.", n: Date.now() };
   } catch (e) {
     return failure(e);
@@ -105,6 +108,7 @@ export async function deleteCategory(_prev: ActionResult, form: FormData): Promi
     const { supabase } = await requireActionRole("editor");
     const { error } = await supabase.from("categories").delete().eq("id", id.data);
     if (error) throw error;
+    revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
     return { ok: "Category removed. Its guides are now uncategorised.", n: Date.now() };
   } catch (e) {
     return failure(e);

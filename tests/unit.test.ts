@@ -116,3 +116,21 @@ describe("colours", () => {
     for (const c of ["#6E5CF0", "#5546D6", "#1F1D1A", "#F8F0E1", "#F2B661"]) expect(contrast(c, readableOn(c))).toBeGreaterThanOrEqual(4.5);
   });
 });
+
+import { describeIssue } from "@/lib/admin/result";
+import { z } from "zod";
+
+describe("admin validation messages", () => {
+  it("are written for people", () => {
+    const empty = z.object({ title: z.string().min(1) }).safeParse({ title: "" });
+    expect(describeIssue(empty.error?.issues[0])).toBe("Title is empty.");
+    const long = z.object({ meta_title: z.string().max(70) }).safeParse({ meta_title: "x".repeat(80) });
+    expect(describeIssue(long.error?.issues[0])).toBe("Search title is too long (up to 70 characters).");
+    const own = z.object({ adsense_client: z.string().regex(/^ca-pub-\d{16}$/, "The publisher ID looks like ca-pub- followed by 16 digits.") }).safeParse({ adsense_client: "x" });
+    expect(describeIssue(own.error?.issues[0])).toBe("The publisher ID looks like ca-pub- followed by 16 digits.");
+  });
+  it("accepts ad unit IDs for only some spots", async () => {
+    const units = z.partialRecord(z.enum(["inline", "end", "side", "hub"]), z.string().regex(/^\d{6,20}$/));
+    expect(units.safeParse({ inline: "1234567890" }).success).toBe(true);
+  });
+});

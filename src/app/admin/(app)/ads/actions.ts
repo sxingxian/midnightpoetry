@@ -1,10 +1,11 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireActionRole } from "@/lib/auth";
 import { httpsUrl } from "@/lib/content/blocks";
-import { failure, str, type ActionResult } from "@/lib/admin/result";
+import { describeIssue, failure, str, type ActionResult } from "@/lib/admin/result";
 import { uploadImage } from "@/lib/admin/media";
 
 const SPOTS = ["inline", "end", "side", "hub"] as const;
@@ -17,7 +18,8 @@ const settingsSchema = z.object({
   max_per_page: z.coerce.number().int().min(1).max(3),
   excluded_category_ids: z.array(z.uuid()).max(100),
   adsense_client: z.union([z.literal("").transform(() => null), z.string().trim().regex(/^ca-pub-\d{16}$/, "The publisher ID looks like ca-pub- followed by 16 digits.")]),
-  adsense_units: z.record(z.enum(SPOTS), z.string().regex(/^\d{6,20}$/, "Ad unit IDs are numbers.")),
+  // partialRecord: only the spots that have a unit ID (zod 4's record() would demand all four).
+  adsense_units: z.partialRecord(z.enum(SPOTS), z.string().regex(/^\d{6,20}$/, "Ad unit IDs are numbers.")),
 });
 
 export async function saveAdSettings(_prev: ActionResult, form: FormData): Promise<ActionResult> {
@@ -36,12 +38,13 @@ export async function saveAdSettings(_prev: ActionResult, form: FormData): Promi
     adsense_client: str(form.get("adsense_client")),
     adsense_units: units,
   });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]) };
   if (parsed.data.network_enabled && !parsed.data.adsense_client) return { error: "Add your AdSense publisher ID before switching AdSense on." };
   try {
     const { supabase, user } = await requireActionRole("owner");
     const { error } = await supabase.from("ad_settings").update({ ...parsed.data, updated_by: user.id }).eq("id", 1);
     if (error) throw error;
+    revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
     return { ok: "Saved — logged in the audit log.", n: Date.now() };
   } catch (e) {
     return failure(e);
@@ -84,7 +87,7 @@ export async function saveAd(_prev: ActionResult, form: FormData): Promise<Actio
     ends_at: str(form.get("ends_at")),
     status: str(form.get("status")),
   });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]) };
   let newId = id;
   try {
     const { supabase, user } = await requireActionRole("editor");
@@ -102,6 +105,7 @@ export async function saveAd(_prev: ActionResult, form: FormData): Promise<Actio
     return failure(e);
   }
   if (!id) redirect(`/admin/ads/${newId}?saved=1`);
+  revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
   return { ok: "Saved.", n: Date.now() };
 }
 

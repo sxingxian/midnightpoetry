@@ -1,7 +1,8 @@
 "use client";
 
+import { useKeptForm } from "@/components/admin/useKeptForm";
 import Link from "next/link";
-import { useActionState, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { saveGuide, uploadGuideImage } from "@/app/admin/(app)/guides/actions";
 import { BLOCK_LABELS, emptyBlock, type Block, type BlockType } from "@/lib/content/blocks";
 import type { Category, Guide, Product } from "@/lib/content/types";
@@ -39,7 +40,7 @@ async function toWebp(file: File): Promise<File> {
 }
 
 export function GuideEditor({ guide, products, categories, canEdit, siteUrl, supabaseUrl, defaultAuthor }: Props) {
-  const [state, action, pending] = useActionState(saveGuide, {});
+  const [state, action, pending] = useKeptForm(saveGuide, {});
   // Each block keeps a stable key so reordering never mixes up half-typed fields.
   const [items, setItems] = useState<{ key: string; b: Block }[]>(() =>
     (guide?.blocks ?? [emptyBlock("callout"), emptyBlock("heading"), emptyBlock("paragraph")]).map((b, i) => ({ key: `k${i}-${Math.random().toString(36).slice(2)}`, b })),
@@ -86,7 +87,7 @@ export function GuideEditor({ guide, products, categories, canEdit, siteUrl, sup
   const showAdMarker = adsEnabled && spots.includes("inline");
 
   return (
-    <form action={action}>
+    <form onSubmit={action}>
       {guide ? <input type="hidden" name="id" value={guide.id} /> : null}
       <input type="hidden" name="blocks" value={JSON.stringify(blocks)} />
       <input type="hidden" name="publish_at" value={publishAt ? new Date(publishAt).toISOString() : ""} />

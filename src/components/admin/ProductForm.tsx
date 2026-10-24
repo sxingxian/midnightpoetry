@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useKeptForm } from "@/components/admin/useKeptForm";
 import { saveProduct } from "@/app/admin/(app)/products/actions";
 import type { Product } from "@/lib/content/types";
 import { Result } from "./ui";
@@ -19,10 +19,10 @@ const DEFAULTS: Partial<Product> = {
 
 export function ProductForm({ product, canEdit }: { product?: Product; canEdit: boolean }) {
   const p = { ...DEFAULTS, ...product } as Product;
-  const [state, action, pending] = useActionState(saveProduct, {});
+  const [state, action, pending] = useKeptForm(saveProduct, {});
   const hl = [0, 1, 2].map((i) => p.highlights?.[i] ?? { label: "", value: "" });
   return (
-    <form action={action} className="a-panel" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <form onSubmit={action} className="a-panel" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <fieldset disabled={!canEdit} style={{ border: 0, padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
         {product ? <input type="hidden" name="id" value={product.id} /> : null}
         <Result state={state} />

@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useKeptForm } from "@/components/admin/useKeptForm";
+import { useState } from "react";
 import { saveAd, uploadAdImage } from "@/app/admin/(app)/ads/actions";
 import type { Ad } from "@/lib/content/types";
 import { Result } from "./ui";
@@ -27,7 +28,7 @@ async function toWebp(file: File): Promise<File> {
 }
 
 export function AdForm({ ad, canEdit, supabaseUrl }: { ad?: Ad; canEdit: boolean; supabaseUrl: string }) {
-  const [state, action, pending] = useActionState(saveAd, {});
+  const [state, action, pending] = useKeptForm(saveAd, {});
   const [kind, setKind] = useState(ad?.kind ?? "sponsor");
   const [headline, setHeadline] = useState(ad?.headline ?? "");
   const [url, setUrl] = useState(ad?.url ?? "");
@@ -66,7 +67,7 @@ export function AdForm({ ad, canEdit, supabaseUrl }: { ad?: Ad; canEdit: boolean
   };
   const spots = ad?.spots ?? ["inline"];
   return (
-    <form action={action} className="a-panel" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <form onSubmit={action} className="a-panel" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <fieldset disabled={!canEdit} style={{ border: 0, padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
         {ad ? <input type="hidden" name="id" value={ad.id} /> : null}
         <input type="hidden" name="image_path" value={image} />

@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { describeIssue } from "@/lib/admin/result";
 import { createSessionClient } from "@/lib/supabase/server";
 import { publicEnv } from "@/lib/env";
 import { safeNext } from "@/lib/auth";
@@ -22,7 +23,7 @@ export async function signIn(prev: FormState, form: FormData): Promise<FormState
     password: form.get("password"),
     captcha: form.get("cf-turnstile-response"),
   });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Check the form.", attempt: bump(prev) };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]), attempt: bump(prev) };
   const supabase = await createSessionClient();
   const { error } = await supabase.auth.signInWithPassword({ email: parsed.data.email, password: parsed.data.password, options: { captchaToken: parsed.data.captcha } });
   if (error) {
@@ -47,7 +48,7 @@ export async function register(prev: FormState, form: FormData): Promise<FormSta
       confirm: form.get("confirm"),
       captcha: form.get("cf-turnstile-response"),
     });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Check the form.", attempt: bump(prev) };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]), attempt: bump(prev) };
   const env = publicEnv();
   const supabase = await createSessionClient();
   const { error } = await supabase.auth.signUp({
@@ -77,7 +78,7 @@ export async function register(prev: FormState, form: FormData): Promise<FormSta
 
 export async function forgotPassword(prev: FormState, form: FormData): Promise<FormState> {
   const parsed = z.object({ email, captcha }).safeParse({ email: form.get("email"), captcha: form.get("cf-turnstile-response") });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Check the form.", attempt: bump(prev) };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]), attempt: bump(prev) };
   const supabase = await createSessionClient();
   await supabase.auth.resetPasswordForEmail(parsed.data.email, { captchaToken: parsed.data.captcha, redirectTo: `${publicEnv().siteUrl}/admin/reset` });
   // Always the same answer, whether or not the address has an account.
@@ -86,7 +87,7 @@ export async function forgotPassword(prev: FormState, form: FormData): Promise<F
 
 export async function verifyMfa(prev: FormState, form: FormData): Promise<FormState> {
   const parsed = code.safeParse(String(form.get("code") ?? "").replace(/\s/g, ""));
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message, attempt: bump(prev) };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]), attempt: bump(prev) };
   const supabase = await createSessionClient();
   const { data: factors } = await supabase.auth.mfa.listFactors();
   const factor = (factors?.totp ?? []).find((f) => f.status === "verified");
@@ -114,7 +115,7 @@ export async function confirmEnroll(prev: EnrollState, form: FormData): Promise<
   const factorId = z.uuid().safeParse(form.get("factorId"));
   const parsed = code.safeParse(String(form.get("code") ?? "").replace(/\s/g, ""));
   if (!factorId.success) return { ...prev, error: "Start again.", attempt: bump(prev) };
-  if (!parsed.success) return { ...prev, error: parsed.error.issues[0]?.message, attempt: bump(prev) };
+  if (!parsed.success) return { ...prev, error: describeIssue(parsed.error.issues[0]), attempt: bump(prev) };
   const supabase = await createSessionClient();
   const { error } = await supabase.auth.mfa.challengeAndVerify({ factorId: factorId.data, code: parsed.data });
   if (error) return { ...prev, error: "That code didn't work. Check your phone's clock and try the newest code.", attempt: bump(prev) };
@@ -126,7 +127,7 @@ export async function resetPassword(prev: FormState, form: FormData): Promise<Fo
     .object({ password, confirm: z.string() })
     .refine((v) => v.password === v.confirm, { message: "The passwords don't match." })
     .safeParse({ password: form.get("password"), confirm: form.get("confirm") });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message, attempt: bump(prev) };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]), attempt: bump(prev) };
   const supabase = await createSessionClient();
   const { error } = await supabase.auth.updateUser({ password: parsed.data.password });
   if (error) {

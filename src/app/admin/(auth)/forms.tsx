@@ -1,7 +1,7 @@
 "use client";
 
+import { useKeptForm } from "@/components/admin/useKeptForm";
 import Link from "next/link";
-import { useActionState } from "react";
 import { Turnstile } from "@/components/admin/Turnstile";
 import { confirmEnroll, forgotPassword, register, resetPassword, signIn, startEnroll, verifyMfa, type EnrollState, type FormState } from "./actions";
 
@@ -22,9 +22,9 @@ function Alert({ state }: { state: FormState }) {
 }
 
 export function LoginForm({ siteKey, next }: { siteKey: string; next: string }) {
-  const [state, action, pending] = useActionState(signIn, {});
+  const [state, action, pending] = useKeptForm(signIn, {});
   return (
-    <form action={action} className="a-card" noValidate>
+    <form onSubmit={action} className="a-card" noValidate>
       <h1>Sign in</h1>
       <p>Studio admin for Midnight Poetry. You&apos;ll confirm with a code from your authenticator app next.</p>
       <Alert state={state} />
@@ -49,7 +49,7 @@ export function LoginForm({ siteKey, next }: { siteKey: string; next: string }) 
 }
 
 export function RegisterForm({ siteKey }: { siteKey: string }) {
-  const [state, action, pending] = useActionState(register, {});
+  const [state, action, pending] = useKeptForm(register, {});
   if (state.ok)
     return (
       <div className="a-card">
@@ -61,7 +61,7 @@ export function RegisterForm({ siteKey }: { siteKey: string }) {
       </div>
     );
   return (
-    <form action={action} className="a-card" noValidate>
+    <form onSubmit={action} className="a-card" noValidate>
       <h1>Request access</h1>
       <p>Create an account to write guides or manage the studio. An owner approves every new account.</p>
       <Alert state={state} />
@@ -96,9 +96,9 @@ export function RegisterForm({ siteKey }: { siteKey: string }) {
 }
 
 export function ForgotForm({ siteKey }: { siteKey: string }) {
-  const [state, action, pending] = useActionState(forgotPassword, {});
+  const [state, action, pending] = useKeptForm(forgotPassword, {});
   return (
-    <form action={action} className="a-card" noValidate>
+    <form onSubmit={action} className="a-card" noValidate>
       <h1>Reset password</h1>
       <p>We&apos;ll email you a link to choose a new password.</p>
       <Alert state={state} />
@@ -118,9 +118,9 @@ export function ForgotForm({ siteKey }: { siteKey: string }) {
 }
 
 export function MfaForm({ next }: { next: string }) {
-  const [state, action, pending] = useActionState(verifyMfa, {});
+  const [state, action, pending] = useKeptForm(verifyMfa, {});
   return (
-    <form action={action} className="a-card">
+    <form onSubmit={action} className="a-card">
       <h1>Enter your code</h1>
       <p>Open your authenticator app and enter the 6-digit code for Midnight Poetry.</p>
       <Alert state={state} />
@@ -137,13 +137,13 @@ export function MfaForm({ next }: { next: string }) {
 }
 
 export function EnrollForm() {
-  const [startState, start, starting] = useActionState(startEnroll, {} as EnrollState);
-  const [state, confirm, confirming] = useActionState(confirmEnroll, {} as EnrollState);
+  const [startState, start, starting] = useKeptForm(startEnroll, {} as EnrollState);
+  const [state, confirm, confirming] = useKeptForm(confirmEnroll, {} as EnrollState);
   const factor = state.factorId ? state : startState;
 
   if (!factor.factorId) {
     return (
-      <form action={start} className="a-card">
+      <form onSubmit={start} className="a-card">
         <h1>Set up two-step sign-in</h1>
         <p>The studio admin needs a code from an authenticator app (1Password, Google Authenticator, Authy…) every time you sign in.</p>
         <Alert state={startState} />
@@ -154,7 +154,7 @@ export function EnrollForm() {
     );
   }
   return (
-    <form action={confirm} className="a-card">
+    <form onSubmit={confirm} className="a-card">
       <h1>Scan this code</h1>
       <p>Scan it with your authenticator app, then enter the 6-digit code it shows.</p>
       {/* eslint-disable-next-line @next/next/no-img-element -- QR is an SVG data URI from Supabase */}
@@ -179,9 +179,9 @@ export function EnrollForm() {
 }
 
 export function ResetForm() {
-  const [state, action, pending] = useActionState(resetPassword, {});
+  const [state, action, pending] = useKeptForm(resetPassword, {});
   return (
-    <form action={action} className="a-card" noValidate>
+    <form onSubmit={action} className="a-card" noValidate>
       <h1>Choose a new password</h1>
       <Alert state={state} />
       {state.ok ? (

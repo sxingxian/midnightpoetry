@@ -81,6 +81,31 @@ const server = http.createServer(async (req, res) => {
       const [col, dir] = order.split(".");
       if (/^\w+$/.test(col)) orderSql = ` order by ${col} ${dir === "desc" ? "desc" : "asc"}`;
     }
+    // MOCK_ADMIN only: enough of PostgREST's writes to exercise the admin forms (as a superuser, no RLS).
+    if (ADMIN && ["PATCH", "POST", "DELETE"].includes(req.method)) {
+      let raw = "";
+      for await (const c of req) raw += c;
+      const body = raw ? JSON.parse(raw) : null;
+      const out = [];
+      if (req.method === "PATCH") {
+        const cols = Object.keys(body).filter((k) => /^\w+$/.test(k));
+        params.push(JSON.stringify(body));
+        const n = params.length;
+        const set = cols.map((c) => `${c} = (select ${c} from jsonb_populate_record(null::public.${table}, $${n}::jsonb))`).join(", ");
+        out.push(...(await db.query(`update public.${table} set ${set} where ${where.join(" and ")} returning *`, params)).rows);
+      } else if (req.method === "POST") {
+        for (const row of Array.isArray(body) ? body : [body]) {
+          const cols = Object.keys(row).filter((k) => /^\w+$/.test(k));
+          out.push(...(await db.query(`insert into public.${table} (${cols.join(", ")}) select ${cols.join(", ")} from jsonb_populate_record(null::public.${table}, $1::jsonb) returning *`, [JSON.stringify(row)])).rows);
+        }
+      } else {
+        out.push(...(await db.query(`delete from public.${table} where ${where.join(" and ")} returning *`, params)).rows);
+      }
+      const rows = JSON.parse(JSON.stringify(out));
+      if (!(req.headers.prefer ?? "").includes("return=representation")) { res.writeHead(204); return res.end(); }
+      if ((req.headers.accept ?? "").includes("vnd.pgrst.object")) return rows.length === 1 ? send(200, rows[0]) : send(406, { code: "PGRST116", message: "no rows" });
+      return send(200, rows);
+    }
     const r = await db.query(`select * from public.${table} where ${where.join(" and ")}${orderSql}`, params);
     const rows = JSON.parse(JSON.stringify(r.rows));
     if (req.method === "HEAD") { res.writeHead(200, { "content-range": `0-${rows.length}/${rows.length}` }); return res.end(); }
@@ -90,7 +115,8 @@ const server = http.createServer(async (req, res) => {
     }
     return send(200, rows);
   } catch (e) {
-    send(500, { message: String(e) });
+    const code = e && typeof e === "object" && "code" in e ? String(e.code) : undefined;
+    send(code ? 400 : 500, { code, message: String(e) });
   }
 });
 server.listen(54321, () => console.log("mock supabase on :54321"));

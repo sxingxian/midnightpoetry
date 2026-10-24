@@ -1,10 +1,11 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireActionRole } from "@/lib/auth";
 import { blocksSchema } from "@/lib/content/blocks";
-import { failure, str, type ActionResult } from "@/lib/admin/result";
+import { describeIssue, failure, str, type ActionResult } from "@/lib/admin/result";
 import { uploadImage } from "@/lib/admin/media";
 
 const guideSchema = z.object({
@@ -38,7 +39,7 @@ export async function saveGuide(_prev: ActionResult, form: FormData): Promise<Ac
   if (!parsedBlocks.success) {
     const issue = parsedBlocks.error.issues[0];
     const n = typeof issue?.path[0] === "number" ? issue.path[0] + 1 : null;
-    return { error: `${n ? `Block ${n}: ` : ""}${issue?.message ?? "Check the content."}` };
+    return { error: `${n ? `Block ${n}: ` : ""}${describeIssue(issue, "Check the content.").replace(/^This field is empty\.$/, "a field is empty — fill it in or remove the block.")}` };
   }
   const parsed = guideSchema.safeParse({
     product_id: str(form.get("product_id")),
@@ -53,7 +54,7 @@ export async function saveGuide(_prev: ActionResult, form: FormData): Promise<Ac
     ads_enabled: form.get("ads_enabled") === "on",
     ad_spots: form.getAll("ad_spots").map(String),
   });
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message };
+  if (!parsed.success) return { error: describeIssue(parsed.error.issues[0]) };
 
   const row: Record<string, unknown> = { ...parsed.data, blocks: parsedBlocks.data };
   switch (intent.data) {
@@ -96,6 +97,7 @@ export async function saveGuide(_prev: ActionResult, form: FormData): Promise<Ac
   }
   if (!id) redirect(`/admin/guides/${newId}?saved=1`);
   const msg = { draft: "Saved.", publish: "Published — it's live now.", schedule: "Scheduled.", unpublish: "Moved back to draft.", archive: "Archived — no longer on the site." }[intent.data];
+  revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
   return { ok: msg, n: Date.now() };
 }
 

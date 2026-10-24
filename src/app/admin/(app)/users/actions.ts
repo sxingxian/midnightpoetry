@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { requireActionRole } from "@/lib/auth";
 import { failure, str, type ActionResult } from "@/lib/admin/result";
@@ -32,6 +33,7 @@ export async function setRole(_prev: ActionResult, form: FormData): Promise<Acti
         link: { href: `${publicEnv().siteUrl}/admin`, label: "Open the studio admin" },
       });
     }
+    revalidatePath("/admin", "layout"); // refresh the admin pages with what was just saved
     return { ok: "Role updated.", n: Date.now() };
   } catch (e) {
     return failure(e);
