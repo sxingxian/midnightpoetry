@@ -81,7 +81,7 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: hidden would make <body> a scroll container and break sticky bars */
 }
 img, svg, canvas { display: block; max-width: 100%; }
 a { color: inherit; }
@@ -141,12 +141,13 @@ html { scroll-padding-top: 96px; } /* anchors land below the sticky header */
 .menu-overlay:focus { outline: none; }
 @keyframes menuIn { from { opacity: 0; transform: translateY(-8px); } }
 .menu-links { display: flex; flex-direction: column; }
-.menu-links a { display: flex; align-items: center; justify-content: space-between; min-height: 72px; border-bottom: 1px solid var(--line); font-family: var(--font-serif); font-size: 40px; line-height: 1; color: var(--ink); text-decoration: none; }
+.menu-links a { display: flex; align-items: center; justify-content: space-between; min-height: 64px; border-bottom: 1px solid var(--line); font-family: var(--font-serif); font-size: 32px; line-height: 1; color: var(--ink); text-decoration: none; }
 .menu-links a span { font-family: var(--font-sans); font-size: 22px; color: var(--muted); }
 .menu-links a[aria-current="page"] { color: var(--accent-text); }
 .menu-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; font-size: 15px; color: var(--ink-2); }
 .menu-row .scene-toggle { margin-left: 0; }
 @media (max-width: 720px) {
+  .site-header { min-height: 72px; padding-block: 14px; } /* same bar height as the admin on phones */
   .nav-links { display: none; }
   .menu-btn { display: inline-flex; }
   .site-header { flex-wrap: nowrap; }

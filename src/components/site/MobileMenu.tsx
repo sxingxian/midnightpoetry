@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { SceneToggle } from "./SceneToggle";
+import { MenuButton } from "./MenuButton";
+import { useScrollLock } from "@/lib/ui/useScrollLock";
 
 /**
  * Phone-width navigation: the menu button opens a full-screen overlay under the
@@ -22,6 +24,7 @@ export function MobileMenu({ current, sceneToggle }: { current?: "products" | "g
   const path = usePathname();
 
   useEffect(() => setMounted(true), []);
+  useScrollLock(open);
   useEffect(() => setOpen(false), [path]);
 
   useEffect(() => {
@@ -34,9 +37,6 @@ export function MobileMenu({ current, sceneToggle }: { current?: "products" | "g
       header.dataset.menu = "open";
       setTop(Math.round(header.getBoundingClientRect().bottom));
     }
-    const root = document.documentElement;
-    const prevOverflow = root.style.overflow;
-    root.style.overflow = "hidden";
     panel.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -62,7 +62,6 @@ export function MobileMenu({ current, sceneToggle }: { current?: "products" | "g
     document.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     return () => {
-      root.style.overflow = prevOverflow;
       document.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", onResize);
     };
@@ -91,21 +90,7 @@ export function MobileMenu({ current, sceneToggle }: { current?: "products" | "g
 
   return (
     <>
-      <button
-        ref={button}
-        type="button"
-        className="icon-btn press menu-btn"
-        aria-expanded={open}
-        aria-controls={id}
-        aria-label={open ? "Close menu" : "Open menu"}
-        onClick={() => setOpen((o) => !o)}
-      >
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
-          <path className={`mb-l1${open ? " x" : ""}`} d="M4 7h16" />
-          <path className={`mb-l2${open ? " x" : ""}`} d="M4 12h16" />
-          <path className={`mb-l3${open ? " x" : ""}`} d="M4 17h16" />
-        </svg>
-      </button>
+      <MenuButton ref={button} open={open} controls={id} onToggle={() => setOpen((o) => !o)} />
       {mounted ? createPortal(overlay, document.body) : null}
     </>
   );
