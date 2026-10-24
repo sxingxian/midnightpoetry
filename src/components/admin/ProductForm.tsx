@@ -93,13 +93,6 @@ export function ProductForm({ product, canEdit }: { product?: Product; canEdit: 
             <label htmlFor="site_url">Product website</label>
             <input id="site_url" name="site_url" type="url" className="a-input mono" defaultValue={p.site_url ?? ""} placeholder="https://" />
           </div>
-          <div className="a-field">
-            <label htmlFor="guides_url">Guides on another site (optional)</label>
-            <input id="guides_url" name="guides_url" type="url" className="a-input mono" defaultValue={p.guides_url ?? ""} placeholder="https://" aria-describedby="gu-help" />
-            <span id="gu-help" className="a-help">
-              Set this when the product keeps its own guides (like Zyra). Leave empty to write its guides here.
-            </span>
-          </div>
         </div>
         <div className="a-two">
           {(

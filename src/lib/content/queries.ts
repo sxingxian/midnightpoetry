@@ -5,7 +5,7 @@ import { normaliseGuide, normaliseProduct, type Ad, type AdSettings, type Catego
 
 // The public (anon) role can only read these columns; "*" would be refused.
 const PRODUCT_COLUMNS =
-  "id, slug, name, kind, headline, headline_em, headline_style, description, highlights, cta_label, cta_url, site_url, guides_url, accent_dark, accent_light, button_dark, button_light, status, sort_order, created_at, updated_at";
+  "id, slug, name, kind, headline, headline_em, headline_style, description, highlights, cta_label, cta_url, site_url, accent_dark, accent_light, button_dark, button_light, status, sort_order, created_at, updated_at";
 const GUIDE_COLUMNS =
   "id, product_id, category_id, slug, title, standfirst, blocks, start_here, meta_title, meta_description, author_name, status, publish_at, published_at, ads_enabled, ad_spots, version, created_at, updated_at";
 const GUIDE_LIST_COLUMNS = "id, product_id, category_id, slug, title, standfirst, start_here, status, publish_at, published_at, updated_at";

@@ -4,7 +4,7 @@ import { ScrollFx } from "@/components/landing/ScrollFx";
 import SplitText from "@/components/vendor/react-bits/SplitText";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { getLiveProducts } from "@/lib/content/queries";
+import { getCategories, getLiveProducts, getPublishedGuides } from "@/lib/content/queries";
 import type { Product } from "@/lib/content/types";
 import { readableOn } from "@/lib/ads";
 
@@ -28,6 +28,25 @@ async function loadProducts(): Promise<Product[]> {
     return await getLiveProducts();
   } catch {
     return []; // the poem still renders if the database is unreachable
+  }
+}
+
+type GuideDoor = { slug: string; name: string; topics: string; count: number };
+
+/** One door per live product that has published guides — all of them on this site. */
+async function loadGuideDoors(products: Product[]): Promise<GuideDoor[]> {
+  try {
+    const [guides, categories] = await Promise.all([getPublishedGuides(), getCategories()]);
+    const catName = new Map(categories.map((c) => [c.id, c.name]));
+    return products
+      .map((p) => {
+        const mine = guides.filter((g) => g.product_id === p.id);
+        const topics = [...new Set(mine.map((g) => catName.get(g.category_id ?? "")).filter(Boolean))].slice(0, 3).join(", ");
+        return { slug: p.slug, name: p.name, topics: topics || p.kind, count: mine.length };
+      })
+      .filter((d) => d.count > 0);
+  } catch {
+    return [];
   }
 }
 
@@ -77,7 +96,7 @@ function ProductCard({ p, delay }: { p: Product; delay: number }) {
 
 export default async function Home() {
   const products = await loadProducts();
-  const zyra = products.find((p) => p.guides_url);
+  const doors = await loadGuideDoors(products);
 
   return (
     <div className="landing">
@@ -153,37 +172,28 @@ export default async function Home() {
           )}
         </section>
 
-        <section id="guides" aria-labelledby="guides-h" className="wrap" style={{ position: "relative", zIndex: 1, paddingTop: 90, paddingBottom: 40 }}>
-          <h2 id="guides-h" className="serif glow" data-rv="" style={{ margin: 0, fontSize: "clamp(32px, 3.6vw, 48px)", lineHeight: 1.06 }}>
-            Need a hand? <em className="accent-em">Each product has its own guides.</em>
-          </h2>
-          <div className="guide-doors">
-            <Link href="/guides" className="door lift" data-rv="">
-              <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span className="eyebrow" style={{ fontSize: 11 }}>
-                  Studio guides · on this site
-                </span>
-                <span className="t">Splitting fairly, settling up, your receipt photo</span>
-              </span>
-              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </Link>
-            {zyra?.guides_url ? (
-              <a href={zyra.guides_url} className="door lift" data-rv="" data-d="80">
-                <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span className="eyebrow" style={{ fontSize: 11 }}>
-                    {zyra.name} guides · on {zyra.name}&apos;s site
+        {doors.length ? (
+          <section id="guides" aria-labelledby="guides-h" className="wrap" style={{ position: "relative", zIndex: 1, paddingTop: 90, paddingBottom: 40 }}>
+            <h2 id="guides-h" className="serif glow" data-rv="" style={{ margin: 0, fontSize: "clamp(32px, 3.6vw, 48px)", lineHeight: 1.06 }}>
+              Need a hand? <em className="accent-em">Every guide lives here.</em>
+            </h2>
+            <div className="guide-doors">
+              {doors.map((d, i) => (
+                <Link key={d.slug} href={`/guides?product=${d.slug}`} className="door lift" data-rv="" data-d={String(i * 80)}>
+                  <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    <span className="eyebrow" style={{ fontSize: 11 }}>
+                      {d.name} guides · {d.count === 1 ? "1 guide" : `${d.count} guides`}
+                    </span>
+                    <span className="t">{d.topics}</span>
                   </span>
-                  <span className="t">Rosters, swaps, sick leave and the {zyra.name} API</span>
-                </span>
-                <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
-                  <path d="M7 17L17 7M9 7h8v8" />
-                </svg>
-              </a>
-            ) : null}
-          </div>
-        </section>
+                  <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </main>
 
       <SiteFooter />

@@ -13,7 +13,7 @@ export default async function NewGuidePage() {
   if (!products.length)
     return (
       <div className="a-alert warn">
-        Add a product that keeps its guides here first (leave “Guides on another site” empty).
+        Add a product first — its guides are written here.
       </div>
     );
   return <GuideEditor products={products} categories={categories} canEdit siteUrl={env.siteUrl} supabaseUrl={env.supabaseUrl} defaultAuthor={profile.display_name} />;

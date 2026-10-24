@@ -16,7 +16,6 @@ export type Product = {
   cta_label: string;
   cta_url: string | null;
   site_url: string | null;
-  guides_url: string | null;
   accent_dark: string;
   accent_light: string;
   button_dark: string;

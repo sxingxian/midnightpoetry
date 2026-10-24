@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Guides",
-  description: "Plain advice for the studio's apps: splitting a bill fairly, settling up, and what happens to your receipt photo.",
+  description: "Plain advice for every Midnight Poetry app, written by the people who build them.",
   alternates: { canonical: "/guides" },
 };
 
@@ -25,7 +25,6 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
 
   const [products, categories, guides, settings, ads] = await Promise.all([getLiveProducts(), getCategories(), getPublishedGuides(), getAdSettings(), getRunningAds()]);
   const hostedProducts = products.filter((p) => guides.some((g) => g.product_id === p.id));
-  const external = products.filter((p) => p.guides_url);
   const productById = new Map(products.map((p) => [p.id, p]));
   const categoryById = new Map(categories.map((c) => [c.id, c]));
 
@@ -73,7 +72,7 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
           </div>
           <form method="get" action="/guides" role="search" className="field" style={{ flex: "0 1 340px" }}>
             <label htmlFor="gq">Search guides</label>
-            <input id="gq" name="q" type="search" className="input" defaultValue={q} placeholder="e.g. GST, settling up" maxLength={80} />
+            <input id="gq" name="q" type="search" className="input" defaultValue={q} placeholder="e.g. swap a shift, GST" maxLength={80} />
             {selected ? <input type="hidden" name="product" value={selected.slug} /> : null}
           </form>
         </div>
@@ -90,12 +89,6 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
               </Link>
             ))}
           </nav>
-          {external.map((p) => (
-            <a key={p.id} className="chip" href={p.guides_url!} style={{ borderStyle: "dashed" }}>
-              <span className="dot" style={{ background: p.accent_dark }} aria-hidden="true" />
-              {p.name}&apos;s guides are on {p.name}&apos;s site ↗
-            </a>
-          ))}
         </div>
 
         {start.length ? (
@@ -166,21 +159,6 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
           )}
         </section>
 
-        {external.map((p) => (
-          <section key={p.id} aria-labelledby={`ext-${p.slug}`} className="panel" style={{ marginTop: 80 }}>
-            <div style={{ maxWidth: 620 }}>
-              <p className="eyebrow" style={{ fontSize: 11, marginBottom: 8 }}>
-                Looking for {p.name}?
-              </p>
-              <h2 id={`ext-${p.slug}`} className="serif" style={{ margin: 0, fontSize: 34, lineHeight: 1.1 }}>
-                {p.name} keeps its own guides.
-              </h2>
-            </div>
-            <a href={p.guides_url!} className="btn press product-btn" style={{ "--pb": p.button_dark, "--pbf": "#FFFFFF", "--pb-l": p.button_light, "--pbf-l": "#FFFFFF" } as React.CSSProperties}>
-              Open {p.name}&apos;s guides ↗
-            </a>
-          </section>
-        ))}
       </main>
       <SiteFooter showCookieChoices={plans.some((x) => x.source === "adsense")} />
     </div>

@@ -17,12 +17,12 @@ The previous single-page site is preserved in the `archives` branch and in git h
 | Path | What it is |
 |---|---|
 | `/` | Landing page: the night (or day) passes as you scroll, 3D Zeno runs along the snow, products at dawn |
-| `/guides` | Studio guides hub (products whose guides live here; Zyra links out to its own guides) |
+| `/guides` | Guides hub for every product (Zyra, Zeno and future products) — all guides are written and kept on this site |
 | `/guides/[product]/[slug]` | A guide, with labelled ad spots |
 | `/admin` | Studio admin (sign-in, two-step code, role required) |
 | `/ads.txt` | Generated from the AdSense publisher ID set in the admin |
 | `supabase/migrations` | Database schema, security rules, audit log, storage bucket |
-| `supabase/seed.sql` | Starter content: Zyra & Zeno, Zeno's categories, the first guide, the Zyra house ad |
+| `supabase/seed.sql` | Starter content: Zyra & Zeno, Zeno's categories, the first guide, the Zyra house ad (add Zyra's categories in the admin) |
 | `src/components/landing` | Sky, clouds, 3D Zeno, scroll effects |
 | `tests/` | Database security tests (real migration in PGlite) and unit tests |
 

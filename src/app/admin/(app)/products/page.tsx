@@ -35,7 +35,6 @@ export default async function ProductsPage() {
             <span style={{ fontSize: 13, color: "var(--a-muted)" }}>{p.kind}</span>
             <span className="a-row">
               <StatusPill status={p.status} />
-              <span className="pill">{p.guides_url ? "Guides on its own site" : "Guides here"}</span>
             </span>
           </Link>
         ))}

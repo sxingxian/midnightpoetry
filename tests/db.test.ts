@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { PGlite } from "@electric-sql/pglite";
 import { beforeAll, describe, expect, it } from "vitest";
 
@@ -51,12 +51,10 @@ async function as(role: "anon" | "authenticated" | "postgres", uid?: string, aal
 beforeAll(async () => {
   db = new PGlite();
   await db.exec(STUBS);
-  const migration = readFileSync("supabase/migrations/20261024000000_init.sql", "utf8").replace(
-    /create extension if not exists pgcrypto[^;]*;/,
-    "",
-  );
-  await db.exec(migration);
-  await db.exec(readFileSync("supabase/migrations/20261024000100_hardening.sql", "utf8"));
+  // Every migration, in order (the pgcrypto line is a no-op here: gen_random_uuid is built in).
+  for (const file of readdirSync("supabase/migrations").filter((f) => f.endsWith(".sql")).sort()) {
+    await db.exec(readFileSync(`supabase/migrations/${file}`, "utf8").replace(/create extension if not exists pgcrypto[^;]*;/, ""));
+  }
   await db.exec(readFileSync("supabase/seed.sql", "utf8"));
   await db.exec(`
     insert into auth.users (id, email, raw_user_meta_data) values
@@ -233,5 +231,14 @@ describe("database security", () => {
     await as("authenticated", EDITOR, "aal2");
     await expect(db.exec(`update storage.objects set name = '../evil.svg' where name = 'guides/abc.webp'`)).rejects.toThrow();
     await db.exec(`update storage.objects set name = 'guides/abd.webp' where name = 'guides/abc.webp'`);
+  });
+
+  it("hosts Zyra's guides here like any other product's", async () => {
+    await as("authenticated", EDITOR, "aal2");
+    await db.exec(`insert into public.guides (product_id, slug, title, status) select id, 'swap-a-shift', 'Swap a shift', 'published' from public.products where slug = 'zyra'`);
+    await as("anon");
+    const r = await db.query<{ slug: string }>(`select g.slug from public.guides g join public.products p on p.id = g.product_id where p.slug = 'zyra'`);
+    expect(r.rows.map((x) => x.slug)).toEqual(["swap-a-shift"]);
+    await expect(db.query(`select guides_url from public.products`)).rejects.toThrow();
   });
 });

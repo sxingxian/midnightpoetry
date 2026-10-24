@@ -1,17 +1,17 @@
 -- Starter content (run once): products, Zeno's guide categories, the first guide,
 -- the Zyra house ad and ad settings. Safe to re-run: existing rows are left alone.
 
-insert into public.products (slug, name, kind, headline, headline_em, headline_style, description, highlights, cta_label, cta_url, site_url, guides_url, accent_dark, accent_light, button_dark, button_light, status, sort_order)
+insert into public.products (slug, name, kind, headline, headline_em, headline_style, description, highlights, cta_label, cta_url, site_url, accent_dark, accent_light, button_dark, button_light, status, sort_order)
 values
   ('zyra', 'Zyra', 'Roster & shift scheduling', 'Every session covered.', 'Before anyone asks.', 'sans',
    'Builds the roster around who is actually free, swaps sessions in two taps and reminds everyone before they''re on. Free for small teams; works in any phone browser.',
    '[{"label":"Swaps","value":"Two taps"},{"label":"Double bookings","value":"Blocked"},{"label":"Check-in","value":"QR or code"}]',
-   'Open Zyra', 'https://zyra.midnightpoetry.studio/', 'https://zyra.midnightpoetry.studio/', 'https://zyra.midnightpoetry.studio/guides',
+   'Open Zyra', 'https://zyra.midnightpoetry.studio/', 'https://zyra.midnightpoetry.studio/',
    '#A5B0FF', '#5546D6', '#6E5CF0', '#5546D6', 'live', 1),
   ('zeno', 'Zeno', 'Split the bill, item by item', 'Every line,', 'fairly yours.', 'serif',
    'Snap any receipt. Zeno shares the GST, service charge and discounts by what each person ordered, and sends everyone their part. No sign-up needed to start.',
    '[{"label":"Split","value":"By item"},{"label":"Friends","value":"No app needed"},{"label":"Receipt photo","value":"Never stored"}]',
-   'Scan a receipt', 'https://zenoapp.midnightpoetry.studio/scan', 'https://zeno.midnightpoetry.studio/', null,
+   'Scan a receipt', 'https://zenoapp.midnightpoetry.studio/scan', 'https://zeno.midnightpoetry.studio/',
    '#F0A684', '#A04A2A', '#F8F0E1', '#1F1D1A', 'live', 2)
 on conflict (slug) do nothing;
 

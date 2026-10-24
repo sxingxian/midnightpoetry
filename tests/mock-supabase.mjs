@@ -2,7 +2,7 @@
 // PGlite. Only for smoke-testing pages without a Supabase project:
 //   node tests/mock-supabase.mjs   (listens on :54321)
 import http from "node:http";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { PGlite } from "@electric-sql/pglite";
 
 const STUBS = `
@@ -18,9 +18,13 @@ create table storage.objects (id uuid primary key default gen_random_uuid(), buc
 
 const db = new PGlite();
 await db.exec(STUBS);
-await db.exec(readFileSync("supabase/migrations/20261024000000_init.sql", "utf8").replace(/create extension if not exists pgcrypto[^;]*;/, ""));
-await db.exec(readFileSync("supabase/migrations/20261024000100_hardening.sql", "utf8"));
+for (const file of readdirSync("supabase/migrations").filter((f) => f.endsWith(".sql")).sort()) {
+  await db.exec(readFileSync(`supabase/migrations/${file}`, "utf8").replace(/create extension if not exists pgcrypto[^;]*;/, ""));
+}
 await db.exec(readFileSync("supabase/seed.sql", "utf8"));
+
+// Optional extra SQL for screenshots, e.g. MOCK_SQL="insert into public.guides …"
+if (process.env.MOCK_SQL) await db.exec(process.env.MOCK_SQL);
 
 const ADMIN = process.env.MOCK_ADMIN === "1";
 const OWNER = "00000000-0000-0000-0000-0000000000aa";
