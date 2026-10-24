@@ -1,29 +1,40 @@
 name: CI
 
 on:
-  pull_request:
   push:
     branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    name: Lint, type-check, test and build
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Actions are pinned to exact commits (version in the comment), as in Zyra.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
+      # Only the exact versions in package-lock.json are installed.
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test
+      - name: Database rules and unit tests (every migration, in PGlite)
+        run: npm test
       - run: npm audit --omit=dev --audit-level=high
       - name: Build the Worker
         run: npx opennextjs-cloudflare build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+      - name: Validate the Cloudflare Worker bundle (no credentials needed)
+        run: npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/worker"

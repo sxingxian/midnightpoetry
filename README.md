@@ -28,76 +28,17 @@ The previous single-page site is preserved in the `archives` branch and in git h
 
 ---
 
-## One-time setup
+## Deploying
 
-Do these in order. Until the secrets exist, the deploy workflow skips itself, so nothing breaks.
+Follow **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**. It uses the same set-up as Zyra: a Cloudflare Worker connected to Git, Supabase in Singapore with a **Deploy Supabase** workflow, Resend sending from `sxingxian.com`, and Turnstile. The studio has its own Supabase project, Turnstile widget and Resend key, so its admin accounts never mix with Zyra's or Zeno's.
 
-### 1. Supabase
-
-1. Create a **new, dedicated** project for the studio — don't reuse Zyra's or Zeno's. The studio's accounts and roles must stay separate from the apps' users (the migration also refuses to run where a `profiles` table already exists). Note the **project ref**, the **database password**, the **Project URL** and the **anon / publishable key**.
-2. Apply the schema — either let GitHub Actions do it (step 5), or locally:
-   ```bash
-   npx supabase link --project-ref YOUR_REF
-   npx supabase db push
-   ```
-3. Load the starter content once: open **SQL Editor**, paste `supabase/seed.sql`, run it.
-4. **Authentication settings** (Dashboard → Authentication), or run `npx supabase config push` with the env vars from `supabase/config.toml` set:
-   - URL configuration → Site URL `https://midnightpoetry.studio`; redirect URLs `https://midnightpoetry.studio/**` (and `http://localhost:3000/**` for local work).
-   - Sign in / providers → Email: **Confirm email on**, minimum password length **12**.
-   - Attack protection → **CAPTCHA on**, provider **Turnstile**, paste the Turnstile **secret key** (step 3).
-   - Multi-factor → **TOTP on** (it is by default).
-   - SMTP settings → host `smtp.resend.com`, port `465`, user `resend`, password = your Resend API key, sender `hello@midnightpoetry.studio`.
-   - Email templates → **Confirm signup** and **Reset password**: use the bodies in `supabase/templates/` (their links go to `/auth/confirm`, which works even if the email is opened in another browser).
-
-### 2. Resend
-
-Add and verify the domain `midnightpoetry.studio`, then create an API key (sending access). Use it for Supabase SMTP (above) and as the Worker secret `RESEND_API_KEY`.
-
-### 3. Cloudflare Turnstile
-
-Create a widget for `midnightpoetry.studio` (add `localhost` while developing). The **site key** goes to GitHub as `NEXT_PUBLIC_TURNSTILE_SITE_KEY`; the **secret key** goes into Supabase's CAPTCHA setting (Supabase checks every token).
-
-### 4. Cloudflare Workers
-
-1. Create an API token with the **Edit Cloudflare Workers** template. Note your **account ID**.
-2. After the first deploy, attach the domain: Workers → `midnightpoetry-studio` → Settings → Domains & Routes → add `midnightpoetry.studio` (or uncomment `routes` in `wrangler.jsonc`). If the old site is on Cloudflare Pages, remove the domain from that Pages project first.
-3. Add the server-only secrets (never commit them):
-   ```bash
-   npx wrangler secret put RESEND_API_KEY
-   npx wrangler secret put EMAIL_FROM          # e.g. Midnight Poetry Studio <hello@midnightpoetry.studio>
-   npx wrangler secret put OWNER_NOTIFY_EMAIL  # who hears about new registrations
-   npx wrangler secret put AD_CLICK_SECRET     # any long random string: openssl rand -hex 32
-   ```
-   Then tell the database the same click secret once (SQL Editor): `select public.set_click_secret('the same value');` — only the Worker can then count ad clicks.
-4. **Rate limiting** (Security → WAF → Rate limiting rules; the free plan includes one rule). Add:
-   - *If* `URI Path` starts with `/admin/` **and** `Request Method` equals `POST`
-   - *When rate exceeds* 10 requests per 10 seconds, counting by IP → **Block** for 10 seconds.
-
-   This slows down password and authenticator-code guessing on top of Supabase's own auth limits and Turnstile.
-
-### 5. GitHub (automatic deploys)
-
-Repository → Settings → Secrets and variables → Actions:
-
-| Kind | Name | Value |
-|---|---|---|
-| Secret | `CLOUDFLARE_API_TOKEN` | from step 4 |
-| Secret | `CLOUDFLARE_ACCOUNT_ID` | from step 4 |
-| Secret | `SUPABASE_ACCESS_TOKEN` | Supabase → Account → Access tokens |
-| Secret | `SUPABASE_DB_PASSWORD` | the database password |
-| Variable | `SUPABASE_PROJECT_ID` | the project ref |
-| Variable | `NEXT_PUBLIC_SITE_URL` | `https://midnightpoetry.studio` |
-| Variable | `NEXT_PUBLIC_SUPABASE_URL` | Supabase Project URL |
-| Variable | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon / publishable key |
-| Variable | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Turnstile site key |
-
-Every push to `main` then runs **CI** (lint, types, tests, audit, Worker build) and **Deploy** (database migrations, then build + deploy to Workers). Run Deploy by hand from the Actions tab after adding the secrets.
-
-### 6. The first owner
-
-1. Open `/admin/register`, create your account, and confirm your email.
-2. In Supabase SQL Editor: `select public.promote_owner('you@example.com');`
-3. Sign in at `/admin/login`, scan the QR code with an authenticator app, and you're in. Everyone after you registers the same way and waits for you to give them a role in **People & roles** — which only lets you do that once they've confirmed their email and set up their authenticator app.
+In short:
+1. A new Supabase project → `db push` → `seed.sql` → auth settings → `set_click_secret`.
+2. A new Resend API key on `sxingxian.com`, used for Supabase SMTP and as a Worker secret.
+3. A new Turnstile widget for `midnightpoetry.studio`.
+4. A Cloudflare Worker imported from this repository, with build variables and secrets, plus one rate-limit rule.
+5. GitHub: `SUPABASE_ACCESS_TOKEN` secret and `SUPABASE_PROJECT_REF` variable.
+6. Register, run `select public.promote_owner('you@example.com');`, sign in.
 
 ---
 

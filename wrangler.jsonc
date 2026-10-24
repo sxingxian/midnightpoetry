@@ -1,3 +1,5 @@
+// Cloudflare Workers deployment of the studio site (midnightpoetry.studio, /admin). See docs/DEPLOYMENT.md.
+// Same set-up as Zyra's Workers: connected to Git, custom domain only, settings kept between deploys.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "midnightpoetry-studio",
@@ -8,12 +10,18 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  // The first deploy creates the DNS record and certificate (midnightpoetry.studio is a zone in the same
+  // Cloudflare account as Zyra). If the domain is still attached to the old site, remove it there first.
+  "routes": [{ "pattern": "midnightpoetry.studio", "custom_domain": true }],
+  // Only the custom domain above: no workers.dev address and no per-version preview addresses.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Keep the secrets and variables set in the dashboard when a deploy runs.
+  "keep_vars": true,
   "observability": { "enabled": true },
-  // Attach the domain once DNS for midnightpoetry.studio is on Cloudflare:
-  // "routes": [{ "pattern": "midnightpoetry.studio", "custom_domain": true }],
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://midnightpoetry.studio"
   }
-  // Secrets (never in this file): RESEND_API_KEY, EMAIL_FROM, OWNER_NOTIFY_EMAIL
-  //   npx wrangler secret put RESEND_API_KEY
+  // Secrets (Cloudflare → the Worker → Settings → Variables and secrets, never in this file):
+  //   RESEND_API_KEY, EMAIL_FROM, OWNER_NOTIFY_EMAIL, AD_CLICK_SECRET
 }

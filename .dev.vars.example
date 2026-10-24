@@ -7,7 +7,7 @@ NEXT_PUBLIC_TURNSTILE_SITE_KEY=your-turnstile-site-key
 
 # Server-only secrets. In production set them with `npx wrangler secret put NAME`.
 RESEND_API_KEY=re_xxx
-EMAIL_FROM="Midnight Poetry Studio <hello@midnightpoetry.studio>"
+EMAIL_FROM="Midnight Poetry Studio <security@sxingxian.com>"
 OWNER_NOTIFY_EMAIL=you@example.com
 # Any long random string (openssl rand -hex 32). Also run once in Supabase SQL:
 #   select public.set_click_secret('the same value');
