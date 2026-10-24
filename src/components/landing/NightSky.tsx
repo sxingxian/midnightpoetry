@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Sky, sampleSky } from "./sky";
 import type { Clouds } from "./clouds";
 import { FlatClouds } from "./clouds2d";
+import type { Celestial3D } from "./celestial3d";
 import type { Pose, Zeno3D } from "./zeno3d";
 import { ZenoFallback } from "./ZenoFallback";
 import { SCENE_EVENT, hasWebgl, markWebglOff, readScene, webglOff, type Scene } from "@/components/site/scene";
@@ -23,7 +24,7 @@ function progress() {
 
 /**
  * Fixed background layers for the landing page: the sky, the clouds, the clock and Zeno.
- * - 3D scene: shader clouds and the 3D Zeno (three.js, loaded after first paint).
+ * - 3D scene: a 3D moon and sun, shader clouds and the 3D Zeno (three.js, loaded after first paint).
  * - 2D scene: flat layered clouds and the flat Zeno from the mascot sheet; no WebGL at all.
  * The header's 2D / 3D toggle switches between them; devices without WebGL always get 2D.
  */
@@ -31,6 +32,7 @@ export function NightSky() {
   const skyRef = useRef<HTMLCanvasElement>(null);
   const cloudRef = useRef<HTMLCanvasElement>(null);
   const cloud2dRef = useRef<HTMLCanvasElement>(null);
+  const celestialRef = useRef<HTMLCanvasElement>(null);
   const zenoCanvasRef = useRef<HTMLCanvasElement>(null);
   const zenoBoxRef = useRef<HTMLDivElement>(null);
   const clockRef = useRef<HTMLSpanElement>(null);
@@ -38,7 +40,13 @@ export function NightSky() {
   const [scene, setScene] = useState<Scene | null>(null);
   const [noWebgl, setNoWebgl] = useState(false);
   const flat = scene === "2d" || noWebgl;
-  const engine = useRef<{ clouds: Clouds | null; flatClouds: FlatClouds | null; zeno: Zeno3D | null }>({ clouds: null, flatClouds: null, zeno: null });
+  const engine = useRef<{ sky: Sky | null; celestial: Celestial3D | null; clouds: Clouds | null; flatClouds: FlatClouds | null; zeno: Zeno3D | null }>({
+    sky: null,
+    celestial: null,
+    clouds: null,
+    flatClouds: null,
+    zeno: null,
+  });
   const drawStillRef = useRef<() => void>(() => {});
   const [pose, setPose] = useState<Pose>("run");
   const [dir, setDir] = useState(1);
@@ -83,6 +91,7 @@ export function NightSky() {
     S.reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const sky = new Sky(skyCanvas);
     const E = engine.current;
+    E.sky = sky;
     let raf = 0;
     let frame = 0;
     let prev = performance.now();
@@ -104,6 +113,7 @@ export function NightSky() {
       const p = progress();
       sky.draw(0, dark, p);
       const s = sampleSky(dark, p);
+      E.celestial?.render(40, sky.bodies);
       E.clouds?.render(40, p, s, sky.light);
       E.flatClouds?.render(40, p, s);
       if (E.zeno) {
@@ -116,6 +126,7 @@ export function NightSky() {
 
     const resize = () => {
       sky.resize(window.innerWidth, window.innerHeight);
+      E.celestial?.resize(window.innerWidth, window.innerHeight);
       E.clouds?.resize(window.innerWidth, window.innerHeight);
       E.flatClouds?.resize(window.innerWidth, window.innerHeight);
       S.x = clampX(S.x);
@@ -164,6 +175,7 @@ export function NightSky() {
       const p = progress();
       sky.draw(t, dark, p);
       const s = sampleSky(dark, p);
+      E.celestial?.render(t / 1000, sky.bodies);
       if ((frame++ & 1) === 0) {
         E.clouds?.render(t / 1000 + 40, p, s, sky.light);
         E.flatClouds?.render(t / 1000 + 40, p, s);
@@ -263,6 +275,7 @@ export function NightSky() {
     let disposed = false;
     const cloudCanvas = cloudRef.current;
     const zenoCanvas = zenoCanvasRef.current;
+    const celestialCanvas = celestialRef.current;
     const lost = (e: Event) => {
       e.preventDefault();
       if (!disposed) markWebglOff(); // the GPU gave up: fall back to 2D for this visit
@@ -272,8 +285,19 @@ export function NightSky() {
       try {
         const T = await import("three");
         const { Clouds } = await import("./clouds");
+        const { Celestial3D } = await import("./celestial3d");
         const { Zeno3D } = await import("./zeno3d");
         if (disposed) return;
+        if (celestialCanvas) {
+          try {
+            E.celestial = new Celestial3D(T, celestialCanvas);
+            E.celestial.resize(...size());
+            celestialCanvas.addEventListener("webglcontextlost", lost);
+            if (E.sky) E.sky.discs = false; // the 3D moon and sun take over from the flat discs
+          } catch {
+            E.celestial = null;
+          }
+        }
         if (cloudCanvas) {
           try {
             E.clouds = new Clouds(T, cloudCanvas);
@@ -298,6 +322,10 @@ export function NightSky() {
       disposed = true;
       window.clearTimeout(timer);
       cloudCanvas?.removeEventListener("webglcontextlost", lost);
+      celestialCanvas?.removeEventListener("webglcontextlost", lost);
+      if (E.sky) E.sky.discs = true;
+      E.celestial?.dispose();
+      E.celestial = null;
       zenoCanvas?.removeEventListener("webglcontextlost", lost);
       E.clouds?.dispose();
       E.zeno?.dispose();
@@ -309,6 +337,7 @@ export function NightSky() {
   return (
     <>
       <canvas ref={skyRef} className="sky-layer" aria-hidden="true" />
+      {flat ? null : <canvas key="celestial-3d" ref={celestialRef} className="sky-layer" aria-hidden="true" />}
       {flat ? <canvas key="clouds-2d" ref={cloud2dRef} className="sky-layer" aria-hidden="true" /> : <canvas key="clouds-3d" ref={cloudRef} className="sky-layer" aria-hidden="true" />}
       <svg className="ground" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1440 120">
         <path d="M0 70 L40 52 L60 64 L86 40 L110 62 L140 50 L170 66 L210 58 L250 70 C400 60 520 76 680 68 C820 62 900 74 1040 66 L1080 50 L1100 62 L1130 36 L1160 60 L1190 48 L1220 64 L1260 56 L1300 66 L1440 60 V120 H0 Z" fill="var(--ground-2)" />

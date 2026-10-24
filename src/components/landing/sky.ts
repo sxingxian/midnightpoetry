@@ -25,6 +25,9 @@ export const SKY_LIGHT: Key[] = [
 export type Rgb = [number, number, number];
 export type SkySample = { top: Rgb; bottom: Rgb; stars: number; lit: Rgb; shade: Rgb; cover: number };
 export type Light = { x: number; y: number; k: number };
+/** Where the moon and sun are this frame, in CSS px (null when not in the sky). */
+export type Body = { x: number; y: number; r: number; color: Rgb };
+export type Bodies = { moon: Body | null; sun: Body | null };
 
 const hex = (c: string): Rgb => {
   const n = parseInt(c.slice(1), 16);
@@ -68,6 +71,9 @@ export class Sky {
   private shoot: { x: number; y: number; t0: number } | null = null;
   private nextShoot = 2500;
   light: Light = { x: 0.1, y: 0.7, k: 0.5 };
+  bodies: Bodies = { moon: null, sun: null };
+  /** false while the 3D scene draws the moon and sun itself; the glows stay here either way. */
+  discs = true;
 
   constructor(private canvas: HTMLCanvasElement) {
     const ctx = canvas.getContext("2d");
@@ -97,6 +103,7 @@ export class Sky {
     sky.addColorStop(1, rgb(s.bottom));
     g.fillStyle = sky;
     g.fillRect(0, 0, w, h);
+    this.bodies = { moon: null, sun: null };
 
     if (!dark) {
       const sx = w * (0.1 + 0.8 * p);
@@ -111,10 +118,14 @@ export class Sky {
       g.beginPath();
       g.arc(sx, sy, sr * 7, 0, 6.283);
       g.fill();
-      g.fillStyle = warm > 0 ? `rgb(255,${Math.round(227 - 50 * warm)},${Math.round(163 - 60 * warm)})` : "#FFE3A3";
-      g.beginPath();
-      g.arc(sx, sy, sr, 0, 6.283);
-      g.fill();
+      const sunColor: Rgb = [255, Math.round(227 - 50 * warm), Math.round(163 - 60 * warm)];
+      this.bodies.sun = { x: sx, y: sy, r: sr, color: sunColor };
+      if (this.discs) {
+        g.fillStyle = rgb(sunColor);
+        g.beginPath();
+        g.arc(sx, sy, sr, 0, 6.283);
+        g.fill();
+      }
       return;
     }
 
@@ -170,6 +181,9 @@ export class Sky {
       g.beginPath();
       g.arc(mx, my, mr * 6, 0, 6.283);
       g.fill();
+      this.bodies.moon = { x: mx, y: my, r: mr, color: [242, 236, 222] };
+    }
+    if (mp < 1 && this.discs) {
       const body = g.createRadialGradient(mx - mr * 0.35, my - mr * 0.35, mr * 0.1, mx, my, mr);
       body.addColorStop(0, "#F7F1E3");
       body.addColorStop(1, "#D2C9B4");
@@ -197,10 +211,13 @@ export class Sky {
       g.beginPath();
       g.arc(sx, sy, sr * 8, 0, 6.283);
       g.fill();
-      g.fillStyle = "#FFD596";
-      g.beginPath();
-      g.arc(sx, sy, sr, 0, 6.283);
-      g.fill();
+      this.bodies.sun = { x: sx, y: sy, r: sr, color: [255, 213, 150] };
+      if (this.discs) {
+        g.fillStyle = "#FFD596";
+        g.beginPath();
+        g.arc(sx, sy, sr, 0, 6.283);
+        g.fill();
+      }
     }
   }
 }
