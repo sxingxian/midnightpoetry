@@ -44,16 +44,16 @@ export default async function UsersPage() {
                   {r.id === user.id ? <span className="pill" style={{ marginLeft: 8 }}>You</span> : null}
                   <span className="a-sub">{r.email}</span>
                 </td>
-                <td className="mono" style={{ fontSize: 12, color: "var(--a-muted)" }}>
+                <td data-label="Joined" className="mono" style={{ fontSize: 12, color: "var(--a-muted)" }}>
                   {fmtDate(r.created_at)}
                 </td>
-                <td>
+                <td data-label="Sign-in">
                   <div className="a-row" style={{ gap: 6 }}>
                     <span className={ready.get(r.id)?.email ? "pill ok" : "pill warn"}>{ready.get(r.id)?.email ? "Email confirmed" : "Email not confirmed"}</span>
                     <span className={ready.get(r.id)?.totp ? "pill ok" : "pill warn"}>{ready.get(r.id)?.totp ? "Authenticator on" : "No authenticator"}</span>
                   </div>
                 </td>
-                <td>
+                <td data-label="Role">
                   <RoleForm id={r.id} role={r.role} label={r.email} ready={!!ready.get(r.id)?.email && !!ready.get(r.id)?.totp} />
                 </td>
               </tr>

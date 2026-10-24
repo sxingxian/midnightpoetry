@@ -80,7 +80,7 @@ export function AdSettingsForm({ settings, categories, isOwner }: { settings: Ad
             </div>
             <div className="a-field">
               <span className="a-label">ads.txt — served automatically at midnightpoetry.studio/ads.txt</span>
-              <code className="mono" style={{ display: "block", padding: "10px 12px", borderRadius: 8, background: "var(--a-bg)", border: "1px solid var(--a-line)", fontSize: 12, overflowX: "auto", whiteSpace: "nowrap" }}>
+              <code className="mono" style={{ display: "block", padding: "10px 12px", borderRadius: 8, background: "var(--a-bg)", border: "1px solid var(--a-line)", fontSize: 12, overflowWrap: "anywhere" }}>
                 google.com, {pub}, DIRECT, f08c47fec0942fa0
               </code>
             </div>

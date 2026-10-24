@@ -102,10 +102,10 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
                       /guides/{g.products?.slug}/{g.slug}
                     </span>
                   </td>
-                  <td>
+                  <td data-label="Status">
                     <StatusPill status={g.status} />
                   </td>
-                  <td className="mono" style={{ fontSize: 12, color: "var(--a-muted)" }}>
+                  <td data-label="Updated" className="mono" style={{ fontSize: 12, color: "var(--a-muted)" }}>
                     {fmtDate(g.updated_at)}
                   </td>
                 </tr>

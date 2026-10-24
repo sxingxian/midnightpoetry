@@ -29,11 +29,11 @@ export default async function AuditPage() {
                 <td className="mono" style={{ fontSize: 12, color: "var(--a-muted)", whiteSpace: "nowrap" }}>
                   {fmtDate(e.created_at)}
                 </td>
-                <td>{e.actor_email ?? "System"}</td>
-                <td>
+                <td data-label="Who">{e.actor_email ?? "System"}</td>
+                <td data-label="What">
                   <span className="pill">{e.action}</span> {e.entity.replace("_", " ")}
                 </td>
-                <td style={{ color: "var(--a-ink2)" }}>{e.summary}</td>
+                <td data-label="Details" style={{ color: "var(--a-ink2)" }}>{e.summary}</td>
               </tr>
             ))}
           </tbody>

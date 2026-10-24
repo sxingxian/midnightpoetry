@@ -62,19 +62,19 @@ export default async function GuidesAdminPage({ searchParams }: { searchParams: 
                     /guides/{r.products?.slug}/{r.slug}
                   </span>
                 </td>
-                <td>
+                <td data-label="Product">
                   <span className="a-row" style={{ gap: 6 }}>
                     <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: "50%", background: r.products?.accent_dark }} />
                     {r.products?.name}
                   </span>
                 </td>
-                <td style={{ color: "var(--a-ink2)" }}>{r.categories?.name ?? "—"}</td>
-                <td>
+                <td data-label="Category" style={{ color: "var(--a-ink2)" }}>{r.categories?.name ?? "—"}</td>
+                <td data-label="Status">
                   <StatusPill status={r.status} />
                   {r.status === "scheduled" ? <span className="a-sub">{fmtDate(r.publish_at)}</span> : null}
                 </td>
-                <td style={{ color: r.meta_description.length >= 70 ? "var(--a-muted)" : "var(--a-warn)" }}>{r.meta_description.length >= 70 ? "Ready" : "Missing search description"}</td>
-                <td className="mono" style={{ fontSize: 12, color: "var(--a-muted)" }}>
+                <td data-label="Checks" style={{ color: r.meta_description.length >= 70 ? "var(--a-muted)" : "var(--a-warn)" }}>{r.meta_description.length >= 70 ? "Ready" : "Missing search description"}</td>
+                <td data-label="Updated" className="mono" style={{ fontSize: 12, color: "var(--a-muted)" }}>
                   {fmtDate(r.updated_at)}
                 </td>
               </tr>
