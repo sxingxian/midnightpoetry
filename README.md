@@ -34,7 +34,7 @@ Do these in order. Until the secrets exist, the deploy workflow skips itself, so
 
 ### 1. Supabase
 
-1. Create a project. Note the **project ref**, the **database password**, the **Project URL** and the **anon / publishable key**.
+1. Create a **new, dedicated** project for the studio — don't reuse Zyra's or Zeno's. The studio's accounts and roles must stay separate from the apps' users (the migration also refuses to run where a `profiles` table already exists). Note the **project ref**, the **database password**, the **Project URL** and the **anon / publishable key**.
 2. Apply the schema — either let GitHub Actions do it (step 5), or locally:
    ```bash
    npx supabase link --project-ref YOUR_REF
