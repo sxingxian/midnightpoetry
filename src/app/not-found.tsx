@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 export default function NotFound() {
   return (
@@ -14,6 +15,7 @@ export default function NotFound() {
           <Link href="/">Back to the poem</Link> or <Link href="/guides">browse the guides</Link>.
         </p>
       </main>
+      <SiteFooter />
     </div>
   );
 }

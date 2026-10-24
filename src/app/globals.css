@@ -194,7 +194,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @keyframes zz { 0% { opacity: 0; transform: translate(0, 6px); } 35% { opacity: 1; } 100% { opacity: 0; transform: translate(12px, -24px); } }
 
 /* Guides (hub + article) */
-.page { min-height: 100vh; background: var(--page); }
+.page { min-height: 100vh; display: flex; flex-direction: column; background: var(--page); }
+/* Short pages: content stays at the top and the footer sits at the bottom of the screen. */
+.page > main { flex: 1 0 auto; width: 100%; }
+.page > .site-footer { width: 100%; box-sizing: border-box; }
 .crumbs { font-size: 13px; color: var(--muted); }
 .crumbs a { color: var(--muted); }
 .guides-hero { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: 48px; }
