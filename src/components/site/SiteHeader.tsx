@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { SceneToggle } from "./SceneToggle";
+import { MobileMenu } from "./MobileMenu";
 
 export function MoonMark({ size = 22 }: { size?: number }) {
   return (
@@ -18,14 +19,17 @@ export function SiteHeader({ current, overlay = false, sceneToggle = false }: { 
         midnight poetry
       </Link>
       <nav aria-label="Main" className="nav">
-        <Link href="/#made" aria-current={current === "products" ? "page" : undefined}>
-          Products
-        </Link>
-        <Link href="/guides" aria-current={current === "guides" ? "page" : undefined}>
-          Guides
-        </Link>
-        {sceneToggle ? <SceneToggle /> : null}
+        <div className="nav-links">
+          <Link href="/#made" aria-current={current === "products" ? "page" : undefined}>
+            Products
+          </Link>
+          <Link href="/guides" aria-current={current === "guides" ? "page" : undefined}>
+            Guides
+          </Link>
+          {sceneToggle ? <SceneToggle /> : null}
+        </div>
         <ThemeToggle />
+        <MobileMenu current={current} sceneToggle={sceneToggle} />
       </nav>
     </header>
   );
