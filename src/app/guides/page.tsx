@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { AdSenseScript, AdSlot } from "@/components/guides/Ads";
 import { getAdSettings, getCategories, getLiveProducts, getPublishedGuides, getRunningAds } from "@/lib/content/queries";
 import { planAds } from "@/lib/ads";
+import { productTheme } from "@/components/site/productTheme";
 
 export const dynamic = "force-dynamic";
 
@@ -34,14 +35,14 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
   const shown = inProduct.filter((g) => !needle || g.title.toLowerCase().includes(needle) || g.standfirst.toLowerCase().includes(needle) || (categoryById.get(g.category_id ?? "")?.name.toLowerCase().includes(needle) ?? false));
   const start = needle ? [] : inProduct.filter((g) => g.start_here).slice(0, 3);
 
-  const groups: { key: string; product: string; category: string; color: string; items: typeof shown }[] = [];
+  const groups: { key: string; p: (typeof products)[number]; product: string; category: string; color: string; items: typeof shown }[] = [];
   for (const g of shown) {
     const p = productById.get(g.product_id)!;
     const c = categoryById.get(g.category_id ?? "");
     const key = `${p.id}:${c?.id ?? "-"}`;
     let grp = groups.find((x) => x.key === key);
     if (!grp) {
-      grp = { key, product: p.name, category: c?.name ?? "General", color: p.accent_dark, items: [] };
+      grp = { key, p, product: p.name, category: c?.name ?? "General", color: p.accent_dark, items: [] };
       groups.push(grp);
     }
     grp.items.push(g);
@@ -83,8 +84,8 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
               All <span className="mono" style={{ fontSize: 11, opacity: 0.75 }}>{guides.filter((g) => productById.has(g.product_id)).length}</span>
             </Link>
             {hostedProducts.map((p) => (
-              <Link key={p.id} className="chip press" href={`/guides?product=${p.slug}${q ? `&q=${encodeURIComponent(q)}` : ""}`} aria-current={selected?.id === p.id ? "true" : undefined}>
-                <span className="dot" style={{ background: p.accent_dark }} aria-hidden="true" />
+              <Link key={p.id} className="chip press product-theme" style={productTheme(p)} href={`/guides?product=${p.slug}${q ? `&q=${encodeURIComponent(q)}` : ""}`} aria-current={selected?.id === p.id ? "true" : undefined}>
+                <span className="dot" style={{ background: "var(--accent)" }} aria-hidden="true" />
                 {p.name} <span className="mono" style={{ fontSize: 11, opacity: 0.75 }}>{guides.filter((g) => g.product_id === p.id).length}</span>
               </Link>
             ))}
@@ -100,8 +101,9 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
               {start.map((g) => {
                 const p = productById.get(g.product_id)!;
                 return (
-                  <Link key={g.id} href={href(g)} className="card lift">
-                    <span className="eyebrow" style={{ fontSize: 11 }}>
+                  <Link key={g.id} href={href(g)} className="card lift product-theme" style={productTheme(p)}>
+                    <span className="eyebrow product-eyebrow" style={{ fontSize: 11 }}>
+                      <span className="dot" aria-hidden="true" />
                       {p.name} · {categoryById.get(g.category_id ?? "")?.name ?? "Guide"}
                     </span>
                     <span className="t">{g.title}</span>
@@ -128,8 +130,9 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
           {shown.length ? (
             <div className="list-groups">
               {groups.map((grp) => (
-                <div key={grp.key}>
-                  <h3>
+                <div key={grp.key} className="product-theme" style={productTheme(grp.p)}>
+                  <h3 className="product-eyebrow">
+                    <span className="dot" aria-hidden="true" />
                     {grp.product} · {grp.category}
                   </h3>
                   <ul>

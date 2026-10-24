@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { productTheme } from "@/components/site/productTheme";
 import { BlockRenderer, buildToc } from "@/components/guides/BlockRenderer";
 import { AdSenseScript, AdSlot } from "@/components/guides/Ads";
 import { getAdSettings, getCategories, getGuide, getRunningAds } from "@/lib/content/queries";
@@ -94,7 +95,7 @@ export default async function GuidePage({ params }: { params: Params }) {
   const ldJson = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 
   return (
-    <div className="page">
+    <div className="page product-theme" style={productTheme(product)}>
       <SiteHeader current="guides" />
       <main id="top" className="wrap" style={{ paddingTop: 28, paddingBottom: 96, maxWidth: 1200 }}>
         <nav aria-label="Breadcrumb" className="crumbs">

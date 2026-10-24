@@ -36,10 +36,11 @@
 .a-mbar { display: none; }
 @media (max-width: 800px) {
   .a-shell { align-content: flex-start; } /* wrapped rows stay at the top instead of sharing out the spare height */
-  .a-mbar { position: sticky; top: 0; z-index: 10; flex: 0 0 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box; padding: 8px 16px; border-bottom: 1px solid var(--a-line); background: var(--a-side); }
+  .a-mbar { position: sticky; top: 0; z-index: 21; flex: 0 0 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box; padding: 8px 16px; border-bottom: 1px solid var(--a-line); background: var(--a-side); }
   .a-mbar .a-brand { padding: 6px 0; font-size: 20px; }
   .a-side { flex-basis: 100%; display: none; border-right: 0; border-bottom: 1px solid var(--a-line); }
-  .a-side[data-open="true"] { display: flex; animation: aSideIn 180ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .a-side[data-open="true"] { display: flex; position: fixed; top: var(--a-mbar-h, 57px); left: 0; right: 0; bottom: 0; z-index: 20; overflow-y: auto; overscroll-behavior: contain; border-bottom: 0; animation: aSideIn 180ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .a-side[data-open="true"] .a-nav a { min-height: 52px; font-size: 16px; }
   .a-side-brand { display: none; }
   .a-me { margin-top: 8px; }
 }

@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * The admin sidebar. On phones it folds behind a top bar with a menu button,
- * so the page content comes first; it closes on navigation and on Escape.
+ * The admin sidebar. On phones it folds behind a sticky top bar and opens as a
+ * full-screen overlay under it; it closes on navigation and on Escape.
  */
 export function AdminSidebar({ brand, children }: { brand: React.ReactNode; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -15,6 +15,12 @@ export function AdminSidebar({ brand, children }: { brand: React.ReactNode; chil
   useEffect(() => setOpen(false), [path]);
   useEffect(() => {
     if (!open) return;
+    // Phone overlay: sit right under the sticky bar, and stop the page behind from scrolling.
+    const bar = button.current?.closest<HTMLElement>(".a-mbar");
+    if (bar) document.documentElement.style.setProperty("--a-mbar-h", `${Math.round(bar.getBoundingClientRect().bottom)}px`);
+    const root = document.documentElement;
+    const prevOverflow = root.style.overflow;
+    if (window.matchMedia("(max-width: 800px)").matches) root.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
@@ -22,7 +28,10 @@ export function AdminSidebar({ brand, children }: { brand: React.ReactNode; chil
       }
     };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      root.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
   }, [open]);
 
   return (

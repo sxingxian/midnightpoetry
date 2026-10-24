@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { SceneToggle } from "./SceneToggle";
 import { MobileMenu } from "./MobileMenu";
+import { HeaderScroll } from "./HeaderScroll";
 
 export function MoonMark({ size = 22 }: { size?: number }) {
   return (
@@ -31,6 +32,7 @@ export function SiteHeader({ current, overlay = false, sceneToggle = false }: { 
         <ThemeToggle />
         <MobileMenu current={current} sceneToggle={sceneToggle} />
       </nav>
+      <HeaderScroll />
     </header>
   );
 }
