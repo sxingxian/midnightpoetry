@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { productTheme } from "@/components/site/productTheme";
 import { BlockRenderer, buildToc } from "@/components/guides/BlockRenderer";
-import { AdSenseScript, AdSlot } from "@/components/guides/Ads";
+import { AdSenseScript, AdSlot, adsenseAllowed } from "@/components/guides/Ads";
 import { getAdSettings, getCategories, getGuide, getRunningAds } from "@/lib/content/queries";
 import { planAds } from "@/lib/ads";
 import { publicEnv } from "@/lib/env";
@@ -53,7 +53,8 @@ export default async function GuidePage({ params }: { params: Params }) {
   const env = publicEnv();
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
-  const plans = planAds({ settings, ads, spots: guide.ad_spots, categoryId: guide.category_id, guideAdsEnabled: guide.ads_enabled, seed: guide.id });
+  const network = await adsenseAllowed();
+  const plans = planAds({ settings: settings && !network ? { ...settings, network_enabled: false } : settings, ads, spots: guide.ad_spots, categoryId: guide.category_id, guideAdsEnabled: guide.ads_enabled, seed: guide.id });
   const bySpot = (s: string) => plans.find((p) => p.spot === s);
   const toc = buildToc(guide.blocks);
   const minutes = Math.max(1, Math.round(wordCount(guide.blocks) / 220));

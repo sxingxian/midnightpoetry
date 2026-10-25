@@ -14,9 +14,13 @@ async function adsenseActive(supabaseUrl: string, anonKey: string): Promise<bool
   if (adsCache && now - adsCache.at < 60_000) return adsCache.on;
   let on = false;
   try {
+    // apikey header only: Supabase's newer publishable keys (sb_publishable_…) aren't JWTs and are
+    // refused as "Authorization: Bearer", which silently left guides on the strict policy that
+    // blocks Google's ad frames ("This content is blocked").
     const res = await fetch(`${supabaseUrl}/rest/v1/ad_settings?id=eq.1&select=enabled,network_enabled,adsense_client`, {
-      headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` },
+      headers: { apikey: anonKey },
     });
+    if (!res.ok) console.error("[middleware] ad settings check failed", res.status);
     if (res.ok) {
       const rows = (await res.json()) as { enabled: boolean; network_enabled: boolean; adsense_client: string | null }[];
       const s = rows[0];
@@ -42,6 +46,8 @@ export async function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("content-security-policy", csp);
+  // Pages only render Google's ads when this response allows them, so the two can never disagree.
+  requestHeaders.set("x-adsense", useAdsense ? "on" : "off");
 
   let response = NextResponse.next({ request: { headers: requestHeaders } });
 
@@ -80,7 +86,8 @@ export async function middleware(request: NextRequest) {
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("X-Frame-Options", "DENY");
-  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  // Ad clicks and Google's consent message open new windows; allow that only where Google's ads run.
+  response.headers.set("Cross-Origin-Opener-Policy", useAdsense ? "same-origin-allow-popups" : "same-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()");
   if (!dev) response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
   if (needsSession) {

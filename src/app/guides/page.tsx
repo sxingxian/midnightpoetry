@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { AdSenseScript, AdSlot } from "@/components/guides/Ads";
+import { AdSenseScript, AdSlot, adsenseAllowed } from "@/components/guides/Ads";
 import { getAdSettings, getCategories, getLiveProducts, getPublishedGuides, getRunningAds } from "@/lib/content/queries";
 import { planAds } from "@/lib/ads";
 import { productTheme } from "@/components/site/productTheme";
@@ -51,7 +51,8 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
     grp.items.push(g);
   }
 
-  const plans = needle ? [] : planAds({ settings, ads, spots: ["hub"], seed: "hub" });
+  const network = await adsenseAllowed();
+  const plans = needle ? [] : planAds({ settings: settings && !network ? { ...settings, network_enabled: false } : settings, ads, spots: ["hub"], seed: "hub" });
   const href = (g: (typeof guides)[number]) => `/guides/${productById.get(g.product_id)!.slug}/${g.slug}`;
 
   return (

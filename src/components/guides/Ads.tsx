@@ -36,6 +36,14 @@ export function AdSlot({ plan, variant = "wide" }: { plan: PlannedAd | undefined
   );
 }
 
+/**
+ * True when this response's security policy lets Google's ads load (decided in middleware).
+ * Guide pages pass network ads to planAds only then; otherwise house and sponsor ads fill in.
+ */
+export async function adsenseAllowed(): Promise<boolean> {
+  return (await headers()).get("x-adsense") === "on";
+}
+
 /** Loads Google's AdSense script (with the page nonce) only when a page actually has an AdSense unit. */
 export async function AdSenseScript({ plans }: { plans: PlannedAd[] }) {
   const first = plans.find((p) => p.source === "adsense");
