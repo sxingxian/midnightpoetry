@@ -1,0 +1,364 @@
+{
+  "product": {
+    "slug": "zora",
+    "name": "Zora",
+    "kind": "Clock & live weather for your car",
+    "headline": "Dusk to dawn,",
+    "headline_em": "she keeps watch.",
+    "headline_style": "sans",
+    "description": "A calm, landscape clock for your car's screen, with a live weather sky behind the time. Free with one small, still ad and no sign-up; go ad-free on up to five screens.",
+    "highlights": [
+      { "label": "Weather sky", "value": "Live" },
+      { "label": "Sign-up", "value": "Not needed" },
+      { "label": "Offline", "value": "Keeps time" }
+    ],
+    "cta_label": "Open Zora",
+    "cta_url": "https://zoraapp.midnightpoetry.studio/",
+    "site_url": "https://zora.midnightpoetry.studio/",
+    "accent_dark": "#7FD3C3",
+    "accent_light": "#1A6B5F",
+    "button_dark": "#F2A365",
+    "button_light": "#A84E22",
+    "sort_order": 3
+  },
+  "categories": [
+    { "name": "Getting started", "slug": "getting-started" },
+    { "name": "Sky and weather", "slug": "sky-and-weather" },
+    { "name": "Settings", "slug": "settings" },
+    { "name": "Ad-free and account", "slug": "ad-free-and-account" },
+    { "name": "Privacy", "slug": "privacy" }
+  ],
+  "guides": [
+    {
+      "slug": "setting-up-zora-on-your-car-screen",
+      "category": "getting-started",
+      "start_here": true,
+      "title": "Setting up Zora on your car screen",
+      "standfirst": "Open one address, add it to the home screen, choose your weather location, and you're done. Here is the whole set-up — best done while parked.",
+      "meta_title": "Set up Zora on your car's screen | Zora",
+      "meta_description": "Open Zora in your car screen's browser, add it to the home screen, turn on full screen and keep-awake, and choose your location or a city.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "On the car's screen, open **zoraapp.midnightpoetry.studio**, add it to the home screen, then in **Settings** turn on **Full screen** and **Keep the screen on**. No sign-up needed." },
+        { "type": "heading", "text": "Which screens it works on" },
+        { "type": "paragraph", "text": "Zora is a web app made for wide, landscape screens: the browser on a car's head unit, an Android head unit, or a tablet mounted on the dash — right up to very wide 32:9 dashboards. It doesn't run inside CarPlay or Android Auto, because those can't open web apps." },
+        { "type": "heading", "text": "Step by step" },
+        { "type": "list", "ordered": true, "items": [
+          "Park somewhere safe.",
+          "Open **zoraapp.midnightpoetry.studio** in the screen's browser.",
+          "Add it to the home screen. It then opens full screen and keeps working offline.",
+          "Allow location when the browser asks — or choose a city instead (see below).",
+          "Open **Settings** and check **Full screen** and **Keep the screen on** are both on."
+        ] },
+        { "type": "heading", "text": "Location or a city" },
+        { "type": "paragraph", "text": "With **My location**, Zora uses your approximate position, rounded to about 1 km. Prefer not to share it? In **Settings › Background**, choose **A city** and search for one — no location needed." },
+        { "type": "heading", "text": "If it asks you to turn the screen" },
+        { "type": "paragraph", "text": "On a portrait or narrow screen you'll see “Turn your screen sideways”. Rotate the device or turn off rotation lock. Setting up on your phone first is fine — rotate it, and your choices are saved on that device." },
+        { "type": "faq", "items": [
+          { "q": "Do I need an account?", "a": "No. Zora is free with one small, still ad. An account is only for going ad-free." },
+          { "q": "Does it work without signal?", "a": "Yes. The clock keeps time offline, in tunnels and car parks. The weather comes back on its own when you're online again." }
+        ] },
+        { "type": "cta", "title": "On your screen in a minute.", "text": "No sign-up needed.", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "made-to-be-glanced-at",
+      "category": "getting-started",
+      "title": "Made to be glanced at: using Zora safely",
+      "standfirst": "Zora is designed to sit quietly on the dash and be read in a second. Here is how it keeps out of your way, and the one rule that matters.",
+      "meta_title": "Using Zora safely while you drive | Zora",
+      "meta_description": "How Zora is designed for a glance — big time, no pop-ups, one still ad — and why you should set it up while parked.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Set Zora up while parked. After that it just keeps time — big, clear, and nothing to tap while you drive. Always follow your local road rules." },
+        { "type": "heading", "text": "How it stays calm" },
+        { "type": "list", "ordered": false, "items": [
+          "**Big, clear time** — readable at a glance from the driver's seat.",
+          "**Nothing moves except the sky** — no flashing numbers, no animated ads.",
+          "**No pop-ups** — Zora never interrupts with messages or prompts while it's running.",
+          "**One still ad on the free plan** — a single small image, with no animation, video or sound.",
+          "**Quiet by default** — weather sounds only start when you tap the speaker."
+        ] },
+        { "type": "heading", "text": "Before you set off" },
+        { "type": "paragraph", "text": "Choose your clock style, world clocks, background and location while the car is parked. If you want to look at the full forecast, open the weather pane when you've stopped — the weather pill on the main screen tells you enough on the move." },
+        { "type": "heading", "text": "What Zora isn't" },
+        { "type": "paragraph", "text": "Zora is a clock with a weather sky. It isn't a navigation or safety service, and weather forecasts can be wrong — trust what you see out of the window." },
+        { "type": "faq", "items": [
+          { "q": "Can a passenger change settings while driving?", "a": "Yes — settings are on the device itself, so whoever is safely able to tap the screen can open them." },
+          { "q": "Will the screen stay on?", "a": "With **Keep the screen on** turned on, yes, while Zora is open. Some battery-saver modes can override it." }
+        ] },
+        { "type": "cta", "title": "Calm on the dash.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "realistic-3d-illustrated-2d-or-aurora",
+      "category": "sky-and-weather",
+      "start_here": true,
+      "title": "Realistic 3D, illustrated 2D or your aurora",
+      "standfirst": "The sky behind the time follows the weather outside. Here are the three ways it can look, and when Zora switches between them by itself.",
+      "meta_title": "Zora's weather sky: 3D, 2D or aurora | Zora",
+      "meta_description": "Choose a realistic 3D or illustrated 2D weather sky, or just your aurora — plus Eco mode, raindrops on the glass, and why Zora sometimes shows 2D.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "In **Settings › Background**, choose **Realistic 3D**, **Illustrated 2D** or **Off** (your aurora only). Older screens run best with **Eco mode** on." },
+        { "type": "heading", "text": "The three backgrounds" },
+        { "type": "table", "caption": "Settings › Background › Weather background.", "header": ["Choice", "What you see", "Good for"], "rows": [
+          ["Realistic 3D", "A live sky: lit clouds, rain, lightning, stars, moon and sun", "Newer screens and tablets"],
+          ["Illustrated 2D", "The same weather as flat illustrations", "Lighter on older head units"],
+          ["Off", "Just your aurora colour", "A minimal look"]
+        ] },
+        { "type": "paragraph", "text": "The sky follows the weather where you are — rain, storm, cloud, fog, sun — and shows day or night from the real sun position, not from your light or dark theme." },
+        { "type": "heading", "text": "Raindrops and Eco mode" },
+        { "type": "list", "ordered": false, "items": [
+          "**Raindrops on the glass** adds drops when it's raining. Turn it off for a cleaner look.",
+          "**Eco mode** uses 2D weather at 30 frames a second — easier on older head units and batteries."
+        ] },
+        { "type": "heading", "text": "When Zora switches by itself" },
+        { "type": "paragraph", "text": "If 3D runs too slowly on a screen, Zora shows 2D for the rest of that session and says “showing 2D on this screen”. It tries 3D again the next time you open it. When there's no up-to-date weather — no location, no signal, or a report more than an hour old — Zora shows your aurora until the weather comes back." },
+        { "type": "faq", "items": [
+          { "q": "Why does my sky look flat?", "a": "You may be on Illustrated 2D or Eco mode, or the screen may not support 3D. Check **Settings › Background**." },
+          { "q": "Does the sky drain the battery?", "a": "3D does more work. Eco mode or Illustrated 2D are lighter if your screen runs warm or slow." }
+        ] },
+        { "type": "cta", "title": "Real weather. Right there.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "reading-the-weather-pane",
+      "category": "sky-and-weather",
+      "title": "Reading the weather pane",
+      "standfirst": "Tap the weather pill or swipe left for the full picture: feels-like, rain, wind, UV, daylight left and the next 24 hours.",
+      "meta_title": "How to read Zora's weather pane | Zora",
+      "meta_description": "What every part of Zora's weather pane means — temperature, feels like, rain, humidity, wind, UV, daylight and the next 24 hours.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Open it from the weather pill, the handle on the right edge, or a swipe left. Close it with a swipe right or **Back to clock**." },
+        { "type": "heading", "text": "At the top" },
+        { "type": "paragraph", "text": "The place name and when the report was updated. If it's getting old you'll see “out of date”. The big temperature sits below, with **Feels like**, today's **High** and **Low**." },
+        { "type": "heading", "text": "The four facts" },
+        { "type": "table", "caption": "Read across in one glance.", "header": ["Fact", "What it tells you"], "rows": [
+          ["Rain", "The chance of rain (or the amount, where a chance isn't given)"],
+          ["Humidity", "How muggy it feels"],
+          ["Wind", "Speed in km/h and the direction it's coming from"],
+          ["UV", "The index and a word: Low, Moderate, High, Very high or Extreme"]
+        ] },
+        { "type": "heading", "text": "Daylight and the heads-up line" },
+        { "type": "paragraph", "text": "The **Daylight** arc shows how much light is left today, or when the sun rises at night. One line underneath gives the thing most worth knowing next — like “Rain likely from 4 pm” or “Thunder likely around 6 pm”." },
+        { "type": "heading", "text": "The next 24 hours" },
+        { "type": "paragraph", "text": "A row of hours with the temperature and chance of rain, so you can see a wet commute coming." },
+        { "type": "faq", "items": [
+          { "q": "Where does the weather come from?", "a": "From the Norwegian Meteorological Institute (MET Norway). It refreshes every 10 minutes while Zora is on screen." },
+          { "q": "Can I see wind in mph?", "a": "Not yet — only temperature switches between °C and °F." }
+        ] },
+        { "type": "cta", "title": "The next 24 hours, one swipe away.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "why-zora-is-showing-the-aurora",
+      "category": "sky-and-weather",
+      "title": "No weather? Why Zora is showing your aurora",
+      "standfirst": "When the weather can't load, Zora shows your aurora instead and keeps trying. Here is what each message means and what to do.",
+      "meta_title": "Zora shows the aurora instead of weather | Zora",
+      "meta_description": "What Zora's weather messages mean — location off, offline, weather unavailable — and how to get the live sky back.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Zora needs your location or a city to show the weather. If location is off, tap **Choose a city**. If you're offline, wait — the weather comes back on its own." },
+        { "type": "heading", "text": "What the message means" },
+        { "type": "table", "caption": "Shown under the clock.", "header": ["Message", "What to do"], "rows": [
+          ["Finding the weather…", "Nothing — it's loading."],
+          ["Weather needs your location or a city. Showing your aurora.", "Tap **Choose a city**, or allow location."],
+          ["Location is off for Zora. Showing your aurora.", "Allow location in the browser's site settings, or tap **Choose a city**."],
+          ["Offline. The weather comes back on its own.", "Nothing — Zora retries when you're back online."],
+          ["Weather isn't available right now. Showing your aurora.", "Tap **Retry**, or wait a few minutes."]
+        ] },
+        { "type": "heading", "text": "Why old weather isn't shown" },
+        { "type": "paragraph", "text": "Zora keeps the last report on the device, but only trusts it for an hour. After that it would rather show your aurora than yesterday's rain." },
+        { "type": "heading", "text": "Using a city instead" },
+        { "type": "paragraph", "text": "In **Settings › Background**, choose **A city** and search. This never needs your location, and it's handy if your car's browser keeps forgetting the permission." },
+        { "type": "faq", "items": [
+          { "q": "The clock still works offline?", "a": "Yes. Time never needs a connection." },
+          { "q": "City search says it isn't available.", "a": "Search needs a connection. Try again once you're online." }
+        ] },
+        { "type": "cta", "title": "Your aurora, until the sky clears.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "choosing-your-aurora-colour",
+      "category": "sky-and-weather",
+      "title": "Choosing your aurora colour",
+      "standfirst": "The aurora is Zora's calm backdrop when there's no weather, or all the time if you prefer. Pick a preset or your own colour.",
+      "meta_title": "Choose your aurora colour in Zora | Zora",
+      "meta_description": "Pick one of Zora's aurora colour presets or your own colour, and use the aurora on its own as a minimal background.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "In **Settings › Background**, tap a colour under the aurora presets — or **Your own** to pick any colour. Zora pairs it with a neighbouring shade for a soft glow." },
+        { "type": "heading", "text": "The presets" },
+        { "type": "paragraph", "text": "Zora (the default teal and violet), Teal, Ocean, Violet, Orchid, Rose, Dawn, Gold and Mint. Each one is paired with a neighbouring colour for a soft, two-tone glow." },
+        { "type": "heading", "text": "Your own colour" },
+        { "type": "paragraph", "text": "Choose **Your own** and use the colour picker. Match your car's interior lighting, or pick something calm for night drives." },
+        { "type": "heading", "text": "Aurora only" },
+        { "type": "paragraph", "text": "Prefer no weather sky at all? Set **Weather background** to **Off**. You'll still have the weather pill and pane — just the aurora behind the time." },
+        { "type": "faq", "items": [
+          { "q": "Is the colour saved?", "a": "Yes, on this screen. Settings stay on each device and never leave it." }
+        ] },
+        { "type": "cta", "title": "Your aurora. Your colour.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "clock-styles-and-world-clocks",
+      "category": "settings",
+      "title": "Clock styles and world clocks",
+      "standfirst": "Digital, analog or both, 12 or 24 hours, and up to four world clocks along the bottom — with a note when it's already tomorrow there.",
+      "meta_title": "Clock styles and world clocks in Zora | Zora",
+      "meta_description": "Switch between digital, analog or both, 12- or 24-hour time, show seconds, and add up to four world clocks to Zora.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "**Settings › Clock** sets the style, hour format and seconds. **World clocks** holds up to four cities." },
+        { "type": "heading", "text": "The clock" },
+        { "type": "list", "ordered": false, "items": [
+          "**Clock style** — Digital, Analog or Both.",
+          "**Hour format** — 12-hour (with AM/PM) or 24-hour.",
+          "**Show seconds** — off by default, for a calmer screen."
+        ] },
+        { "type": "heading", "text": "World clocks" },
+        { "type": "paragraph", "text": "Up to four cities sit along the bottom of the screen. Add one with **Add a city**, remove any you don't need. When a city's date is different from yours, it's marked **Tomorrow** or **Yesterday**, so you never call someone at 3 am by mistake." },
+        { "type": "faq", "items": [
+          { "q": "Which world clocks are there by default?", "a": "Tokyo, London and New York. Change them to anywhere you like." },
+          { "q": "Does it handle daylight saving?", "a": "Yes — each city keeps its own local time." }
+        ] },
+        { "type": "cta", "title": "Every clock you need.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "keep-the-screen-on-and-full-screen",
+      "category": "settings",
+      "title": "Keep the screen on, full screen and updates",
+      "standfirst": "The settings that make Zora feel built into the dash, what to do if the screen still sleeps, and how updates arrive.",
+      "meta_title": "Keep Zora on screen and full screen | Zora",
+      "meta_description": "Turn on Keep the screen on and Full screen, fix a screen that still goes to sleep, and how Zora updates and resets.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "In **Settings › Appearance**, turn on **Keep the screen on** and **Full screen**. Both are best with Zora added to the home screen." },
+        { "type": "heading", "text": "Keep the screen on" },
+        { "type": "paragraph", "text": "While Zora is open, it asks the screen not to sleep. Some battery-saver modes overrule that request — if your screen still dims, check the device's own battery or display settings." },
+        { "type": "heading", "text": "Full screen" },
+        { "type": "paragraph", "text": "Hides the browser bars where your screen allows it, and keeps Zora in landscape. Added to the home screen, Zora opens full screen anyway." },
+        { "type": "heading", "text": "Theme" },
+        { "type": "paragraph", "text": "**System** follows your device's light or dark setting. Choose **Light** or **Dark** to fix it. The sky itself always follows the real time of day." },
+        { "type": "heading", "text": "Updates" },
+        { "type": "paragraph", "text": "When a new version is ready, Zora says “A new version of Zora is ready.” with **Later** or **Reload**. It never reloads by itself, so the screen won't blink mid-drive." },
+        { "type": "heading", "text": "Starting fresh" },
+        { "type": "paragraph", "text": "Settings are saved on each device. **Settings › About › Reset to defaults** puts everything back — and clearing the browser's data does the same." },
+        { "type": "faq", "items": [
+          { "q": "Will Zora still work when it's offline?", "a": "Yes. Once added to the home screen, the clock and app keep working offline; the weather comes back when you're online." }
+        ] },
+        { "type": "cta", "title": "Built into the dash, almost.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "ambient-weather-sounds",
+      "category": "settings",
+      "title": "Ambient weather sounds",
+      "standfirst": "Soft rain, a light breeze, a quiet night: Zora can play a gentle sound that matches the sky. Nothing plays until you tap it.",
+      "meta_title": "Ambient weather sounds in Zora | Zora",
+      "meta_description": "Turn on Zora's ambient weather sounds — soft rain, thunder, breeze, still air, quiet night — set the volume, and mute them any time.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Tap the speaker at the top right to play the sound for the current weather. Tap again to mute. Set the volume in **Settings › Sound & weather**." },
+        { "type": "heading", "text": "The sounds" },
+        { "type": "paragraph", "text": "Soft rain, Thunder and rain, Light breeze, Still air and Quiet night — matched to the weather outside. The weather pane also has an Ambient control to play or mute it." },
+        { "type": "heading", "text": "Settings" },
+        { "type": "list", "ordered": false, "items": [
+          "**Ambient weather sound** — turns the sound on; it still only starts when you tap the speaker. Off to start with.",
+          "**Ambient volume** — 60% by default; keep it low under music or calls."
+        ] },
+        { "type": "faq", "items": [
+          { "q": "Will a sound start by itself?", "a": "No. Browsers and Zora both wait for a tap — nothing plays until you ask." }
+        ] },
+        { "type": "cta", "title": "Quiet sounds, when you want them.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "going-ad-free",
+      "category": "ad-free-and-account",
+      "start_here": true,
+      "title": "Going ad-free: plans and promo codes",
+      "standfirst": "Zora is free with one small, still ad. Going ad-free removes it — every other feature is the same on every plan.",
+      "meta_title": "Go ad-free in Zora: plans and promo codes | Zora",
+      "meta_description": "What the free plan includes, the monthly and lifetime ad-free plans, using a promo code, and how payment works.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Every plan has every feature. Paying only removes the ad — on up to five screens with one free account. Choose **Monthly** (cancel any time) or **Lifetime** (pay once)." },
+        { "type": "heading", "text": "What free looks like" },
+        { "type": "paragraph", "text": "One small image ad along the bottom, labelled “Ad”, with no animation, video or sound. It's dimmed at night. If there's no ad to show, the space stays empty." },
+        { "type": "heading", "text": "The plans" },
+        { "type": "table", "caption": "Current prices are shown on the plan screen and Zora's website.", "header": ["Plan", "How it works"], "rows": [
+          ["Free", "Every feature, with one small, still ad"],
+          ["Monthly", "Ad-free, billed monthly. Cancel any time"],
+          ["Lifetime", "Ad-free, pay once. Yours for good"]
+        ] },
+        { "type": "heading", "text": "Going ad-free" },
+        { "type": "list", "ordered": true, "items": [
+          "On the car screen, open **Settings** and tap **Sign in for ad-free** (or **See plans**).",
+          "Sign in with your phone or an email code — see [Signing in a car screen with your phone](/guides/zora/signing-in-a-car-screen).",
+          "Choose a plan and tap **Continue with Monthly** or **Continue with Lifetime**. Payment is handled by Stripe; Zora never sees or stores your card.",
+          "You'll see “Ads are gone. Thank you.”"
+        ] },
+        { "type": "heading", "text": "Promo codes" },
+        { "type": "paragraph", "text": "Enter a code in **Promo code** and tap **Apply** before checkout. A discount code shows the saving, applied at checkout; a free-trial code starts straight away. Codes need you to be signed in, and each can be used once per account." },
+        { "type": "faq", "items": [
+          { "q": "How do I cancel a monthly plan?", "a": "On your phone, open the account page and tap **Manage subscription and receipts**." },
+          { "q": "What if new plans are paused?", "a": "You'll see “New ad-free plans are paused right now.” Plans people already have keep working." }
+        ] },
+        { "type": "cta", "title": "Clear skies, no ads.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    },
+    {
+      "slug": "signing-in-a-car-screen",
+      "category": "ad-free-and-account",
+      "title": "Signing in a car screen with your phone",
+      "standfirst": "Typing an email on a car screen is a pain. Scan a code with your phone instead, approve it, and the car screen signs itself in.",
+      "meta_title": "Sign in a car screen with your phone | Zora",
+      "meta_description": "Sign a car screen into your Zora account by scanning a QR code or entering a short code on your phone, and manage up to five screens.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "On the car: **Settings › Sign in for ad-free**. Scan the QR code with your phone, sign in, and tap **Approve** — only if the code on your phone matches the one on the car." },
+        { "type": "heading", "text": "With the QR code" },
+        { "type": "list", "ordered": true, "items": [
+          "On the car screen, open **Settings** and tap **Sign in for ad-free**.",
+          "Scan the QR code with your phone's camera.",
+          "Sign in with the 6-digit code Zora emails you. New here? This creates your free account.",
+          "Check your car is showing the same code, then tap **Approve**.",
+          "The car says “Approved. Signing in this screen…” — you can put your phone away."
+        ] },
+        { "type": "heading", "text": "Without scanning" },
+        { "type": "paragraph", "text": "Open **zoraapp.midnightpoetry.studio/account** on your phone and type the eight-character code from the car screen (like ABCD-2345). Codes last 10 minutes; if it expires, tap **Show a new code**. Prefer typing on the car? Choose **Type an email on this screen instead**." },
+        { "type": "heading", "text": "Up to five screens" },
+        { "type": "paragraph", "text": "One account covers five screens — your phone's account page doesn't count. Signing in a sixth screen signs out the one used longest ago. To free a screen yourself, go to **Settings › Ad-free › Manage › Sign out of this screen** on that screen; it brings the ad back there without cancelling your plan." },
+        { "type": "faq", "items": [
+          { "q": "Someone else's code appeared on my phone.", "a": "Tap **Not me**. Only approve a code your own car screen is showing right now." },
+          { "q": "Do I need a password?", "a": "No. Zora signs you in with a 6-digit code sent by email, valid for 10 minutes." }
+        ] },
+        { "type": "cta", "title": "One account, up to five screens.", "text": "", "label": "Open your account", "url": "https://zoraapp.midnightpoetry.studio/account" }
+      ]
+    },
+    {
+      "slug": "your-location-and-privacy",
+      "category": "privacy",
+      "title": "Your location and privacy",
+      "standfirst": "Zora needs a rough idea of where you are to show the weather — and nothing more. Here is exactly what happens to your location and what an account keeps.",
+      "meta_title": "Zora, your location and your privacy | Zora",
+      "meta_description": "How Zora rounds and protects your location, what stays on your device, what an account stores, and how to delete your account.",
+      "blocks": [
+        { "type": "callout", "title": "The short version", "text": "Your location is rounded to about 1 km on your device and never stored on our servers. Settings never leave the screen. You don't need an account at all unless you go ad-free." },
+        { "type": "heading", "text": "Your location" },
+        { "type": "list", "ordered": false, "items": [
+          "Rounded to about 1 km on your device, then again on the way out.",
+          "Passed through Zora's own server to the weather service, so the weather provider never sees your IP address.",
+          "Never stored on our servers. Only the last report's rounded position is kept on your device.",
+          "Don't want to share it? Choose **A city** instead."
+        ] },
+        { "type": "heading", "text": "What stays on the device" },
+        { "type": "paragraph", "text": "Every setting — clock, world clocks, colours, sounds — is saved on that screen only. Clearing the browser's data resets them." },
+        { "type": "heading", "text": "What an account keeps" },
+        { "type": "paragraph", "text": "Only if you go ad-free: your email, your plan and payment history, and up to five screens (stored as scrambled identifiers with when each was last used). Card details stay with Stripe." },
+        { "type": "heading", "text": "Ads on the free plan" },
+        { "type": "paragraph", "text": "Zora counts how often an ad is shown and tapped each day, without identifying you. Where an ad network is used, visitors who must be asked for consent are asked first." },
+        { "type": "heading", "text": "Deleting your account" },
+        { "type": "paragraph", "text": "On your phone's account page, tap **Delete account**, type DELETE and confirm. Every screen is signed out and a monthly plan is cancelled straight away. A lifetime plan can't be restored afterwards. Payment records are kept for accounting, without your personal details." },
+        { "type": "faq", "items": [
+          { "q": "Does Zora track where I drive?", "a": "No. It only asks for an approximate position to fetch the weather, and doesn't keep a history." }
+        ] },
+        { "type": "cta", "title": "Weather, without the tracking.", "text": "", "label": "Open Zora", "url": "https://zoraapp.midnightpoetry.studio/" }
+      ]
+    }
+  ]
+}

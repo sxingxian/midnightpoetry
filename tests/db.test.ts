@@ -81,11 +81,11 @@ describe("database security", () => {
     await db.exec(`insert into public.guides (product_id, slug, title, status) select id, 'draft-one', 'Draft', 'draft' from public.products where slug = 'zeno'`);
     await as("anon");
     const products = await db.query(`select slug from public.products order by sort_order`);
-    expect((products.rows as { slug: string }[]).map((r) => r.slug)).toEqual(["zyra", "zeno"]);
+    expect((products.rows as { slug: string }[]).map((r) => r.slug)).toEqual(["zyra", "zeno", "zora"]);
     const guides = (await db.query<{ slug: string }>(`select slug from public.guides`)).rows.map((r) => r.slug);
     expect(guides).toContain("split-gst-service-charge");
     expect(guides).not.toContain("draft-one");
-    expect(guides.length).toBe(24); // the shipped studio guides: 12 for Zyra, 12 for Zeno
+    expect(guides.length).toBe(36); // the shipped studio guides: 12 each for Zyra, Zeno and Zora
   });
 
   it("shows scheduled guides only once they are due", async () => {

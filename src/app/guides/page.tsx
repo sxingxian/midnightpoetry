@@ -33,7 +33,10 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
   const needle = q.toLowerCase();
   const inProduct = guides.filter((g) => productById.has(g.product_id) && (!selected || g.product_id === selected.id));
   const shown = inProduct.filter((g) => !needle || g.title.toLowerCase().includes(needle) || g.standfirst.toLowerCase().includes(needle) || (categoryById.get(g.category_id ?? "")?.name.toLowerCase().includes(needle) ?? false));
-  const start = needle ? [] : inProduct.filter((g) => g.start_here).slice(0, 3);
+  // "Start here": one per product first (so every product is represented), then any others, up to three.
+  const starters = inProduct.filter((g) => g.start_here);
+  const firstPerProduct = starters.filter((g, i) => starters.findIndex((x) => x.product_id === g.product_id) === i);
+  const start = needle ? [] : [...firstPerProduct, ...starters.filter((g) => !firstPerProduct.includes(g))].slice(0, 3);
 
   const groups: { key: string; p: (typeof products)[number]; product: string; category: string; color: string; items: typeof shown }[] = [];
   for (const g of shown) {

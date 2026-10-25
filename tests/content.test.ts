@@ -40,9 +40,12 @@ describe("studio guide content", () => {
     });
   }
 
-  it("the generated migration is up to date", () => {
-    const before = readFileSync("supabase/migrations/20261024000300_studio_content.sql", "utf8");
+  it("the generated migrations are up to date, and every content file ships in one", () => {
+    const outs = ["supabase/migrations/20261024000300_studio_content.sql", "supabase/migrations/20261025000100_zora_content.sql"];
+    const before = outs.map((o) => readFileSync(o, "utf8"));
     execFileSync("node", ["scripts/content-sql.mjs"]);
-    expect(readFileSync("supabase/migrations/20261024000300_studio_content.sql", "utf8")).toBe(before);
+    outs.forEach((o, i) => expect(readFileSync(o, "utf8")).toBe(before[i]));
+    const shipped = readFileSync("scripts/content-sql.mjs", "utf8");
+    for (const f of files) expect(shipped).toContain(`"${f}"`);
   });
 });
