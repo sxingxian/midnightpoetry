@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 export const CONTENT_MIGRATIONS = {
   "supabase/migrations/20261024000300_studio_content.sql": { title: "Zyra and Zeno", files: ["zeno.json", "zyra.json"] },
   "supabase/migrations/20261025000100_zora_content.sql": { title: "Zora", files: ["zora.json"] },
+  "supabase/migrations/20261028000100_zotikos_content.sql": { title: "Zotikos", files: ["zotikos.json"] },
 };
 const q = (s) => {
   const v = String(s);

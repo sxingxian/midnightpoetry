@@ -33,10 +33,10 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
   const needle = q.toLowerCase();
   const inProduct = guides.filter((g) => productById.has(g.product_id) && (!selected || g.product_id === selected.id));
   const shown = inProduct.filter((g) => !needle || g.title.toLowerCase().includes(needle) || g.standfirst.toLowerCase().includes(needle) || (categoryById.get(g.category_id ?? "")?.name.toLowerCase().includes(needle) ?? false));
-  // "Start here": one per product first (so every product is represented), then any others, up to three.
+  // "Start here": one per product first (so every product is represented), then any others: three cards, or one per product if there are more products.
   const starters = inProduct.filter((g) => g.start_here);
   const firstPerProduct = starters.filter((g, i) => starters.findIndex((x) => x.product_id === g.product_id) === i);
-  const start = needle ? [] : [...firstPerProduct, ...starters.filter((g) => !firstPerProduct.includes(g))].slice(0, 3);
+  const start = needle ? [] : [...firstPerProduct, ...starters.filter((g) => !firstPerProduct.includes(g))].slice(0, Math.max(3, firstPerProduct.length));
 
   const groups: { key: string; p: (typeof products)[number]; product: string; category: string; color: string; items: typeof shown }[] = [];
   for (const g of shown) {
@@ -101,7 +101,7 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
             <h2 id="start-h" style={{ margin: "0 0 20px", fontSize: 18, fontWeight: 600 }}>
               Start here
             </h2>
-            <div className="cards">
+            <div className="cards" data-count={start.length}>
               {start.map((g) => {
                 const p = productById.get(g.product_id)!;
                 return (

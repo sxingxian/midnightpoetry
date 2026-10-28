@@ -8,6 +8,8 @@ export function SiteFooter({ showCookieChoices = false, className = "" }: { show
       <nav aria-label="Footer">
         <a href="https://zyra.midnightpoetry.studio/">Zyra</a>
         <a href="https://zeno.midnightpoetry.studio/">Zeno</a>
+        <a href="https://zora.midnightpoetry.studio/">Zora</a>
+        <a href="https://zotikos.midnightpoetry.studio/">Zotikos</a>
         <Link href="/guides">Guides</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>

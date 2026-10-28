@@ -190,6 +190,8 @@ html { scroll-padding-top: 96px; } /* anchors land below the sticky header */
 .product-card dt { color: var(--muted); }
 .product-card dd { margin: 4px 0 0; font-weight: 600; }
 .guide-doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; margin-top: 30px; }
+/* Four products sit two by two rather than three plus one on its own. */
+.product-grid[data-count="4"], .guide-doors[data-count="4"], .cards[data-count="4"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
 .door { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px 28px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: var(--ink); text-decoration: none; }
 .door .t { font-family: var(--font-serif); font-size: 28px; line-height: 1.1; }
 .zeno { position: fixed; left: 0; bottom: 6px; z-index: 7; width: 150px; height: 190px; transform: translateX(-220px); pointer-events: none; transition: opacity 300ms ease; }

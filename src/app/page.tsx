@@ -160,7 +160,7 @@ export default async function Home() {
             </span>
           </h2>
           {products.length ? (
-            <div className="product-grid">
+            <div className="product-grid" data-count={products.length}>
               {products.map((p, i) => (
                 <ProductCard key={p.id} p={p} delay={i * 80} />
               ))}
@@ -177,7 +177,7 @@ export default async function Home() {
             <h2 id="guides-h" className="serif glow" data-rv="" style={{ margin: 0, fontSize: "clamp(32px, 3.6vw, 48px)", lineHeight: 1.06 }}>
               Need a hand? <em className="accent-em">Every guide lives here.</em>
             </h2>
-            <div className="guide-doors">
+            <div className="guide-doors" data-count={doors.length}>
               {doors.map((d, i) => (
                 <Link key={d.slug} href={`/guides?product=${d.slug}`} className="door lift" data-rv="" data-d={String(i * 80)}>
                   <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
