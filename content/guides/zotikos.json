@@ -556,7 +556,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Free includes two active trips at a time. When you reach that, the trips list suggests archiving one or going Pro. Restoring needs a free slot too. Guests can't archive trips."
+          "text": "Free includes two active trips at a time. When you reach that, the trips list suggests archiving one or going Pro. Restoring needs a free slot too. Guests can't archive trips: **Archive** is switched off with the hint “Add your email to archive trips”. If you're out of room for archived trips, you'll see “Your plan has no room for another archived trip. Delete an old one, or go Pro.”"
         },
         {
           "type": "heading",
@@ -1172,11 +1172,19 @@
         {
           "type": "callout",
           "title": "Before you mark it",
-          "text": "A payment marked as paid can't be undone in the app, so mark it once the money has actually been sent."
+          "text": "Mark a payment once the money has actually been sent. If you get it wrong, you can take it back with **Undo** under **Marked as paid**."
         },
         {
           "type": "paragraph",
           "text": "Marked payments are listed under **Marked as paid** and in the ledger, and balances update for everyone. When nobody owes anything you'll see “Everyone's square. Nobody owes anything.”"
+        },
+        {
+          "type": "heading",
+          "text": "Undo a payment"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each payment under **Marked as paid** has an **Undo** button for whoever recorded it and for the trip's owner and co-owners. It's switched off on archived trips. Tap it and confirm “Undo this payment? Balances update for everyone.”, then you'll see “Payment undone”. Offline, it's saved on your device and sent when you're back online. If the payment was a **Pay it in** move, undoing it reverses both parts."
         },
         {
           "type": "heading",
@@ -1192,6 +1200,10 @@
             {
               "q": "What currency are the amounts in?",
               "a": "The trip's currency, the one its balances are kept in. After a currency change, any older line is shown separately."
+            },
+            {
+              "q": "I marked a payment by mistake.",
+              "a": "Find it under **Marked as paid** and tap **Undo**, then confirm. See above."
             },
             {
               "q": "Can I mark a payment offline?",
@@ -1324,6 +1336,10 @@
               "a": "Pins are grouped by name and saved spot. If the shop was saved under different names, or at spots that round to different points, each becomes its own pin."
             },
             {
+              "q": "I have Pro but I see no map.",
+              "a": "If Zotikos has switched the map off for now, you'll see “The map is switched off for now. Your places are listed here, and Open in Maps still works.” Pro members don't see the upgrade teaser."
+            },
+            {
               "q": "Does the map work offline?",
               "a": "Your places list and pins come from the copy of the trip on your device, but the street map behind them doesn't load without a connection."
             }
@@ -1408,7 +1424,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Places are saved to about 10 metres by default (Zotikos can change this). If your phone's location is too rough, usually indoors or without a clear sky, Zotikos refuses it with “Your location is too rough to save. Try again outdoors, or search instead.” Step outside and try again. If it can't be found at all, see [Fix map and location problems](/guides/zotikos/fix-map-and-location-problems)."
+          "text": "Places are saved to about 10 metres by default (Zotikos can change this). If your phone's location is too rough, usually indoors or without a clear sky, Zotikos refuses it with “Your location is too rough to save. Try again outdoors.” (with Pro it adds “Or search instead.”). Step outside and try again. If it can't be found at all, see [Fix map and location problems](/guides/zotikos/fix-map-and-location-problems)."
         },
         {
           "type": "heading",
@@ -1794,16 +1810,16 @@
               "Allow location for Zotikos in your browser or phone settings, then tap **Use where I am now** again."
             ],
             [
-              "Your location isn't available right now. Try again outdoors, or search instead.",
-              "Step outside or wait for a better signal. Search is a Pro feature."
+              "Your location isn't available right now. Try again outdoors.",
+              "Step outside or wait for a better signal. With Pro it adds “Or search instead.”"
             ],
             [
-              "Finding your location took too long. Try again, or search instead.",
-              "Try again with a clearer view of the sky."
+              "Finding your location took too long. Try again.",
+              "Try again with a clearer view of the sky. With Pro it adds “Or search instead.”"
             ],
             [
-              "Your location is too rough to save. Try again outdoors, or search instead.",
-              "Zotikos only saves a fix that's accurate enough. Go outdoors and retry."
+              "Your location is too rough to save. Try again outdoors.",
+              "Zotikos only saves a fix that's accurate enough. Go outdoors and retry. With Pro it adds “Or search instead.”"
             ],
             [
               "This browser can't share your location.",
@@ -1861,6 +1877,11 @@
               "Fewer places on one day",
               "The Day filter is on",
               "Choose **All days**."
+            ],
+            [
+              "“The map is switched off for now.”",
+              "Zotikos has switched the map off for a while",
+              "Your places list and Open in Maps still work. Try again later."
             ]
           ]
         },
@@ -2316,7 +2337,7 @@
         },
         {
           "type": "paragraph",
-          "text": "A locked card links to where you unlock it. Guests only need a free account for **Each day**; the other cards need Pro."
+          "text": "A locked card links to where you unlock it. For **Each day**, guests see “Add your email to see each day's spending, yours inside the group's.” with an **Account** badge: a free account is enough. The other locked cards carry a **Pro** badge."
         },
         {
           "type": "heading",

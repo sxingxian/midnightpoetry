@@ -247,7 +247,7 @@ describe("database security", () => {
 
   it("the Zotikos update migration replaces untouched guides, keeps their history, and never overwrites an editor's changes", async () => {
     await as("postgres");
-    const sql = readFileSync("supabase/migrations/20261102000200_zotikos_insights_guides.sql", "utf8");
+    const sql = readFileSync("supabase/migrations/20261102000300_zotikos_after_app_fixes.sql", "utf8");
     const slug = "start-your-first-trip";
     const other = "use-the-map-tab";
     // Untouched guides were replaced when the migrations ran: they have a history, and the new map guides exist.

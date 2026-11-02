@@ -15,7 +15,8 @@ export const CONTENT_MIGRATIONS = {
   "supabase/migrations/20261025000100_zora_content.sql": { title: "Zora", files: ["zora.json"] },
   "supabase/migrations/20261028000100_zotikos_content.sql": { title: "Zotikos", files: ["frozen/zotikos-2026-10-28.json"] },
   "supabase/migrations/20261102000100_zotikos_guides_update.sql": { title: "Zotikos (updated guides)", files: ["frozen/zotikos-2026-11-02.json"], mode: "update" },
-  "supabase/migrations/20261102000200_zotikos_insights_guides.sql": { title: "Zotikos (Insights, checks, picture and Pro guides)", files: ["zotikos.json"], mode: "update" },
+  "supabase/migrations/20261102000200_zotikos_insights_guides.sql": { title: "Zotikos (Insights, checks, picture and Pro guides)", files: ["frozen/zotikos-2026-11-02-insights.json"], mode: "update" },
+  "supabase/migrations/20261102000300_zotikos_after_app_fixes.sql": { title: "Zotikos (guides after the app fixes: Undo, location messages, map off)", files: ["zotikos.json"], mode: "update" },
 };
 const q = (s) => {
   const v = String(s);
