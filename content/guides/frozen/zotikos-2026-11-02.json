@@ -1,0 +1,2189 @@
+{
+  "product": {
+    "slug": "zotikos",
+    "name": "Zotikos",
+    "kind": "Shared travel spending",
+    "headline": "Go anywhere.",
+    "headline_em": "Come home all square.",
+    "headline_style": "sans",
+    "description": "One ledger for the whole trip: log what everyone pays in 150+ currencies, read receipts from a photo, split fairly and settle up with fewer transfers. Works offline. Free to start.",
+    "highlights": [
+      {
+        "label": "Currencies",
+        "value": "150+"
+      },
+      {
+        "label": "Settle up",
+        "value": "Fewer transfers"
+      },
+      {
+        "label": "No signal",
+        "value": "Keeps logging"
+      }
+    ],
+    "cta_label": "Open Zotikos",
+    "cta_url": "https://zotikosapp.midnightpoetry.studio/",
+    "site_url": "https://zotikos.midnightpoetry.studio/",
+    "accent_dark": "#A8D0AD",
+    "accent_light": "#355A3C",
+    "button_dark": "#E7B46E",
+    "button_light": "#8A5716",
+    "sort_order": 4
+  },
+  "categories": [
+    {
+      "name": "Getting started",
+      "slug": "getting-started"
+    },
+    {
+      "name": "Trips and budgets",
+      "slug": "trips-and-budgets"
+    },
+    {
+      "name": "Expenses and receipts",
+      "slug": "expenses-and-receipts"
+    },
+    {
+      "name": "Splitting and settling up",
+      "slug": "splitting-and-settling-up"
+    },
+    {
+      "name": "Map and places",
+      "slug": "map-and-places"
+    },
+    {
+      "name": "Plans and account",
+      "slug": "plans-and-account"
+    }
+  ],
+  "guides": [
+    {
+      "slug": "start-your-first-trip",
+      "category": "getting-started",
+      "start_here": true,
+      "title": "Start your first trip",
+      "standfirst": "Sign in with an email code (or try it as a guest), choose your home currency, then make a trip and add who's coming. Then find your way around.",
+      "meta_title": "Start your first trip | Zotikos",
+      "meta_description": "Create a Zotikos account or try it as a guest, choose your home currency, make a trip, add travellers, log the first expense and learn where everything is.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Open **zotikosapp.midnightpoetry.studio**, sign in, choose your home currency and tap **New trip**. Add travellers by name; you can invite them by link later."
+        },
+        {
+          "type": "heading",
+          "text": "1. Sign in"
+        },
+        {
+          "type": "paragraph",
+          "text": "New here? Under “New to Zotikos?”, tap **Create a free account**, enter your email and a password of at least 12 characters (twice), and tap **Create account**. Then open the email we send and tap **Confirm my email**, come back and sign in with your email and password."
+        },
+        {
+          "type": "paragraph",
+          "text": "After that, signing in is usually just **Email me a code**: a 6-digit code that works once and expires in 10 minutes. Your password is the backup if a code doesn't arrive."
+        },
+        {
+          "type": "paragraph",
+          "text": "Just want to look around? Tap **Try as guest** when it's offered. Guest trips work the same way with smaller limits: one active trip, up to four travellers and no invite links. You can keep them later by adding your email (see [Sign-in, security and your data](/guides/zotikos/sign-in-security-and-your-data))."
+        },
+        {
+          "type": "heading",
+          "text": "2. Choose your home currency"
+        },
+        {
+          "type": "paragraph",
+          "text": "Zotikos asks “Which currency is home?”. Pick the currency your bank account or card is in; a suggestion from your device's region is at the top, and you can search by country or code. New trips keep their balances in it. Changing it later only affects new trips, so nobody's balance shifts."
+        },
+        {
+          "type": "heading",
+          "text": "3. Make a trip"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Tap **New trip**.",
+            "Give it a **Trip name**, such as “Kyoto & Seoul”.",
+            "Optionally choose a **Country**. Picking one sets the currency below, and you can still change it.",
+            "Check **Balances kept in**. It starts as your home currency, and everyone settles up in this. Spending can still be in any currency.",
+            "Add **Starts** and **Ends** dates and a budget if you like. They're all optional (see [Daily and whole-trip budgets](/guides/zotikos/daily-and-whole-trip-budgets)).",
+            "Under **Who's coming**, type a name in the box, and tap **Add a traveller** for another box. You're already on the trip.",
+            "Tap **Create trip**."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Making a trip needs a connection. Once it exists, you can add expenses offline."
+        },
+        {
+          "type": "heading",
+          "text": "4. Log the first expense"
+        },
+        {
+          "type": "paragraph",
+          "text": "On a phone or tablet, tap **Add expense** on the trip and choose **Scan a receipt**, **Add by item** or **Just the total**. On a computer, use **Add expense** (**Add by item** or **Just the total**) or **Upload receipt**. See [Add an expense in any currency](/guides/zotikos/add-an-expense-in-any-currency)."
+        },
+        {
+          "type": "heading",
+          "text": "Finding your way around"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Where",
+            "What you'll see"
+          ],
+          "rows": [
+            [
+              "Phone, outside a trip",
+              "A bottom bar with Trips, Insights and Account."
+            ],
+            [
+              "Phone, inside a trip",
+              "Overview, Ledger, Map, Settle up and Insights along the bottom. At the top: **‹ Trips**, a faces icon for People, and a gear for Trip settings."
+            ],
+            [
+              "Tablet",
+              "The same tabs in a slim bar down the side, with People and Settings."
+            ],
+            [
+              "Computer",
+              "A sidebar: Trips, Insights, Account; inside a trip also Overview, Ledger, Map, Settle up, People and Trip settings, plus a “Switch trip” picker. On the Overview, press N to add, / to search."
+            ],
+            [
+              "Add expense",
+              "A floating button on phones and tablets. It's hidden on the Map tab and on archived trips."
+            ]
+          ]
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Do my travel buddies need the app?",
+              "a": "No. Add them by name and log everything yourself. If they'd like to see the trip and add expenses from their own phone, send an invite link: see [People, invite links and co-owners](/guides/zotikos/invite-travellers-with-a-link)."
+            },
+            {
+              "q": "What happens to guest trips if I sign out?",
+              "a": "Guest trips belong to that guest session on that device. Before signing out, open **Account**, go to **Keep your trips**, enter your email, tap **Send me a code**, type the 6-digit code and tap **Keep my trips**. If that email already has an account, you can choose **Sign in and bring my trips** to move them into it."
+            },
+            {
+              "q": "No code arrived?",
+              "a": "Check spam or promotions, then tap **Send a new code** (you can ask again after 30 seconds), or sign in with your password instead. If you haven't made an account yet, the code screen offers **Create one with this email**."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Go anywhere. Come home all square.",
+          "text": "Free to start, in your browser.",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "install-zotikos-and-use-it-offline",
+      "category": "getting-started",
+      "title": "Install Zotikos and use it offline",
+      "standfirst": "Zotikos runs in your browser, with no app store. Add it to your home screen and it opens full screen and keeps working when there's no signal.",
+      "meta_title": "Install Zotikos and use it offline | Zotikos",
+      "meta_description": "Add Zotikos to your home screen on iPhone, Android or a computer, and see what works offline and how changes sync when you're back.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Install it from your browser, then log expenses anywhere. Changes you make offline wait on your phone and sync on their own when you're back online."
+        },
+        {
+          "type": "heading",
+          "text": "Install it"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Device",
+            "Browser",
+            "How"
+          ],
+          "rows": [
+            [
+              "iPhone & iPad",
+              "Safari",
+              "Share → Add to Home Screen → Add"
+            ],
+            [
+              "Android",
+              "Chrome",
+              "Tap **Install** on the Install Zotikos card, or ⋮ → Install app"
+            ],
+            [
+              "Mac & PC",
+              "Chrome or Edge",
+              "Click the install icon in the address bar"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Installed, Zotikos opens full screen like any other app."
+        },
+        {
+          "type": "heading",
+          "text": "What works offline"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Opening trips you've already viewed (the trip shows an **Offline** note with the date of its saved rates)",
+            "Adding, editing and deleting expenses, including a place for each expense",
+            "Marking payments as paid in **Settle up**",
+            "Taking receipt photos: they wait on your phone, and you tap the “receipt photos waiting” card on the trip when you're back online"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "These need a connection: making a new trip, trip settings, People (adding, renaming or removing travellers, invite links and co-owners), changing a trip's currency and **Pay it in**, the Ledger's “Needs a look” buttons, CSV export, your account and picture, Pro, reading a receipt, and searching for a place. A trip you've never opened on this device isn't available offline."
+        },
+        {
+          "type": "heading",
+          "text": "How syncing works"
+        },
+        {
+          "type": "paragraph",
+          "text": "On the Trips screen a chip shows **Offline** and how many changes are waiting, then **Syncing**, then **Synced**. Inside a trip, the cloud icon at the top shows the same thing (on a computer it's a line of text: offline, N waiting to sync, or synced just now). You don't need to do anything: waiting changes are sent in the order you made them when you're back online."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a change is turned down (for example, the trip has reached its plan's number of expenses), it stays in a **Waiting to sync** card in the ledger with the reason, and you can **Discard** it. If two people change the same expense, the last change to arrive is the one that's kept."
+        },
+        {
+          "type": "heading",
+          "text": "Exchange rates offline"
+        },
+        {
+          "type": "paragraph",
+          "text": "Offline, Zotikos converts with the last rates it saved and says so, for example “rates from 27 oct”. That's a preview: when the expense syncs, it's converted at the latest reference rate. To keep a rate of your own, tick **Use my own rate**. More in [How exchange rates work in Zotikos](/guides/zotikos/how-exchange-rates-work)."
+        },
+        {
+          "type": "heading",
+          "text": "Clearing the offline copy"
+        },
+        {
+          "type": "paragraph",
+          "text": "In **Account**, under **This device**, **Offline copy** has a **Clear** button that removes this device's saved copy. Like signing out, it also discards any changes and receipt photos still waiting to sync, so let them finish first."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "The map shows no streets offline. Is that normal?",
+              "a": "Yes. Your pins and places list still come from the copy on your device, but map tiles aren't saved for offline use."
+            },
+            {
+              "q": "How do I get the newest version?",
+              "a": "When one is ready you'll see “A new version of Zotikos is ready.” Tap **Reload**."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Log it on the mountain.",
+          "text": "Syncs when you're back.",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "invite-travellers-with-a-link",
+      "category": "trips-and-budgets",
+      "title": "People, invite links and co-owners",
+      "standfirst": "Anyone you add by name is already part of the split. An invite link lets them see the trip and add expenses from their own phone. A co-owner can help run it.",
+      "meta_title": "People, invite links and co-owners | Zotikos",
+      "meta_description": "Add travellers, send an invite link, make a co-owner, and see who can edit, delete, rename or remove what on a Zotikos trip.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Open **People** on the trip (the faces icon at the top, or People in the sidebar), tap **Create invite link** and **Share** it. Each person opens it, signs in and picks which name is them. A link lasts 14 days and works up to 20 times."
+        },
+        {
+          "type": "heading",
+          "text": "The People screen"
+        },
+        {
+          "type": "paragraph",
+          "text": "People lists everyone on the trip with whether they've **Joined** or are “Not joined yet · added by name”, and what they paid, their share and their balance. Owners and co-owners have a chip. Travellers you added by name get a **Send invite** button."
+        },
+        {
+          "type": "heading",
+          "text": "Add someone by name"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tap **Add** (on a computer, **Add by name**) and type a name. They're included in splits straight away, even if they never open Zotikos."
+        },
+        {
+          "type": "heading",
+          "text": "Create a link"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Open **People** and tap **Create invite link** (or **Invite with a link**).",
+            "Tap **Share** to send it through any app. Where sharing isn't available, the link is copied for you."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Only the owner or a co-owner can create links, and they need an account. Guests add people by name only."
+        },
+        {
+          "type": "heading",
+          "text": "Joining a trip"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your friend opens the link and signs in or creates an account; Zotikos remembers the link for 30 minutes while they do, even if the confirmation email opens in a new tab. They then see who invited them and choose which name is theirs, or **I'm not listed · join as someone new**, and tap **Join the trip**. Picking a name keeps everything already logged under it."
+        },
+        {
+          "type": "paragraph",
+          "text": "If they're already on the trip, they see “You're already on this trip.” with a button to open it."
+        },
+        {
+          "type": "heading",
+          "text": "Managing links"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each link shows how many times it's been used and when it expires, for example “Used 0/20 · expires …”. Tap **Turn off** to stop it working. If someone sees “This invite has expired or was already used.”, create a new link. Links stop working when a trip is archived."
+        },
+        {
+          "type": "heading",
+          "text": "Co-owners"
+        },
+        {
+          "type": "paragraph",
+          "text": "The owner can share the running of a trip. On **People**, open a traveller's options (the ⋯ button) and switch on **Co-owner**. A co-owner can do everything the owner can: change settings and budgets, manage travellers and invites, archive the trip and edit anyone's expenses. Only the owner can delete the trip or choose co-owners. Only someone who has joined with an account can be a co-owner, so send them an invite first."
+        },
+        {
+          "type": "heading",
+          "text": "Who can do what"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Action",
+            "Who"
+          ],
+          "rows": [
+            [
+              "Add a traveller by name",
+              "Anyone on the trip"
+            ],
+            [
+              "Add an expense or mark a payment",
+              "Anyone on the trip"
+            ],
+            [
+              "Edit or delete an expense",
+              "Whoever added it, the owner and co-owners; everyone, if **Everyone can edit expenses** or **Everyone can delete expenses** is on in Trip settings › Permissions (off by default)"
+            ],
+            [
+              "Rename a traveller",
+              "The owner; a co-owner (anyone except the owner); everyone else can rename themselves or a name nobody has joined as. Tap ⋯ next to the name, then **Save name**"
+            ],
+            [
+              "Remove a traveller",
+              "The owner or a co-owner, if that person has no expenses, shares or payments (only the owner can remove a co-owner). Tap ⋯, then **Remove from trip**"
+            ],
+            [
+              "Change details, budgets, trip currency, invite links, archive or restore",
+              "The owner or a co-owner"
+            ],
+            [
+              "Delete the trip, choose co-owners",
+              "The owner only"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "People also has a **Who can do what** card that shows the current rules, with a **Change** link."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Can people on the trip see my email?",
+              "a": "No, never your full email. They see your name on the trip. If you haven't set a name in **Account**, the part of your email before the @ is used, so set your **Name** first."
+            },
+            {
+              "q": "How many people can join?",
+              "a": "It depends on the trip owner's plan: 4 on a guest trip, 8 on Free and 50 on Pro when this was written. **New trip** and **People** show the limit for your own plan. See [Guest, Free and Pro](/guides/zotikos/guest-free-and-pro)."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Everyone sees the same ledger.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "daily-and-whole-trip-budgets",
+      "category": "trips-and-budgets",
+      "title": "Daily and whole-trip budgets",
+      "standfirst": "Set a daily budget for your own share and, on Free and Pro, a budget for the whole group. The trip's home screen shows how today is going at a glance.",
+      "meta_title": "Daily and whole-trip budgets | Zotikos",
+      "meta_description": "Set a daily budget for your share and a whole-trip budget for the group, and read the Today card: what's left, whether you're on pace and what rolled over.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Add budgets when you make the trip, or later in **Trip settings › Money**. The **Today** card shows what's left of today's budget for your share, whether you're on pace, and what has rolled over from earlier days."
+        },
+        {
+          "type": "heading",
+          "text": "Setting a budget"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Daily budget (your share)**: what you can spend per day, counting only your share of each expense.",
+            "**Whole-trip budget (whole group)**: a total for everyone's spending on the trip. Free and Pro."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Both are optional and in the trip's currency. There's one of each per trip, set by the owner or a co-owner under **Trip settings › Money**, and every traveller's own share is measured against the daily one. Not an owner or co-owner? Ask them to set it."
+        },
+        {
+          "type": "heading",
+          "text": "Reading the Today card"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "The big number: today's budget plus what rolled over, minus your share today, shown as **left** or **over**.",
+            "The meter and its note: **on pace**, **close to today's ceiling** (past 85%) or **over today's ceiling**.",
+            "**Rolled over**: what you were under (or over) your daily budget on earlier days since the trip's start date. It needs a start date, and days after the end date don't earn budget.",
+            "**Trip**: on a phone, the percentage of the whole-trip budget the group has used. On a computer, the **Trip spend** card shows the group's total, for example “of … group budget · 40% used”, with your own share on a separate line."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "No daily budget yet? The card shows your share today, with a **Set a daily budget** link. On the trips list, each active trip with a daily budget shows **Left today**, or **Over today**."
+        },
+        {
+          "type": "heading",
+          "text": "Where the money went"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Your share by category** on the trip shows your share in the eight categories: Food, Groceries, Stay, Flights, Transport, Activities, Shopping and Other. **Insights** goes further. Under **Will we stay on budget?**, **Your own pace** shows what you average, your daily budget and what's carried into today. Under **When was the money spent?**, **Each day** charts every day (it needs an account, so guests don't see it)."
+        },
+        {
+          "type": "paragraph",
+          "text": "A stay or pass that covers several days is spread evenly across its days for these budgets. See [Add an expense in any currency](/guides/zotikos/add-an-expense-in-any-currency)."
+        },
+        {
+          "type": "heading",
+          "text": "If you change the trip's currency"
+        },
+        {
+          "type": "paragraph",
+          "text": "Budgets move to the new currency at today's rate, whichever option you choose. See [How exchange rates work in Zotikos](/guides/zotikos/how-exchange-rates-work)."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Does the daily budget count what I paid for others?",
+              "a": "No. It counts your share of each expense, so paying for the whole dinner only uses your part of it."
+            },
+            {
+              "q": "Who can change the budgets?",
+              "a": "The trip's owner or a co-owner, in **Trip settings**."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Know what's left today.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "archive-restore-or-delete-a-trip",
+      "category": "trips-and-budgets",
+      "title": "Archive, restore, export or delete a trip",
+      "standfirst": "Back home? Archive the trip to keep a read-only copy and free an active-trip slot, export it as a spreadsheet, or delete it for everyone.",
+      "meta_title": "Archive, restore, export or delete a trip | Zotikos",
+      "meta_description": "Archive a finished trip to free an active slot, restore it later, export it as CSV, or delete it for everyone. Plus how long archived trips are kept.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Open **Trip settings**. **Export** and **Archive or delete** are near the bottom. Archiving keeps the trip but makes it read-only; deleting removes it for everyone and can't be undone. The owner or a co-owner can archive and restore; only the owner can delete."
+        },
+        {
+          "type": "heading",
+          "text": "Archive a trip"
+        },
+        {
+          "type": "paragraph",
+          "text": "Next to **Archive trip** (“Read-only, frees an active-trip slot”), tap **Archive**. Everyone on the trip sees “This trip is archived and read-only. Restore it from trip settings to add more.” The Add expense button disappears, and invite links stop working. To add more later, tap **Restore** next to **Restore trip**."
+        },
+        {
+          "type": "paragraph",
+          "text": "Free includes two active trips at a time. When you reach that, the trips list suggests archiving one or going Pro. Restoring needs a free slot too. Guests can't archive trips."
+        },
+        {
+          "type": "heading",
+          "text": "How long archived trips are kept"
+        },
+        {
+          "type": "table",
+          "caption": "Limits when this guide was written; they can change.",
+          "header": [
+            "Plan",
+            "Archived trips",
+            "Kept for"
+          ],
+          "rows": [
+            [
+              "Free",
+              "Up to 10",
+              "1 year after you archive it"
+            ],
+            [
+              "Pro",
+              "Unlimited",
+              "As long as you have Pro"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "After that time, archived trips are deleted automatically, so export anything you want to keep. On a computer, the Trips dashboard has filters for All, On the road, Upcoming, Past and Archived."
+        },
+        {
+          "type": "heading",
+          "text": "Export a trip"
+        },
+        {
+          "type": "paragraph",
+          "text": "Anyone on the trip can export it: next to **Export as CSV**, tap **CSV** (computers also have **Export CSV** on the Ledger). You get a spreadsheet with one row per expense: the date, the last day of a several-day expense (**Until**), description, category, who paid, the currency and amount, the amount in the trip's currency, the rate and rate date, the place name, address and coordinates if one was saved, and each person's share. Payments aren't included. It counts against your own plan: Free includes five exports a month, Pro is unlimited and guests get none."
+        },
+        {
+          "type": "heading",
+          "text": "Delete a trip"
+        },
+        {
+          "type": "paragraph",
+          "text": "Next to **Delete trip**, tap **Delete** and confirm. The trip, its expenses and its payments are deleted for everyone on it. This can't be undone."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Can someone else archive or delete my trip?",
+              "a": "A co-owner you chose can archive and restore it, but only you, as the owner, can delete it."
+            },
+            {
+              "q": "Why can't I restore a trip?",
+              "a": "Restoring makes it active again, so it needs a free active-trip slot. Archive another trip first, or go Pro."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Home all square.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "add-an-expense-in-any-currency",
+      "category": "expenses-and-receipts",
+      "start_here": true,
+      "title": "Add an expense in any currency",
+      "standfirst": "Choose Scan a receipt, Add by item or Just the total, enter what it cost in the currency you paid, and Zotikos converts it, splits it and updates everyone's balance.",
+      "meta_title": "Add an expense in any currency | Zotikos",
+      "meta_description": "Log an expense in any of 153 currencies: Just the total, Add by item or Scan a receipt. Category, who paid, how to split, several days, editing and deleting.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Tap **Add expense** and choose **Just the total**, **Add by item** or **Scan a receipt**. For a total, enter the **Amount** and its currency, say what it was for, then pick a category, who paid and how to split, and tap **Save expense**."
+        },
+        {
+          "type": "heading",
+          "text": "Three ways to add"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Just the total**: one amount, the form described below.",
+            "**Add by item**: type each item and its price, and the total adds itself up.",
+            "**Scan a receipt**: photograph it and Zotikos reads it. See [Read a receipt from a photo](/guides/zotikos/read-a-receipt-from-a-photo)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "On a phone or tablet the sheet is titled “Add to {trip}” and offers all three. On a computer, **Add expense** offers **Add by item** and **Just the total**, and **Upload receipt** is the way to scan. Outside a trip, if two trips are on today, Zotikos asks “Which trip is it for?”."
+        },
+        {
+          "type": "heading",
+          "text": "The fields"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Field",
+            "What to put"
+          ],
+          "rows": [
+            [
+              "Amount",
+              "What was paid. Tap the currency to change it; Zotikos starts with the last one you used. Pasting something like “VND 120,000”, “S$12.50” or “1.234,56 €” keeps the number and sets the currency."
+            ],
+            [
+              "What for",
+              "A short description, like “Ramen for three”. A “Looks like …” chip may suggest a category; tap it to use it."
+            ],
+            [
+              "Category",
+              "Food, Groceries, Stay, Flights, Transport, Activities, Shopping or Other. A line above the picker says what each one covers."
+            ],
+            [
+              "Paid by",
+              "Who paid. You show as “You”."
+            ],
+            [
+              "Split",
+              "Opens a sheet to choose who shares it and how. Tap **Save split** when it's right."
+            ],
+            [
+              "Paid with",
+              "Cash or Card."
+            ],
+            [
+              "The date",
+              "Today, unless you change it. Tap it for “When was it?”."
+            ],
+            [
+              "Place",
+              "Optional: where it was. See [Add where an expense was](/guides/zotikos/add-where-an-expense-was)."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For splitting, see [Five ways to split an expense](/guides/zotikos/five-ways-to-split-an-expense)."
+        },
+        {
+          "type": "heading",
+          "text": "Add by item"
+        },
+        {
+          "type": "paragraph",
+          "text": "On “Add the details”, type each item and its price. Tap **Add tax, service or discount** for extras, and check the merchant, date, total and currency. At the bottom, choose **Split equally** or **Split by item**. If you'd rather scan, tap **Read a receipt instead**."
+        },
+        {
+          "type": "heading",
+          "text": "Expenses that cover several days"
+        },
+        {
+          "type": "paragraph",
+          "text": "A hotel stay or a transport pass? Tap the date, choose **Several days** and pick the first and last day (up to 92 days). Balances use the full amount once. Daily budgets, Insights and day totals spread it evenly across the days. In the Ledger it carries a tag such as “↦ 26–28 Oct · 3 days”."
+        },
+        {
+          "type": "heading",
+          "text": "Picking a currency"
+        },
+        {
+          "type": "paragraph",
+          "text": "Zotikos knows 153 currencies. Search by code, name or country; the currencies already used on this trip come first. How many different currencies a trip can use depends on the trip owner's plan (Free: five, including the trip's own currency)."
+        },
+        {
+          "type": "heading",
+          "text": "Checking the conversion"
+        },
+        {
+          "type": "paragraph",
+          "text": "Under the amount you'll see the converted total and the rate, for example “≈ USD 28.66 · 1 JPY = 0.006697 USD · live”. A rate you typed says “your rate”, and offline it says something like “rates from 27 oct”. If you got a different rate, tick **Use my own rate** and type it in. More in [How exchange rates work in Zotikos](/guides/zotikos/how-exchange-rates-work)."
+        },
+        {
+          "type": "heading",
+          "text": "Edit or delete"
+        },
+        {
+          "type": "paragraph",
+          "text": "Open the expense from the **Ledger** (on a computer, select it and tap **Edit**), change anything and tap **Save changes**, or tap **Delete expense**. Everyone's balances update. You can change or delete an expense if you added it, or you're the owner or a co-owner, or the trip allows everyone to (see [People, invite links and co-owners](/guides/zotikos/invite-travellers-with-a-link)). Otherwise you'll see “Someone else added this expense. Only they, the trip owner or a co-owner can change it …”."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Can I add expenses without signal?",
+              "a": "Yes. You'll see “Saved on this device · syncs when you're online”."
+            },
+            {
+              "q": "Someone else paid. Can I log it?",
+              "a": "Yes. Choose them under **Paid by**."
+            },
+            {
+              "q": "What's the card fee field?",
+              "a": "With Pro, choosing **Card** lets you add your card's foreign-transaction fee as a percentage (**Card foreign-transaction fee**), so **Insights** can show what card fees cost you."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Spend in yen. Think in yours.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "how-exchange-rates-work",
+      "category": "expenses-and-receipts",
+      "title": "How exchange rates work in Zotikos",
+      "standfirst": "Where the rates come from, which rate an expense uses, how to use your own rate, and what happens if you change a trip's currency.",
+      "meta_title": "How exchange rates work | Zotikos",
+      "meta_description": "Zotikos converts with daily reference rates and stores the rate with each expense. Learn which rate is used, your own rate, offline rates and changing a trip's currency.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Zotikos uses daily reference rates. An expense in another currency is converted at the latest rate when it's saved, and that rate is stored with it. Tick **Use my own rate** to type the rate you actually got."
+        },
+        {
+          "type": "heading",
+          "text": "Where the rates come from"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once a day, Zotikos fetches reference rates (from Frankfurter, with a public backup feed), checks them and keeps a snapshot. Your browser never contacts a rate provider. Reference rates are wholesale rates, so your bank or card may have charged a little more."
+        },
+        {
+          "type": "heading",
+          "text": "Which rate an expense gets"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Same currency as the trip**: no conversion (“In the trip's currency”).",
+            "**Another currency**: converted at the latest reference rate when the expense is saved, and that rate is stored with it.",
+            "**Your own rate**: tick **Use my own rate** and type it in as 1 of the currency you paid = … of the trip's currency. It's kept exactly, including when you edit the expense later."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Good to know",
+          "text": "The reference rate is the latest one when you save, not the rate on the expense's date. Saving changes to an expense in another currency converts it again at the latest rate, unless it uses your own rate."
+        },
+        {
+          "type": "heading",
+          "text": "Offline"
+        },
+        {
+          "type": "paragraph",
+          "text": "Without signal, Zotikos shows a conversion from its last saved rates and labels it, for example “rates from 27 oct”. When the expense syncs, it's converted at the latest reference rate. If there's no saved rate for that currency yet, you'll be asked to type the rate in."
+        },
+        {
+          "type": "heading",
+          "text": "A typed rate that looks off"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Ledger's **Needs a look** card flags a typed rate that's more than 3% away from that day's reference rate. It says “A card or exchange-counter rate can be right, so this is only a check.” Tap **Keep typed rate** if it's right, or **Change the rate** to fix it."
+        },
+        {
+          "type": "heading",
+          "text": "Changing a trip's currency"
+        },
+        {
+          "type": "paragraph",
+          "text": "The owner or a co-owner can change a trip's currency later, online, under **Trip settings › Money** (not on archived trips). If the trip already has expenses or payments, Zotikos asks how to treat them:"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Keep them in** the old currency: balances and Settle up show a line for each currency, and new expenses use the new one.",
+            "**Convert them to** the new currency: everything is converted at today's rate, so there's one line and what everyone owes stays the same."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Budgets move to the new currency at today's rate either way. If older lines are left, **Settle up** shows them separately with a **Pay it in** button that moves the amount onto the new line at today's rate. If you set a **Country** that uses another currency, Trip settings offers **Keep balances in** that currency."
+        },
+        {
+          "type": "heading",
+          "text": "Seeing the rate later"
+        },
+        {
+          "type": "paragraph",
+          "text": "On a computer, select an expense in the **Ledger** to see the **Rate used**. A trip's CSV export lists each expense's rate and rate date (see [Archive, restore, export or delete a trip](/guides/zotikos/archive-restore-or-delete-a-trip))."
+        },
+        {
+          "type": "heading",
+          "text": "Exchange-rate gain or loss (Pro)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With Pro, **Insights › How did you pay?** has a **Paying abroad** card. Its “What the rates did since you paid” line compares the rate each expense was counted at (see above) with today's rate, per currency and overall. It isn't money lost, and it's kept apart from card fees on purpose."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Which currency are balances in?",
+              "a": "The trip's currency, chosen under **Balances kept in** when the trip was made (it defaults to your home currency or your chosen country's). The owner or a co-owner can change it later."
+            },
+            {
+              "q": "My bank charged a different amount. What should I do?",
+              "a": "Open the expense, tick **Use my own rate** and type the rate from your statement, then tap **Save changes**."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Every currency, one ledger.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "read-a-receipt-from-a-photo",
+      "category": "expenses-and-receipts",
+      "title": "Read a receipt from a photo",
+      "standfirst": "Take a photo of a receipt and Zotikos fills in the merchant, date, items, tax and currency, checks the maths and lets you fix anything before saving. The photo isn't kept.",
+      "meta_title": "Read a receipt from a photo | Zotikos",
+      "meta_description": "Photograph a receipt to fill in the merchant, date, items, tax and currency, check the maths, then split. Plus read limits, privacy and offline photos.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Tap **Add expense**, then **Scan a receipt**. Point the camera, tap the shutter, check the details, tap **Split equally** or **Split by item**, and save the expense."
+        },
+        {
+          "type": "heading",
+          "text": "Taking the photo"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "On a phone, tap **Add expense** and choose **Scan a receipt**. On a computer, use **Upload receipt** on the trip, **Scan receipt** on the Trips list, or **Read receipt** at the top of a new expense.",
+            "Lay the receipt flat in good light. The camera says “Point at the receipt · Zotikos frames it for you”, then “Receipt found · hold steady and tap”.",
+            "Tap the round shutter. Use the torch button if your browser offers one, or **Photos** to pick a photo you already have."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A photo you pick opens a crop view (“Drag the corners to fit the receipt”). Drag the corners, then tap the check button to read it, or **Cancel**. If the camera is off, the shutter opens your phone's own camera instead. **Type it in** opens the choices for adding by hand."
+        },
+        {
+          "type": "paragraph",
+          "text": "While it works you'll see messages such as “Reading the receipt…”. Long receipts can take a little longer."
+        },
+        {
+          "type": "heading",
+          "text": "Check the details"
+        },
+        {
+          "type": "paragraph",
+          "text": "On **Check the details** you can fix the merchant, date, currency and **Total paid**, edit or remove items, and tap **Add tax, service or discount**. If the numbers don't add up, Zotikos says what's off, for example “Items plus charges is …, but the total says …”, and may offer one-tap fixes such as “Use … as the total” or “Add … as an item”. When it's right, “{n} items add up to {total}”. Tap **Retake** if the read was poor."
+        },
+        {
+          "type": "paragraph",
+          "text": "At the bottom, choose **Split equally** or **Split by item**. This takes you to the expense, which you then save; item by item opens the Split sheet straight away (see [Five ways to split an expense](/guides/zotikos/five-ways-to-split-an-expense))."
+        },
+        {
+          "type": "heading",
+          "text": "What happens to the photo"
+        },
+        {
+          "type": "paragraph",
+          "text": "On your phone the photo is turned upright, made smaller and saved again as a plain image, which removes its location and camera details. It's read and then thrown away; Zotikos never stores receipt photos. Only the details you save with the expense are kept."
+        },
+        {
+          "type": "heading",
+          "text": "How many reads you get"
+        },
+        {
+          "type": "table",
+          "caption": "Limits when this guide was written; they can change.",
+          "header": [
+            "Plan",
+            "Receipt reads"
+          ],
+          "rows": [
+            [
+              "Guest",
+              "3 a day"
+            ],
+            [
+              "Free",
+              "10 a month"
+            ],
+            [
+              "Pro",
+              "200 a month"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The camera shows how many you have left (for example “7 of 10 reads left”). If a read fails on Zotikos's side, you get it back; a photo that simply can't be read (blurry, cut off, not a receipt) still counts. When you run out you'll see “You've used all your receipt reads for now. You can still type the expense in.”"
+        },
+        {
+          "type": "heading",
+          "text": "No signal?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Take the photo anyway. It waits on your phone (up to 3 photos as a guest, 20 on Free, 50 on Pro), and the trip's Overview shows a “receipt photos waiting” card. Once you're online, tap it to **Read them now**; the trip's photos are read one at a time, oldest first."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "It couldn't read my receipt.",
+              "a": "Try a flatter, brighter photo with the whole receipt in the frame, or tap **Type it in**."
+            },
+            {
+              "q": "Where is a photo kept while it waits offline?",
+              "a": "Only on your phone, in the browser's storage, until it's read."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Snap it. It reads itself.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "five-ways-to-split-an-expense",
+      "category": "splitting-and-settling-up",
+      "start_here": true,
+      "title": "Five ways to split an expense",
+      "standfirst": "Equally, exact amounts, percentages, shares or item by item. Whichever you choose, Zotikos rounds to the cent so the shares always add up to the total.",
+      "meta_title": "Five ways to split an expense | Zotikos",
+      "meta_description": "Split equally, by exact amounts, percentages, shares or item by item, and see how Zotikos rounds so shares always add up. Plus free tries.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "On the expense, tap the **Split** row to open the Split sheet. Choose a method and who's in. When it's right, the line underneath says “Adds up to …”; if not, it tells you what's still to assign. Tap **Save split**."
+        },
+        {
+          "type": "heading",
+          "text": "The methods"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Method",
+            "How it works",
+            "Plans"
+          ],
+          "rows": [
+            [
+              "Equally",
+              "Tick who's in; everyone pays the same.",
+              "All"
+            ],
+            [
+              "Exact amounts",
+              "Type each person's amount.",
+              "All"
+            ],
+            [
+              "Percentages",
+              "A percentage each, up to two decimals, adding up to 100%.",
+              "Pro, or a free try"
+            ],
+            [
+              "Shares",
+              "Whole-number shares with − and +, e.g. 2 for someone who had twice as much.",
+              "Pro, or a free try"
+            ],
+            [
+              "Item by item",
+              "Add each item (typed or read from a receipt) and give it to the people who had it.",
+              "Pro, or a free try"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In the sheet the methods are short labels: Equal, Exact, %, Shares and Items."
+        },
+        {
+          "type": "heading",
+          "text": "Free tries"
+        },
+        {
+          "type": "paragraph",
+          "text": "On Free you get two free tries per trip, shared between percentages, shares and item by item. The sheet tells you when a method is a Pro feature, how many tries each trip has and how many you've used. Guests can split equally or by exact amounts."
+        },
+        {
+          "type": "heading",
+          "text": "Item by item"
+        },
+        {
+          "type": "paragraph",
+          "text": "Choose **Add by item** and type the items, or scan a receipt and tap **Split by item**. In the Split sheet's items mode, each item has a name and a price, and you choose who had it. An item shared by several people is split equally between them, and tax, service charges and discounts are shared in proportion to what each person had."
+        },
+        {
+          "type": "paragraph",
+          "text": "The items must add up to the amount: “The items come to … but the amount is …. Make them match to save.” The total follows the items unless you typed a different amount."
+        },
+        {
+          "type": "heading",
+          "text": "How the rounding works"
+        },
+        {
+          "type": "paragraph",
+          "text": "Money is counted in whole cents. Each share is worked out exactly and rounded down, then the leftover cents go one at a time to whoever was closest to the next cent, with ties going to the payer first. So if three people split 10.00 and the payer is one of them, the payer's share is 3.34 and the others' are 3.33. The total is always exact."
+        },
+        {
+          "type": "paragraph",
+          "text": "Converted shares are rounded the same way, so they always add up to the converted total."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "What does “Amounts still … to assign” mean?",
+              "a": "The exact amounts you've typed add up to less than the expense. Give the difference to someone, or check the total."
+            },
+            {
+              "q": "How many people can share one expense?",
+              "a": "It depends on the trip owner's plan: up to 4 on a guest trip, 8 on Free, and everyone on the trip when the owner has Pro."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Split it to the cent.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "settle-up-with-fewer-transfers",
+      "category": "splitting-and-settling-up",
+      "title": "Settle up with fewer transfers",
+      "standfirst": "Zotikos nets everyone's balances so nobody pays someone who then pays someone else. Pay through your own bank app, Wise or PayPal, then mark it as paid.",
+      "meta_title": "Settle up with fewer transfers | Zotikos",
+      "meta_description": "How Zotikos nets balances into few transfers, paying by bank transfer, Wise or PayPal, and marking payments as paid. Zotikos never holds your money.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Open **Settle up** on the trip. Under **You pay**, tap **Pay**, send the money your usual way, then tap **I paid another way · mark as paid**. Zotikos never holds or moves money."
+        },
+        {
+          "type": "heading",
+          "text": "How the transfers are worked out"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each person's balance is what they paid for the group, minus their own shares, adjusted for payments already marked as paid. Zotikos first pairs anyone who owes exactly what someone else is owed, then has the person who owes most pay the person owed most, until everyone is at zero. A group of n people never needs more than n − 1 transfers."
+        },
+        {
+          "type": "paragraph",
+          "text": "The banner at the top sums it up, for example “12 expenses, 9 IOUs, simplified to 4 transfers.”"
+        },
+        {
+          "type": "heading",
+          "text": "The Settle up screen"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**You pay**: who you owe, each with a **Pay** button.",
+            "**You get**: who owes you, each with **Got it**.",
+            "**Between others**: transfers between other people. Tap one to mark it paid.",
+            "**Net balances**: everyone's balance at a glance.",
+            "**Marked as paid**: recent payments, such as “paid you … by bank transfer”."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Paying someone"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Tap **Pay** next to their name.",
+            "Choose **Bank transfer** to copy the amount and a reference for any bank app, or **Wise** or **PayPal**, which open in a new tab with the amount copied. You choose who to pay there.",
+            "Send the money.",
+            "Back in Zotikos, tap **I paid another way · mark as paid**, or **Paid in cash**."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "When someone pays you, tap **Got it**, then **Mark as paid**."
+        },
+        {
+          "type": "callout",
+          "title": "Before you mark it",
+          "text": "A payment marked as paid can't be undone in the app, so mark it once the money has actually been sent."
+        },
+        {
+          "type": "paragraph",
+          "text": "Marked payments are listed under **Marked as paid** and in the ledger, and balances update for everyone. When nobody owes anything you'll see “Everyone's square. Nobody owes anything.”"
+        },
+        {
+          "type": "heading",
+          "text": "If the trip's currency changed"
+        },
+        {
+          "type": "paragraph",
+          "text": "Amounts left from before the change appear in their own card, “In {currency}”, marked as from before the currency changed. Tap **Pay it in** the new currency to move that amount onto the new line at today's rate, so it settles with everything else. Anyone on the trip can do this, while online."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "What currency are the amounts in?",
+              "a": "The trip's currency, the one its balances are kept in. After a currency change, any older line is shown separately."
+            },
+            {
+              "q": "Can I mark a payment offline?",
+              "a": "Yes. It syncs when you're back online."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Nine IOUs. Four transfers.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "use-the-map-tab",
+      "category": "map-and-places",
+      "start_here": true,
+      "title": "See where the group spent on the Map tab",
+      "standfirst": "Every place you've saved on a trip, pinned on a map with what was spent there. Everyone sees the places list; the map itself is part of Pro.",
+      "meta_title": "See where the group spent on the Map tab | Zotikos",
+      "meta_description": "Use the Zotikos Map tab: find it, read the pins and groups, tap a place, filter by day, draw a route, and see what Free and Pro each get.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Open a trip and tap **Map**. Free and guest accounts see the places list with what was spent at each. With Pro you also get the map, pins and a **Route** line. Add places to expenses to fill it up: see [Add where an expense was](/guides/zotikos/add-where-an-expense-was)."
+        },
+        {
+          "type": "heading",
+          "text": "Where to find it"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Map tab is inside a trip: on a phone it's the middle tab (Overview, Ledger, **Map**, Settle up, Insights), on a tablet it's in the side bar, and on a computer it's in the sidebar between Ledger and Settle up. The Add expense button is hidden there."
+        },
+        {
+          "type": "heading",
+          "text": "What the page shows"
+        },
+        {
+          "type": "paragraph",
+          "text": "The header says “Map” with a line such as “Kyoto · 3 places · USD 120.00 of USD 200.00”: the places and what was spent at them, out of everything counted for the day you're looking at. Below it, Pro sees the map and everyone sees the list: “3 places”, most spent first (without the map it reads “Open any in Maps”)."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**One pin per place**: expenses with the same name at the same saved spot share a pin (capitals and extra spaces are ignored). The same shop saved under two names, or at spots that round to different points (places are saved to about 10 metres by default), becomes two pins.",
+            "**Pin look**: its colour and icon show the category of the biggest expense there. A small number appears if there's more than one expense.",
+            "**Groups**: pins that would overlap join one dark circle showing how many places it holds. Tap it to zoom in until they come apart; at the closest zoom it opens the biggest place instead.",
+            "**No places yet?** You'll see “No places yet” and a button, **Add a place to an expense**, that opens the Ledger."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Tap a place"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tap a pin or a row in the list. The map moves to it if it isn't already in view, and the list switches to that place: its name, address and number of expenses, the total, and the expenses themselves, which you can tap like any Ledger row. Two buttons: **Open in Maps** (see [Open a place in your maps app](/guides/zotikos/open-a-place-in-your-maps-app)) and **All places** to go back. Tap empty map to clear the selection."
+        },
+        {
+          "type": "heading",
+          "text": "Filter by day, draw a route"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Day**: choose **All days** or a day that has spending. A several-day stay counts in full on All days, and only that day's share on a single day.",
+            "**Route** (Pro): draws a dotted line through the places in the order they were first spent at. It needs at least two places, and it's a straight line between them, not driving directions."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Under the list, a line such as “3 expenses have no place · Add places” (“1 expense has no place” for one) counts the day's expenses that aren't pinned yet, and **Add places** opens the Ledger."
+        },
+        {
+          "type": "heading",
+          "text": "Free and Pro"
+        },
+        {
+          "type": "table",
+          "caption": "By default; Zotikos can change which plan gets what.",
+          "header": [
+            "Feature",
+            "Guest and Free",
+            "Pro"
+          ],
+          "rows": [
+            [
+              "Places list, totals, Day filter, expenses at each place",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Open in Maps and Copy address",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "The map with pins and groups, and the Route toggle",
+              "A blurred stand-in with “See your trip on a map”",
+              "Yes"
+            ],
+            [
+              "Search for a place, drop a pin, map previews",
+              "No",
+              "Yes"
+            ],
+            [
+              "“Use where I am now”",
+              "Yes",
+              "Yes"
+            ]
+          ]
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why isn't my expense on the map?",
+              "a": "Only expenses with a place appear. Open the expense and add one, or tap **Add places** under the list."
+            },
+            {
+              "q": "Why are there two pins for the same shop?",
+              "a": "Pins are grouped by name and saved spot. If the shop was saved under different names, or at spots that round to different points, each becomes its own pin."
+            },
+            {
+              "q": "Does the map work offline?",
+              "a": "Your places list and pins come from the copy of the trip on your device, but the street map behind them doesn't load without a connection."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "See where it all went.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "add-where-an-expense-was",
+      "category": "map-and-places",
+      "title": "Add where an expense was",
+      "standfirst": "Save a place with an expense so the group can find that ramen shop again. Use where you are now, or, with Pro, search or drop a pin. Open it in Maps from anywhere.",
+      "meta_title": "Add where an expense was | Zotikos",
+      "meta_description": "Add a place to a Zotikos expense with Use where I am now, change or remove it, and see how location permission and accuracy work.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "On an expense, tap **Add where it was** under **Place**, then **Use where I am now**. On Free the place is added right away; with Pro you can nudge the pin on a map first, or search by name instead. Save the expense to keep it."
+        },
+        {
+          "type": "heading",
+          "text": "Add a place"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Add or open an expense. At the bottom, under **Place** (marked Optional), tap **Add where it was**.",
+            "In the sheet “Where was it?”, tap **Use where I am now**.",
+            "Allow location when your browser asks. Zotikos reads it only when you tap, never in the background.",
+            "On Free or a guest account, the place is added to the expense straight away and the sheet closes. With Pro, the spot appears on a map: move the map if it's a little off, then tap the confirm button."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Don't forget to save the expense. The place is part of it."
+        },
+        {
+          "type": "heading",
+          "text": "Adding it later"
+        },
+        {
+          "type": "paragraph",
+          "text": "“Use where I am now” saves where you are at that moment, not where the expense was. So use it while you're there. If you're adding a place afterwards, Pro lets you search for it and then move the map to fine-tune the pin (see [Search for a place or drop a pin](/guides/zotikos/search-for-a-place-or-drop-a-pin)). Without Pro, add it while you're at the spot."
+        },
+        {
+          "type": "heading",
+          "text": "What you'll see"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once saved, the expense shows the place name and a line like “Nakagyo Ward, Kyoto · within 10 m” (the accuracy shows for places taken with **Use where I am now**). If Zotikos couldn't name the spot (for example, you were offline), it's called “Pinned location”, or “Dropped pin” for a pin you placed. In the Ledger the name appears on the expense's row."
+        },
+        {
+          "type": "heading",
+          "text": "Change or remove it"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Tap **Change** next to **Place** to pick a different place.",
+            "Tap the ✕ on the place card to remove it. It takes effect when you save the expense.",
+            "Tap **Maps** on the card to open it in a maps app (**Open in Maps** if you can't edit the expense; see [Open a place in your maps app](/guides/zotikos/open-a-place-in-your-maps-app))."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you're not allowed to edit an expense, you can still open its place in Maps."
+        },
+        {
+          "type": "heading",
+          "text": "Accuracy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Places are saved to about 10 metres by default (Zotikos can change this). If your phone's location is too rough, usually indoors or without a clear sky, Zotikos refuses it with “Your location is too rough to save. Try again outdoors, or search instead.” Step outside and try again. If it can't be found at all, see [Fix map and location problems](/guides/zotikos/fix-map-and-location-problems)."
+        },
+        {
+          "type": "heading",
+          "text": "Who sees it"
+        },
+        {
+          "type": "paragraph",
+          "text": "A place is part of the expense, so everyone on the trip can see it, and it's included in the CSV export (columns **Place**, **Place address**, **Latitude**, **Longitude**) and in **Download my data**. See [Your location, privacy and the map](/guides/zotikos/your-location-privacy-and-the-map)."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Is the place required?",
+              "a": "No. It's optional, and expenses without one just don't appear on the map."
+            },
+            {
+              "q": "Can I add a place offline?",
+              "a": "Yes, “Use where I am now” can still get a location fix, and the place is saved with the expense when it syncs. Naming it needs a connection, so offline places, or ones Zotikos can't find a name for, are called “Pinned location”."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "So the group can find it again.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "search-for-a-place-or-drop-a-pin",
+      "category": "map-and-places",
+      "title": "Search for a place or drop a pin (Pro)",
+      "standfirst": "With Pro, find a shop or hotel by name, then move the map to place the pin exactly, and save it with the expense. Free and guest accounts can still use where they are now.",
+      "meta_title": "Search for a place or drop a pin | Zotikos",
+      "meta_description": "With Zotikos Pro, search a place or address, move the pin on the map, and save it to an expense. Includes search tips and what the search messages mean.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "In the **Where was it?** sheet, type a place or address into the search box and tap **Search**. Choose a result, drag the map so the pin sits on the spot, and tap the confirm button. This is part of Pro."
+        },
+        {
+          "type": "heading",
+          "text": "Search"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Open an expense, tap **Add where it was** (or **Change**).",
+            "Type a name or address into **Search a place or address**.",
+            "Tap **Search** (or press Enter). It searches only when you do, not as you type.",
+            "Tap a result. Each shows the name, the address and how far it is from your location fix or the map centre."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Up to eight results come back. If you see “Nothing found. Try the shop's name with the street or area.”, add the street, neighbourhood or city. Under the results a credit line names the service, “Search by Geoapify” or “Search by OpenStreetMap”, with “© OpenStreetMap contributors”. Zotikos tries Geoapify first and switches to OpenStreetMap by itself if needed."
+        },
+        {
+          "type": "heading",
+          "text": "Fine-tune on the map"
+        },
+        {
+          "type": "paragraph",
+          "text": "After you choose a result or a location fix, a map opens with a pin fixed in the middle. Move the map so the pin sits on the place (“Drag the map to move the pin”; with a mouse or trackpad it reads “Drag the map or click to move the pin”). The footer shows the name and address."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Close to the result: the button reads **Use {name}** (or **Use this place** if the name is long).",
+            "Moved more than about 15 metres: it reads **Use this spot**, the footer says “Dropped pin” and “We'll name it from the map”, and Zotikos names it from the map once you tap (“Naming it…”)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Then save the expense."
+        },
+        {
+          "type": "heading",
+          "text": "Without Pro"
+        },
+        {
+          "type": "paragraph",
+          "text": "Free and guest accounts see a teaser in the sheet: “Search or pick on a map” with a **PRO** tag. “Use where I am now” and **Open in Maps** are free for everyone."
+        },
+        {
+          "type": "heading",
+          "text": "If search doesn't work"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Message",
+            "What to do"
+          ],
+          "rows": [
+            [
+              "Place search is busy. Try again in a few seconds.",
+              "Wait a moment and search again."
+            ],
+            [
+              "Place search isn't answering right now. Try again, or use where you are.",
+              "Try again shortly, or use where you are."
+            ],
+            [
+              "Place search is switched off for now. Use where you are, or try again later.",
+              "Use where you are, or try again later."
+            ],
+            [
+              "Too many tries. Please wait a moment.",
+              "You searched a lot in a short time; wait a minute."
+            ],
+            [
+              "You're offline. Check your connection and try again.",
+              "Search needs a connection."
+            ]
+          ]
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Does searching share my exact location?",
+              "a": "No. Zotikos's server receives your approximate position and rounds it to about 1 km before passing it on, along with what you typed and your language, to help rank nearby results. See [Your location, privacy and the map](/guides/zotikos/your-location-privacy-and-the-map)."
+            },
+            {
+              "q": "Can I fix a place later?",
+              "a": "Yes. Open the expense, tap **Change** next to **Place** and pick another, then save."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Pin it properly.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "open-a-place-in-your-maps-app",
+      "category": "map-and-places",
+      "title": "Open a place in your maps app",
+      "standfirst": "Any saved place can be opened in Apple Maps, Google Maps or your phone's maps app, or its address copied. It's free for everyone, even on expenses someone else added.",
+      "meta_title": "Open a place in your maps app | Zotikos",
+      "meta_description": "Open a Zotikos place in Apple Maps, Google Maps, your Android maps app or OpenStreetMap, or copy its address. Free for every plan.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Tap **Open in Maps** (or **Maps**) on any place, choose your maps app, and you're there. **Copy address** is in the same list. It's free for every plan."
+        },
+        {
+          "type": "heading",
+          "text": "Where to find it"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "On the **Map** tab: choose a place, then **Open in Maps**. Even without Pro, the list lets you open any place.",
+            "On an expense's **Place** card: tap **Maps** (**Open in Maps** if you can't edit the expense).",
+            "On a computer, in an expense's side panel under **Place**: **Open in Maps**."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "It works on places other travellers added, on expenses you're not allowed to edit, and on archived trips."
+        },
+        {
+          "type": "heading",
+          "text": "Choose an app"
+        },
+        {
+          "type": "paragraph",
+          "text": "A sheet titled “Open {place} in” lists what suits your device:"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Device",
+            "Options"
+          ],
+          "rows": [
+            [
+              "Android",
+              "**Your maps app** (opens your default one) and **Google Maps**"
+            ],
+            [
+              "iPhone and iPad",
+              "**Apple Maps** and **Google Maps**"
+            ],
+            [
+              "Computer",
+              "**Google Maps**, **Apple Maps** and **OpenStreetMap** (in your browser)"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The link uses the saved coordinates, so the pin lands exactly on the place."
+        },
+        {
+          "type": "heading",
+          "text": "Copy the address"
+        },
+        {
+          "type": "paragraph",
+          "text": "The last option, **Copy address**, copies the name, address and coordinates, for example “Nishikikoji-dori, Nakagyo Ward, Kyoto · 35.005, 135.7648”. You'll see “Address copied”. If copying fails, “Couldn't copy. Select the address instead.” appears."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Does this need Pro?",
+              "a": "No. Opening a saved place in a maps app, and copying its address, is free for everyone."
+            },
+            {
+              "q": "Which map does it open?",
+              "a": "The one you choose in the sheet. Zotikos doesn't pick for you, and nothing is sent to that maps app until you open it."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Find it again.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "your-location-privacy-and-the-map",
+      "category": "map-and-places",
+      "title": "Your location, privacy and the map",
+      "standfirst": "When Zotikos asks for your location, what's saved, how precisely, who can see it, and what the map and search services get.",
+      "meta_title": "Your location, privacy and the map | Zotikos",
+      "meta_description": "How Zotikos handles location: only when you tap, what a saved place contains, who sees it, and what Geoapify and OpenStreetMap receive for search and map tiles.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Zotikos reads your location only when you tap **Use where I am now**, never in the background. A place is saved with an expense and seen by that trip's travellers. It isn't a location history."
+        },
+        {
+          "type": "heading",
+          "text": "When it asks"
+        },
+        {
+          "type": "paragraph",
+          "text": "Only when you tap **Use where I am now**. If you say no, nothing is read, and you can still search (with Pro) or add the expense without a place."
+        },
+        {
+          "type": "heading",
+          "text": "What's saved"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "The place's name and an address line (street, area, city, country; up to three parts).",
+            "A point on the map, and how you chose it: where you were, search or the map.",
+            "For “where I am now”, how accurate the fix was."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "All of it lives on the expense, so the trip's travellers can see it like the rest of the expense. It's also in that trip's CSV export and in **Download my data**. Remove a place with the ✕ on the expense; deleting the expense deletes it too. Zotikos keeps no per-person location history."
+        },
+        {
+          "type": "heading",
+          "text": "How precisely"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your device rounds a location fix before sending it, and Zotikos's server rounds every saved place, whether it came from a fix, a search result or a map pick, to the same precision: by default about 10 metres. Zotikos can change that precision."
+        },
+        {
+          "type": "heading",
+          "text": "What the map services receive"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "When",
+            "What goes out",
+            "To whom"
+          ],
+          "rows": [
+            [
+              "You search (Pro)",
+              "What you typed, your language and your position rounded to about 1 km, sent by Zotikos's server",
+              "Geoapify first, then OpenStreetMap as a backup"
+            ],
+            [
+              "A place is named (where I am now, a dropped pin)",
+              "The point rounded to about 10 m, sent by Zotikos's server",
+              "The same two services"
+            ],
+            [
+              "You view the map (Pro)",
+              "Your browser loads map tiles directly, so the provider sees your IP address and the area you view (only the app's address is sent as referrer)",
+              "Geoapify, or OpenStreetMap if Geoapify isn't answering"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Search and naming go through Zotikos's server, so those services don't see your own IP address for them. Free and guest accounts never load map tiles, because they see no map."
+        },
+        {
+          "type": "heading",
+          "text": "Other things to know"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Map tiles aren't kept for offline use, and searching needs a connection.",
+            "The map credit at the bottom of the map names its source: “© OpenStreetMap”, or “Powered by Geoapify | © OpenStreetMap”.",
+            "If you stop having Pro, places you saved stay. You lose the map, search and previews, but **Open in Maps** keeps working."
+          ]
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Can people outside the trip see my places?",
+              "a": "No. A place is part of the expense and is visible to the trip's travellers."
+            },
+            {
+              "q": "Can I stop saving places?",
+              "a": "Yes. It's optional per expense. Just don't tap **Add where it was**, or remove a place with the ✕."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Your trip, your places.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "fix-map-and-location-problems",
+      "category": "map-and-places",
+      "title": "Fix map and location problems",
+      "standfirst": "Location blocked, “too rough”, search not answering, a blank map offline, or an empty Map tab: what each one means and what to try.",
+      "meta_title": "Fix map and location problems | Zotikos",
+      "meta_description": "Fix Zotikos location and map problems: location off, too rough, timeouts, search busy, blurred map on Free, blank map offline and expenses missing from the map.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Most problems are a blocked location permission, a weak signal indoors, or a feature that belongs to Pro. Find your message below."
+        },
+        {
+          "type": "heading",
+          "text": "Location messages"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "You see",
+            "Try this"
+          ],
+          "rows": [
+            [
+              "Location is off for Zotikos. Turn it on in your browser or phone settings, then try again.",
+              "Allow location for Zotikos in your browser or phone settings, then tap **Use where I am now** again."
+            ],
+            [
+              "Your location isn't available right now. Try again outdoors, or search instead.",
+              "Step outside or wait for a better signal. Search is a Pro feature."
+            ],
+            [
+              "Finding your location took too long. Try again, or search instead.",
+              "Try again with a clearer view of the sky."
+            ],
+            [
+              "Your location is too rough to save. Try again outdoors, or search instead.",
+              "Zotikos only saves a fix that's accurate enough. Go outdoors and retry."
+            ],
+            [
+              "This browser can't share your location.",
+              "Use a different browser or device."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Search messages"
+        },
+        {
+          "type": "paragraph",
+          "text": "See the table in [Search for a place or drop a pin](/guides/zotikos/search-for-a-place-or-drop-a-pin). Searching is part of Pro, and every search needs a connection."
+        },
+        {
+          "type": "heading",
+          "text": "The Map tab"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "What you see",
+            "Why",
+            "What to do"
+          ],
+          "rows": [
+            [
+              "A blurred picture and “See your trip on a map”",
+              "The map is part of Pro",
+              "The places list under it still works. Upgrade for the map."
+            ],
+            [
+              "“No places yet”",
+              "No expense on the trip has a place",
+              "Tap **Add a place to an expense**."
+            ],
+            [
+              "Pins but no streets",
+              "You're offline, or the map service isn't answering",
+              "Reconnect. The list and pins stay available."
+            ],
+            [
+              "A place appears twice",
+              "It was saved under different names or spots",
+              "Edit one expense and choose the place again. With Pro, search for the same result; without Pro, each location fix is its own pin unless it lands on the same spot with the same name."
+            ],
+            [
+              "An expense is missing",
+              "It has no place",
+              "Tap **Add places** under the list."
+            ],
+            [
+              "Fewer places on one day",
+              "The Day filter is on",
+              "Choose **All days**."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Still stuck?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Check you're online, reload the page, and try again. If a message isn't listed here, note exactly what it says before you contact Zotikos support."
+        },
+        {
+          "type": "cta",
+          "title": "Back on the map.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "guest-free-and-pro",
+      "category": "plans-and-account",
+      "title": "Guest, Free and Pro: what each includes",
+      "standfirst": "Try Zotikos as a guest, keep using it free with an account, or go Pro for unlimited trips, every split method, the map and no sponsored cards.",
+      "meta_title": "Guest, Free and Pro plans | Zotikos",
+      "meta_description": "Compare Zotikos guest, Free and Pro: trips, travellers, currencies, receipt reads, splits and map. Plus going Pro, managing it and cancelling.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Free covers most trips: two active trips, equal and exact splits, settling up and ten receipt reads a month. Pro lifts most limits, adds the map and search, and removes the sponsored cards. Prices are shown in the app."
+        },
+        {
+          "type": "heading",
+          "text": "What's included"
+        },
+        {
+          "type": "table",
+          "caption": "Limits when this guide was written; they can change. The Upgrade screen lists the main Pro benefits.",
+          "header": [
+            "Feature",
+            "Guest",
+            "Free",
+            "Pro"
+          ],
+          "rows": [
+            [
+              "Active trips",
+              "1",
+              "2",
+              "Unlimited"
+            ],
+            [
+              "Travellers per trip",
+              "4",
+              "8",
+              "50"
+            ],
+            [
+              "Currencies per trip",
+              "2",
+              "5",
+              "Unlimited"
+            ],
+            [
+              "Expenses per trip",
+              "100",
+              "500",
+              "Unlimited"
+            ],
+            [
+              "Receipt reads",
+              "3 a day",
+              "10 a month",
+              "200 a month"
+            ],
+            [
+              "Equal and exact splits",
+              "Yes",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Percentages, shares, item by item",
+              "No",
+              "2 free tries per trip",
+              "Yes"
+            ],
+            [
+              "Invite by link",
+              "No",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Whole-trip budget",
+              "No",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Insights: each day",
+              "No",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Insights: exchange-rate gain/loss, card fees, by currency paid in",
+              "No",
+              "No",
+              "Yes"
+            ],
+            [
+              "CSV exports",
+              "No",
+              "5 a month",
+              "Unlimited"
+            ],
+            [
+              "Place: use where I am now, open in Maps",
+              "Yes",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Place search, drop a pin, the map and Route",
+              "No",
+              "No",
+              "Yes"
+            ],
+            [
+              "Sponsored cards",
+              "Yes",
+              "Yes",
+              "None"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A trip's size limits (active trips, travellers, expenses, currencies, people per expense and invite links) come from the trip owner's plan. Split methods, receipt reads, exports, Insights, the map and sponsored cards follow your own plan."
+        },
+        {
+          "type": "heading",
+          "text": "Sponsored cards"
+        },
+        {
+          "type": "paragraph",
+          "text": "On guest and Free, a few cards marked “Sponsored” or “From Zotikos” appear on the trips list, trip home and Insights. They're served by Zotikos itself, with no third-party ad scripts, and never personalised. Each has **Remove ads with Pro**. Pro has none."
+        },
+        {
+          "type": "heading",
+          "text": "Going Pro"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Open **Account** and tap **Go Pro**. As a guest, add your email first; your guest trips come with you.",
+            "Choose **Yearly** or **Monthly**, then tap **Continue** (it shows the price).",
+            "Pay on Stripe's secure checkout. Zotikos never sees your card, and you'll see the exact price in your currency, with any tax, before you pay."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "After paying, **Welcome to Pro** confirms it; this can take a few seconds. Have a promotion code? Enter it on the checkout page. If a free trial is on offer, checkout shows it there too."
+        },
+        {
+          "type": "heading",
+          "text": "Your Pro tag"
+        },
+        {
+          "type": "paragraph",
+          "text": "A small **Pro** tag shows on your own screens. People on your trips only see it if you turn on **Show my tag on shared trips** under **Your Pro** in Account. It's off by default."
+        },
+        {
+          "type": "heading",
+          "text": "Managing or cancelling"
+        },
+        {
+          "type": "paragraph",
+          "text": "In **Account**, under **Your Pro**, tap **Manage** to open Stripe's portal, or **Update card** if a payment failed. Pro renews automatically until you cancel, and you keep it until the end of the period you've paid for. Pro that Zotikos gave you has no Manage button."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Pro says “coming soon”.",
+              "a": "Pro isn't on sale yet. Everything on Free keeps working in the meantime."
+            },
+            {
+              "q": "Can guests buy Pro?",
+              "a": "No, Pro needs an account. Add your email in **Account** and your guest trips come with you."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Every trip, every split.",
+          "text": "",
+          "label": "See Pro",
+          "url": "https://zotikosapp.midnightpoetry.studio/upgrade"
+        }
+      ]
+    },
+    {
+      "slug": "sign-in-security-and-your-data",
+      "category": "plans-and-account",
+      "title": "Sign-in, security and your data",
+      "standfirst": "How signing in works, adding an authenticator app, your picture, name and home currency, keeping guest trips, downloading your data and deleting your account.",
+      "meta_title": "Sign-in, security and your data | Zotikos",
+      "meta_description": "Sign in with an email code, add an authenticator, set your picture and name, keep guest trips, download your data or delete your Zotikos account.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Everything is in **Account**. Sign in with an email code or an authenticator app, and find **Download my data** and **Delete account** under **Privacy & data**."
+        },
+        {
+          "type": "heading",
+          "text": "Signing in"
+        },
+        {
+          "type": "paragraph",
+          "text": "Zotikos emails you a 6-digit code instead of asking for a password each time. A code works once, expires in 10 minutes, and asking for a new one stops the earlier ones working. Your password is the backup: tap **Use password instead**, or **Forgot your password?** to reset it with a code (**Email me a code**, then “Choose a new password” and **Save and sign in**)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Zotikos will never ask you for a code. If you get one you didn't ask for, you can ignore it. Under **Other devices**, **Sign out others** signs you out everywhere else (not shown on guest accounts)."
+        },
+        {
+          "type": "heading",
+          "text": "Add an authenticator app"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "In **Account**, under **Sign-in & security**, tap **Set up** next to **Authenticator app**.",
+            "Tap **Continue** and scan the code with an app like 1Password, Google Authenticator or Authy, or type in the key.",
+            "Enter the 6-digit code it shows and tap **Turn on**."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Once it's on, this device offers your authenticator code instead of an email code (you can still tap **Email me a code instead**), and signing in with your password always asks for it as “One more lock”."
+        },
+        {
+          "type": "heading",
+          "text": "Picture, name and home currency"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Picture**: tap it for “Your picture”. Choose **Take a photo**, **Choose a photo** or **Make an avatar** (and, once you have a picture, **Use your initial** to remove it). Only people on your trips see it. Photos are cropped and shrunk on your phone first, with location and camera details removed. Guests can make an avatar; photos need an account, so keep your trips first.",
+            "**Name**: used when you make or join a trip. To change it on a trip you're already on, rename yourself on **People** (tap ⋯ next to your name).",
+            "**Home currency**: you can change it, but only new trips use it; trips you already have keep theirs, so nobody's balance shifts."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Under **This device**, **Theme** switches between Auto, Light and Dark, and **Offline copy** has a **Clear** button."
+        },
+        {
+          "type": "heading",
+          "text": "Keep your guest trips"
+        },
+        {
+          "type": "paragraph",
+          "text": "In **Account**, under **Keep your trips**, enter your email and tap **Send me a code**, then type the 6-digit code and tap **Keep my trips**. If that email already has a Zotikos account, you can **Sign in and bring my trips** into it or **Stay a guest**. If its active trips are full, a moved trip arrives archived."
+        },
+        {
+          "type": "heading",
+          "text": "What Zotikos keeps"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Your email, name, home currency and picture, and your trips: travellers, expenses, shares, payments and any places you saved.",
+            "Which “Needs a look” checks have been marked as fine, which everyone on the trip can see.",
+            "Receipt photos are never stored, only the details you save with an expense.",
+            "People on your trips see your name and picture, never your full email. Until you add a name, the part of your email before the @ is used.",
+            "Card details stay with Stripe.",
+            "No analytics and no third-party ad scripts.",
+            "To limit abuse, scrambled (hashed) versions of IP and email addresses, and short logs of receipt reads (outcome and timing only)."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Download your data"
+        },
+        {
+          "type": "paragraph",
+          "text": "Next to **Download my data**, tap **JSON** for a file of every trip, expense and payment you can see. For one trip as a spreadsheet, use **Export as CSV** in its settings."
+        },
+        {
+          "type": "heading",
+          "text": "Delete your account"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tap **Delete account**, type **delete** and tap **Delete my account**. This deletes the trips you own and removes you from other people's trips; your name stays on what you logged there, so their balances still add up. Any Pro subscription is cancelled first. It can't be undone, so download your data first if you want a copy."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "I'm using Zotikos as a guest. How do I keep my trips?",
+              "a": "Under **Keep your trips** in **Account**, tap **Send me a code**, enter the code and tap **Keep my trips**."
+            },
+            {
+              "q": "How do I contact Zotikos?",
+              "a": "Email zotikos-support@app.midnightpoetry.studio."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Your trips, kept private.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    }
+  ]
+}

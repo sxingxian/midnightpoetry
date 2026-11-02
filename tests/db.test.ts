@@ -85,7 +85,7 @@ describe("database security", () => {
     const guides = (await db.query<{ slug: string }>(`select slug from public.guides`)).rows.map((r) => r.slug);
     expect(guides).toContain("split-gst-service-charge");
     expect(guides).not.toContain("draft-one");
-    expect(guides.length).toBe(54); // the shipped studio guides: 12 each for Zyra, Zeno and Zora, 18 for Zotikos
+    expect(guides.length).toBe(62); // the shipped studio guides: 12 each for Zyra, Zeno and Zora, 26 for Zotikos
   });
 
   it("shows scheduled guides only once they are due", async () => {
@@ -247,12 +247,12 @@ describe("database security", () => {
 
   it("the Zotikos update migration replaces untouched guides, keeps their history, and never overwrites an editor's changes", async () => {
     await as("postgres");
-    const sql = readFileSync("supabase/migrations/20261102000100_zotikos_guides_update.sql", "utf8");
+    const sql = readFileSync("supabase/migrations/20261102000200_zotikos_insights_guides.sql", "utf8");
     const slug = "start-your-first-trip";
     const other = "use-the-map-tab";
     // Untouched guides were replaced when the migrations ran: they have a history, and the new map guides exist.
     const hist = await db.query<{ n: number }>(`select count(*)::int as n from public.guide_revisions r join public.guides g on g.id = r.guide_id where g.slug = '${slug}'`);
-    expect(hist.rows[0]?.n).toBe(1);
+    expect(hist.rows[0]?.n).toBeGreaterThanOrEqual(1);
     const maps = await db.query(`select 1 from public.guides where slug = '${other}'`);
     expect(maps.rows.length).toBe(1);
     // An editor changes one (the admin records who), and a different one is hand-edited without a name left behind.

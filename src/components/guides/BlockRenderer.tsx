@@ -83,10 +83,12 @@ function renderBlock(b: Block, used: Set<string>, supabaseUrl: string): ReactNod
                   {r.map((c, j) =>
                     j === 0 ? (
                       <th key={j} scope="row" style={{ fontWeight: 500 }}>
-                        {c}
+                        <Inline text={c} />
                       </th>
                     ) : (
-                      <td key={j}>{c}</td>
+                      <td key={j}>
+                        <Inline text={c} />
+                      </td>
                     ),
                   )}
                 </tr>

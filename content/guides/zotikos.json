@@ -48,6 +48,10 @@
       "slug": "splitting-and-settling-up"
     },
     {
+      "name": "Insights and checks",
+      "slug": "insights-and-checks"
+    },
+    {
       "name": "Map and places",
       "slug": "map-and-places"
     },
@@ -493,7 +497,7 @@
         },
         {
           "type": "paragraph",
-          "text": "**Your share by category** on the trip shows your share in the eight categories: Food, Groceries, Stay, Flights, Transport, Activities, Shopping and Other. **Insights** goes further. Under **Will we stay on budget?**, **Your own pace** shows what you average, your daily budget and what's carried into today. Under **When was the money spent?**, **Each day** charts every day (it needs an account, so guests don't see it)."
+          "text": "**Your share by category** on the trip shows your share in the eight categories: Food, Groceries, Stay, Flights, Transport, Activities, Shopping and Other. **Insights** goes further. Under **Will we stay on budget?**, **Your own pace** shows what you average, your daily budget and what's carried into today. Under **When was the money spent?**, **Each day** charts every day (it needs an account, so guests don't see it). See [Insights: four questions about your trip](/guides/zotikos/insights-on-a-trip)."
         },
         {
           "type": "paragraph",
@@ -821,7 +825,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The Ledger's **Needs a look** card flags a typed rate that's more than 3% away from that day's reference rate. It says “A card or exchange-counter rate can be right, so this is only a check.” Tap **Keep typed rate** if it's right, or **Change the rate** to fix it."
+          "text": "The Ledger's **Needs a look** card flags a typed rate that's more than 3% away from that day's reference rate. It says “A card or exchange-counter rate can be right, so this is only a check.” Tap **Keep typed rate** if it's right, or **Change the rate** to fix it. More in [Needs a look: checks in the Ledger](/guides/zotikos/needs-a-look-checks-in-the-ledger)."
         },
         {
           "type": "heading",
@@ -2031,7 +2035,7 @@
         },
         {
           "type": "paragraph",
-          "text": "A small **Pro** tag shows on your own screens. People on your trips only see it if you turn on **Show my tag on shared trips** under **Your Pro** in Account. It's off by default."
+          "text": "A small **Pro** tag shows on your own screens. People on your trips only see it if you turn on **Show my tag on shared trips** under **Your Pro** in Account. It's off by default. See [Your Pro tag and Welcome to Pro](/guides/zotikos/your-pro-tag-and-welcome-to-pro)."
         },
         {
           "type": "heading",
@@ -2113,7 +2117,7 @@
           "type": "list",
           "ordered": false,
           "items": [
-            "**Picture**: tap it for “Your picture”. Choose **Take a photo**, **Choose a photo** or **Make an avatar** (and, once you have a picture, **Use your initial** to remove it). Only people on your trips see it. Photos are cropped and shrunk on your phone first, with location and camera details removed. Guests can make an avatar; photos need an account, so keep your trips first.",
+            "**Picture**: tap it to choose **Take a photo**, **Choose a photo** or **Make an avatar**. Only people on your trips see it; photos are cropped and shrunk on your phone first. Guests can make an avatar, but photos need an account. See [Your picture and avatar](/guides/zotikos/your-picture-and-avatar).",
             "**Name**: used when you make or join a trip. To change it on a trip you're already on, rename yourself on **People** (tap ⋯ next to your name).",
             "**Home currency**: you can change it, but only new trips use it; trips you already have keep theirs, so nobody's balance shifts."
           ]
@@ -2182,6 +2186,895 @@
           "text": "",
           "label": "Open Zotikos",
           "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "insights-on-a-trip",
+      "category": "insights-and-checks",
+      "title": "Insights: four questions about your trip",
+      "standfirst": "Insights answers four questions about a trip, for you and for the group: will we stay on budget, where did the money go, when was it spent and how did you pay.",
+      "meta_title": "Insights: four questions about your trip | Zotikos",
+      "meta_description": "How Zotikos Insights works on a trip: the four questions, phone tiles and computer tabs, your share versus the group's, what each plan sees and offline use.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Open a trip and tap **Insights**. On a phone you see four tiles, one per question; tap one to open its answer. On a computer they're four tabs. Each answer shows the group's spending and your own share."
+        },
+        {
+          "type": "heading",
+          "text": "Where to find it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Inside a trip, **Insights** is the last tab on a phone (Overview, Ledger, Map, Settle up, **Insights**), in the side rail on a tablet and in the sidebar on a computer. With more than one active trip, a **Trip** picker appears at the top (on a phone, above the list of four questions; on wide screens, above the chosen question, where it keeps your place). Outside a trip, the Insights tab shows all your trips instead: see [Insights across all your trips](/guides/zotikos/insights-across-all-your-trips)."
+        },
+        {
+          "type": "heading",
+          "text": "The four questions"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Question",
+            "What it tells you"
+          ],
+          "rows": [
+            [
+              "Will we stay on budget?",
+              "Whether the group is on track for the whole-trip budget, and how your own spending compares with your daily budget. See [Will we stay on budget?](/guides/zotikos/insights-will-we-stay-on-budget)."
+            ],
+            [
+              "Where did the money go?",
+              "Each category, for the group and for you. See [Where and when the money went](/guides/zotikos/insights-where-and-when-the-money-went)."
+            ],
+            [
+              "When was the money spent?",
+              "Each day, and, with Pro, what a day cost in each currency. See [Where and when the money went](/guides/zotikos/insights-where-and-when-the-money-went)."
+            ],
+            [
+              "How did you pay?",
+              "Card or cash, and with Pro the cost of card fees and exchange rates. See [How did you pay?](/guides/zotikos/insights-how-did-you-pay)."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "On a phone, the tiles show a short answer first, such as “Food leads, 38%”. Tap one for the full answer and its cards; the back arrow returns you to the four questions. On screens 1024 pixels wide and up, most computers, they become four tabs and the first opens by default."
+        },
+        {
+          "type": "heading",
+          "text": "Your share and the group"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Group** is the whole bill of every expense, in the trip's currency.",
+            "**Yours** is your own share of each expense. If you're not in an expense's split, it counts as zero for you.",
+            "**Stays and passes** that cover several days are spread evenly over their days in the Each day card and in your own daily average. Categories, the group's total and balances count them once.",
+            "**Older currency lines** (after a trip's currency was changed) count at the rate fixed when it changed."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cards are tagged **You**, **Group** or **You + group** so you can tell which numbers you're reading."
+        },
+        {
+          "type": "heading",
+          "text": "What each plan sees"
+        },
+        {
+          "type": "table",
+          "caption": "Limits when this guide was written; they can change.",
+          "header": [
+            "Card",
+            "Guest",
+            "Free",
+            "Pro"
+          ],
+          "rows": [
+            [
+              "Will we stay on budget? (the over/under answer needs trip dates and a whole-trip budget)",
+              "Yes, without a budget",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Where did the money go?",
+              "Yes",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Each day",
+              "Locked",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "By currency paid in",
+              "No",
+              "No",
+              "Yes"
+            ],
+            [
+              "Card or cash",
+              "Yes",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Card fees; what the rates did since you paid",
+              "No",
+              "No",
+              "Yes"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A locked card links to where you unlock it. Guests only need a free account for **Each day**; the other cards need Pro."
+        },
+        {
+          "type": "heading",
+          "text": "Good to know"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Everything is worked out on your device from the trip you have loaded, so Insights works offline. The only thing that needs rates is “What the rates did since you paid”.",
+            "“Today” is your device's date.",
+            "What's left to spend today is on the trip's **Overview**, and who owes whom is on **Settle up**, not here.",
+            "On guest and Free accounts, a sponsored card may appear at the bottom.",
+            "If any expenses may have been entered twice, a line such as “Includes 2 expenses that may be logged twice. Check them in the Ledger” links to [Needs a look: checks in the Ledger](/guides/zotikos/needs-a-look-checks-in-the-ledger). Nothing is removed from the numbers until someone fixes it."
+          ]
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "It says “Nothing to look at yet”.",
+              "a": "Insights needs at least one expense. Add one (or scan a receipt) and the answers appear."
+            },
+            {
+              "q": "Does Insights open on an archived trip?",
+              "a": "Yes. Only the buttons that add expenses are hidden."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Where did it all go?",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "insights-will-we-stay-on-budget",
+      "category": "insights-and-checks",
+      "title": "Insights: will we stay on budget?",
+      "standfirst": "See whether the group is on pace for the whole-trip budget, play with the daily spend to see where the trip would land, and check your own pace against your daily budget.",
+      "meta_title": "Insights: will we stay on budget? | Zotikos",
+      "meta_description": "Read the Zotikos budget answer: the group's pace and projection, the From tomorrow slider, and your own pace with what's carried into today.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Set the trip's dates and a **Whole-trip budget (whole group)** in Trip settings, then open **Insights › Will we stay on budget?**. It shows where the trip is heading and what daily spend would land it on budget."
+        },
+        {
+          "type": "heading",
+          "text": "What it needs"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Trip dates**: a start and end date, under Trip settings › Details. Without them it only shows what the group has spent.",
+            "**Whole-trip budget (whole group)**: under Trip settings › Money. It's on Free and Pro, not guest accounts, so guests don't get the over/under answer.",
+            "**Daily budget (your share)**: optional, for the **Your own pace** card."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "See [Daily and whole-trip budgets](/guides/zotikos/daily-and-whole-trip-budgets) for how to set these."
+        },
+        {
+          "type": "heading",
+          "text": "The answer at the top"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Where the trip is",
+            "What you see"
+          ],
+          "rows": [
+            [
+              "No dates yet",
+              "What's been spent, and “add trip dates to see the pace”."
+            ],
+            [
+              "Before it starts",
+              "“Starts …” and how much is already paid ahead."
+            ],
+            [
+              "During, first two days",
+              "“{amount} so far”. The pace shows after two full days."
+            ],
+            [
+              "During, no budget",
+              "“{amount} a day” and where the trip ends near; set a whole-trip budget to compare."
+            ],
+            [
+              "During, with a budget",
+              "“About … over” or “under”, or “Right on budget”, at the current pace."
+            ],
+            [
+              "Finished",
+              "“The trip ended at …”, and how far over or under its budget."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How the pace is worked out"
+        },
+        {
+          "type": "paragraph",
+          "text": "The pace is the group's average day-to-day spending over the full days so far (today isn't counted). It needs at least two full days. It only counts expenses dated to a single day: a stay or pass covering several days is left out of the pace and counted once, as paid, in the total. The projection is what's spent plus the pace for each day left."
+        },
+        {
+          "type": "heading",
+          "text": "Everyone's spending, added up"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "A chart of the group's running total, with the whole-trip budget line and a dotted projection.",
+            "During the trip, once the pace is known, the **From tomorrow, the group spends a day** slider: drag it to try a different daily spend and watch the projection and the chart's end point move. Chips below it jump to **Current pace** or **Lands on budget**.",
+            "“The trip ends near …” (“The trip ended at …” afterwards) with “right on budget” or how much over or under.",
+            "“Room to spend, a day” (or “To land on budget”) with “about … each”, which divides it by the number of travellers. If the budget is already used up, it says so."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If part of the total is for days still to come, such as a hotel paid in advance, a note says how much (“… of it is for days still to come”)."
+        },
+        {
+          "type": "heading",
+          "text": "Your own pace"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the trip has a daily budget, this card shows **You average** (your share per full day), **Your daily budget**, and **Carried into today**: what you were under (or over) on earlier days (rollover is on by default). During the trip it ends with “Spend up to … a day for the … days left and you finish on your budget.”"
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why is there no over or under?",
+              "a": "The trip needs start and end dates and a whole-trip budget. Guests can't set a whole-trip budget; it's on Free and Pro."
+            },
+            {
+              "q": "Why does it say the pace shows after two full days?",
+              "a": "A single day isn't enough to call a pace. Come back after the second day of the trip."
+            },
+            {
+              "q": "Where is what I have left today?",
+              "a": "On the trip's **Overview**, in the “Today” budget section (it shows when the trip has a daily budget)."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Land it on budget.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "insights-where-and-when-the-money-went",
+      "category": "insights-and-checks",
+      "title": "Insights: where and when the money went",
+      "standfirst": "See each category for you and the group, which category leads, how a day cost, and, with Pro, what a day cost in each currency.",
+      "meta_title": "Insights: where and when the money went | Zotikos",
+      "meta_description": "Read the Zotikos categories and Each day cards: group versus your share, Include stays, the day-by-day chart, and By currency paid in with Pro.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "**Where did the money go?** compares each category for the group and for you. **When was the money spent?** charts each day. Tap a category or a day for the biggest expenses behind it, with a link to the Ledger."
+        },
+        {
+          "type": "heading",
+          "text": "Where did the money go?"
+        },
+        {
+          "type": "paragraph",
+          "text": "The tile and the sentence name the leading category, for example “Food leads at 40% of day-to-day spending.” It also notes where your own mix differs (“Yours leans more to groceries (30% against 12%)”, when a category is 3 or more points bigger in yours) or that it's close to the group's. “Day-to-day spending” appears when stays are left out; otherwise it says “of spending”."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "The **Each category** card has a bar for the group and one for you in each category the trip has used, of the eight: Food, Groceries, Stay, Flights, Transport, Activities, Shopping and Other. Unused ones are named in a footnote. The bars share one scale, so you can compare them directly.",
+            "Percentages are whole numbers that add up to 100.",
+            "Tap a row to open it: “A day” (what it comes to a day, for the group and for you), the three biggest expenses, and **All … in the Ledger** to see them all."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Include stays"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the trip has a **Stay** expense, an **Include stays** switch appears. It's off by default (and resets to off each time you open the page) so one hotel bill doesn't hide everything else. It only affects the Stay category: a transport pass or another several-day expense is always counted."
+        },
+        {
+          "type": "heading",
+          "text": "When was the money spent?"
+        },
+        {
+          "type": "paragraph",
+          "text": "The **Each day** card has a bar per day: the group's total, with your part inside it. Tap a day (future days are greyed out) to see the group's and your total, what most of it was, and **See the day in the Ledger**. The back and forward arrows step through the days up to today. It opens on the priciest day so far."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Stays and passes are spread evenly over their days.",
+            "The chart shows the trip's first 31 days at most. If the trip is missing a start or end date, it shows the 10 days up to today.",
+            "Each day needs an account: guests see it locked."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "By currency paid in (Pro)"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the trip has expenses in more than one currency, Pro adds **By currency paid in**: for each currency, how many days it counted on, what a day cost and your part. It's a rough “where” based on the currency you paid in; no location is used. Free accounts see a teaser."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why is Stay missing from the categories?",
+              "a": "**Include stays** is off. Switch it on to count them."
+            },
+            {
+              "q": "Why doesn't a day add up to what I paid that day?",
+              "a": "A stay or pass counts a part on each of its days, so a day can include parts of bookings paid on other days."
+            },
+            {
+              "q": "Is the category list the same as on the expense?",
+              "a": "Yes. Insights uses the same eight categories."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "See the shape of the trip.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "insights-how-did-you-pay",
+      "category": "insights-and-checks",
+      "title": "Insights: how did you pay?",
+      "standfirst": "Card or cash, and with Pro, what card fees added and what exchange rates did since you paid. It's a guide, not an account statement.",
+      "meta_title": "Insights: how did you pay? | Zotikos",
+      "meta_description": "Read the Zotikos card-or-cash split, card fees and exchange-rate gain or loss in Insights, and what the numbers do and don't mean.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "**Card or cash** is open to everyone. With Pro, **Paying abroad** adds what card fees cost you and what the exchange rates did since you paid. Card or cash and fees use what was recorded on each expense."
+        },
+        {
+          "type": "heading",
+          "text": "Card or cash"
+        },
+        {
+          "type": "paragraph",
+          "text": "The answer reads like “You paid 62% of your share by card, and card fees added …”. The **Card or cash** card has a bar for you (if you share any expenses) and one for the group, showing the card and cash amounts and percentages. Card or cash is the **Paid with** switch marked when each expense was added."
+        },
+        {
+          "type": "heading",
+          "text": "Paying abroad (Pro)"
+        },
+        {
+          "type": "paragraph",
+          "text": "This card appears when at least one expense is in a currency other than the trip's. Free and guest accounts see a teaser, “Card fees and exchange rates”."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Card fees**: your share of each card expense multiplied by the fee rate logged on it. Log a rate with **Card foreign-transaction fee** when you add a card expense (Pro). With none logged it says “none logged: add your card's foreign fee on an expense”.",
+            "**What the rates did since you paid**: one row per foreign currency with the average rate your share was counted at, today's reference rate and the difference in the trip's currency, plus an **Overall** line for two or more. A minus sign (in amber-brown) means paying when you did cost more than today's rate would; a plus (in green) means less."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "What the numbers mean",
+          "text": "It isn't money lost. It compares the rate each expense was counted at with today's rate, and it uses Zotikos's daily reference rates, not your card's own rate. Fees are kept apart on purpose."
+        },
+        {
+          "type": "paragraph",
+          "text": "If rates haven't loaded yet, for example offline on a new device, you'll see “Today's rates aren't loaded yet.”"
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "My bank's rate was different.",
+              "a": "Insights uses reference rates. For an exact figure, enter your own rate on the expense; see [How exchange rates work in Zotikos](/guides/zotikos/how-exchange-rates-work)."
+            },
+            {
+              "q": "I'm on Free. Can I see fees someone else logged?",
+              "a": "No. The fee and rate rows follow your own plan."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Know what the card cost.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "insights-across-all-your-trips",
+      "category": "insights-and-checks",
+      "title": "Insights across all your trips",
+      "standfirst": "Your own spending across every trip this year: by month, by category, trip by trip, and what's still to settle. Only your share is counted.",
+      "meta_title": "Insights across all your trips | Zotikos",
+      "meta_description": "Use the Zotikos all-trips Insights: your year at a glance, spend by month and category, trips compared, and how currencies and archived trips are counted.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "Outside a trip, tap **Insights** in the bottom bar (or sidebar). It's headed “All your trips · your share only” and adds up your own spending for the year. It's free on every plan."
+        },
+        {
+          "type": "heading",
+          "text": "What it shows"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Tile",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Your spend",
+              "Your share this year, and how many trips it's across."
+            ],
+            [
+              "Days away",
+              "Days of your trips inside this year, up to today. A trip with no start date adds none."
+            ],
+            [
+              "Per day away",
+              "Your spend divided by days away."
+            ],
+            [
+              "Countries",
+              "How many different countries you set on your trips (**Pick one in trip settings** if none)."
+            ],
+            [
+              "Still to settle",
+              "“All square”, or what you owe or are owed on open trips, any year; with mixed currencies, how many trips are open. Archived trips are left out."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Spend by month**: 12 bars, Jan to Dec, stacked and coloured by trip.",
+            "**Where your money went**: a bar and list of categories with percentages and amounts.",
+            "**Trips compared**: your share this year, per day, the trip's whole group total and days, and its status (On the road, In 5d or Soon, To settle, Settled). Tap a row for that trip's Insights."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "With more than one trip, the picker **Open a trip's insights** jumps straight to one. With none, you'll see “Insights start with a trip”."
+        },
+        {
+          "type": "heading",
+          "text": "How it's counted"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Only your share.** Nothing about anyone else is included.",
+            "**Your home currency.** Spend, months, categories and per-day figures are shown in it; other currencies are converted at today's rate, not the rate on the day. If a currency has no rate, that trip is left out and a note says which (“Leaves out …”). Trips compared shows each trip's group total in its own currency.",
+            "**The calendar year.** Only expenses dated this year count.",
+            "**A stay counts when it starts.** Unlike trip Insights, a several-day expense isn't spread: it lands in the month it begins.",
+            "**Archived trips** still count in the spend, but not in Still to settle."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Guests see the trips on their guest account. Offline, it uses the last saved copy; if the summary has never loaded, Your spend shows “—” and the charts say “Adding it up…”."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why doesn't a trip's total match its own Insights?",
+              "a": "All-trips Insights counts only your share, in your home currency, at today's rate, and dates a stay by its first day. A trip's own Insights shows the group too and spreads stays over their days."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Your year, at a glance.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "needs-a-look-checks-in-the-ledger",
+      "category": "insights-and-checks",
+      "title": "Needs a look: checks in the Ledger",
+      "standfirst": "Zotikos quietly checks for expenses that may be logged twice, typed rates that look off and receipts that don't add up. They're only checks: nothing changes until someone edits an expense.",
+      "meta_title": "Needs a look: checks in the Ledger | Zotikos",
+      "meta_description": "How the Zotikos Needs a look checks work: possible duplicates, a rate far from the day's, a receipt that doesn't add up, and Marked as fine with Undo.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "When something may be wrong, the Ledger shows a **Needs a look** card. Open it, then fix the expense, or tap **They're different**, **Keep typed rate** or **Keep this total** to mark it fine. Marking changes no amounts or balances."
+        },
+        {
+          "type": "heading",
+          "text": "Where you'll see it"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "A **Needs a look** card at the top of the Ledger, with a number and a summary such as “1 maybe logged twice · 2 typed rates”.",
+            "A **Twice?** chip on Ledger rows that may be duplicates.",
+            "A line in Insights: “Includes 2 expenses that may be logged twice. Check them in the Ledger”."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The Needs a look page says how many to check (“2 to check on Kyoto. Anyone who can edit them can sort them out.”) or “All sorted.” It's available to every plan, and everyone on the trip can see it."
+        },
+        {
+          "type": "heading",
+          "text": "The three checks"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Check",
+            "It's flagged when",
+            "Buttons"
+          ],
+          "rows": [
+            [
+              "Maybe logged twice",
+              "Two expenses have the same day, currency, amount and category, and were paid by different people or added within 30 minutes of each other",
+              "**They're different**"
+            ],
+            [
+              "Rate typed in",
+              "A rate you typed for a foreign currency is more than 3% above or below that day's reference rate",
+              "**Keep typed rate**, **Change the rate**"
+            ],
+            [
+              "Doesn't add up",
+              "A read receipt's items (or subtotal) plus charges don't match the total kept as the expense amount",
+              "**Keep this total**, **Open details**"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Maybe logged twice"
+        },
+        {
+          "type": "paragraph",
+          "text": "The card shows both expenses, who paid and when each was added. If it was one purchase, open one and remove it (if you're allowed to delete it): shares and balances update for everyone. If they're genuinely separate (two same-priced coffees, say), tap **They're different**. Descriptions aren't compared, so look closely. Only pairs are flagged: a third identical expense isn't."
+        },
+        {
+          "type": "heading",
+          "text": "A rate that looks off"
+        },
+        {
+          "type": "paragraph",
+          "text": "It compares your typed rate with the reference rate for that day, or the most recent earlier one if that day has none (a weekend, say). The card says “A card or exchange-counter rate can be right, so this is only a check.” Tap **Keep typed rate** if it's right, or **Change the rate** to edit the expense. If a day's reference rate couldn't be loaded, for example offline, you'll see a note that some typed rates weren't checked; they're checked once it is."
+        },
+        {
+          "type": "heading",
+          "text": "A receipt that doesn't add up"
+        },
+        {
+          "type": "paragraph",
+          "text": "It shows what the items and charges come to against the total kept, and notes if two digits may be swapped. Tap **Keep this total** if the total is right, or **Open details** to fix it."
+        },
+        {
+          "type": "heading",
+          "text": "Marked as fine"
+        },
+        {
+          "type": "paragraph",
+          "text": "Marking a check as fine hides it for everyone on the trip. It changes no expense, amount or balance. Under **Marked as fine** you'll see who did it and when (“You marked it fine”, or the traveller's name). **Undo** brings it back if the problem still holds. The mark stays if the expense is edited, and goes if it's deleted."
+        },
+        {
+          "type": "heading",
+          "text": "Who can sort them"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can mark or undo a check if you can edit at least one of the expenses involved: you added it, you're an owner or co-owner, or the trip lets everyone edit. Otherwise you see just “Only whoever added it, or the trip's owners, can sort this one.” instead of the buttons. On an archived trip everyone sees “This trip is archived.” Marking and undoing need a connection (“You're offline. Try again once you're back online.”)."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why does the Ledger count differ from Insights?",
+              "a": "The Ledger counts checks, so a pair is one. Insights counts expenses, so the same pair is two, and it only counts possible duplicates."
+            },
+            {
+              "q": "Did marking it fine delete anything?",
+              "a": "No. It only hides the card."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Catch the doubles.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "your-picture-and-avatar",
+      "category": "plans-and-account",
+      "title": "Your picture and avatar",
+      "standfirst": "Add a photo or make an avatar so the people on your trips see you. It's only shown to them, and it can be removed any time.",
+      "meta_title": "Your picture and avatar | Zotikos",
+      "meta_description": "Add a photo or make an avatar in Zotikos, how photos are cropped and shrunk, who can see your picture, and how to remove it.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "In **Account**, tap your picture (or the **Picture** row) to open “Your picture”. Choose **Take a photo**, **Choose a photo** or **Make an avatar**. Only people on your trips can see it."
+        },
+        {
+          "type": "heading",
+          "text": "Open the picture sheet"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Tap the round picture at the top of **Account**.",
+            "Or tap **Change** (or **Add**) on the **Picture** row, “Shown to people on your trips”."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The sheet shows your current picture and these options:"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Take a photo**: with your camera.",
+            "**Choose a photo**: from your library. A Memoji works if you've saved it as a photo.",
+            "**Make an avatar** (or **Change your avatar**): “Pick a face, hair and colours”.",
+            "**Use your initial**: appears once you have a picture or avatar. It removes it straight away, with no confirmation, and you'll see “Picture removed”."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Guests can make an avatar, but **Take a photo** and **Choose a photo** are switched off (“Needs an account (keep your trips first)”). Add your email under **Keep your trips** first."
+        },
+        {
+          "type": "heading",
+          "text": "A photo"
+        },
+        {
+          "type": "paragraph",
+          "text": "After you pick a photo, a round window opens: “Move and zoom”. Drag to place it, pinch or use the zoom slider (up to 4×), then tap **Use**. It's saved small, 256 × 256 pixels, as a plain image, so location and camera details are left out. You'll see “Photo saved”. If a photo can't be opened, try a JPEG, PNG or HEIC photo from your library."
+        },
+        {
+          "type": "heading",
+          "text": "An avatar"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Make an avatar** has five tabs and a **Shuffle** button:"
+        },
+        {
+          "type": "table",
+          "caption": "",
+          "header": [
+            "Tab",
+            "Choices"
+          ],
+          "rows": [
+            [
+              "Skin",
+              "Six skin tones, from Light to Deepest"
+            ],
+            [
+              "Hair",
+              "Short, Side part, Curly, Bun, Bob, Long or Buzz, plus a hair colour"
+            ],
+            [
+              "Extras",
+              "None, Glasses, Sunglasses, Sun hat, Beanie or Neck pillow"
+            ],
+            [
+              "Mood",
+              "Smile, Calm or Wink"
+            ],
+            [
+              "Colour",
+              "Rose, Sky, Sage, Sand, Lilac or Lagoon"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Tap **Use this avatar** to save it (“Avatar saved”). On a trip, everyone gets a different colour, so yours can change there. Avatars are free on every plan."
+        },
+        {
+          "type": "heading",
+          "text": "Where it shows and who sees it"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "On the trips list, People, the Ledger, Settle up and when you add expenses.",
+            "Only you and the people you share a trip with can see it. It's never public and has no link to share.",
+            "Travellers added by name only, with no account, show a coloured initial. So do you, until you add a picture."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Removing it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tap **Use your initial** to remove it. Deleting your account deletes your picture too, and **Download my data** includes it. Saving a picture needs a connection."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why can't I pick a photo as a guest?",
+              "a": "Photos need an account. Add your email under **Keep your trips** in Account, then try again."
+            },
+            {
+              "q": "Do others see my new picture straight away?",
+              "a": "Photos refresh on their devices as they sync, so it may take a moment."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Show your face, or a made-up one.",
+          "text": "",
+          "label": "Open Zotikos",
+          "url": "https://zotikosapp.midnightpoetry.studio/"
+        }
+      ]
+    },
+    {
+      "slug": "your-pro-tag-and-welcome-to-pro",
+      "category": "plans-and-account",
+      "title": "Your Pro tag and Welcome to Pro",
+      "standfirst": "What the Pro tag and the Pro trial chip look like, who can see your tag, what Welcome to Pro waits for, and how to manage or update your card.",
+      "meta_title": "Your Pro tag and Welcome to Pro | Zotikos",
+      "meta_description": "Understand the Zotikos Pro tag and trial chip, show or hide your tag on shared trips, the Welcome to Pro screen, and Manage or Update card.",
+      "blocks": [
+        {
+          "type": "callout",
+          "title": "The short version",
+          "text": "After you go Pro you'll see a small **Pro** tag on your Account. Others only see it if you turn on **Show my tag on shared trips** in Account › **Your Pro**; it's off by default."
+        },
+        {
+          "type": "heading",
+          "text": "Your tag"
+        },
+        {
+          "type": "paragraph",
+          "text": "The tag is solid for Pro, and a dashed outline during a trial, with a chip such as “Pro trial · 6 days”. You'll see it on your Account header, the Account tab and your name in the sidebar. If a payment is failing, the tag is hidden even though Pro keeps working; Account says what to fix."
+        },
+        {
+          "type": "heading",
+          "text": "Who else can see it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nobody, unless you switch on **Show my tag on shared trips** under **Your Pro** (“On: people on your trips see your Pro tag” / “Off: only you see that you're Pro”). You'll see “People on your trips can see your Pro tag”, or “Your Pro tag is private again”. They see it only next to your name on People and in the Group balances card on a trip's Overview (on computers), never in the Ledger or Settle up. They can't tell trial from paid. You need an account and a connection to change it."
+        },
+        {
+          "type": "heading",
+          "text": "Welcome to Pro"
+        },
+        {
+          "type": "paragraph",
+          "text": "After checkout, **Welcome to Pro** waits for Stripe to confirm your payment: “Confirming your payment…” for a few seconds. When Pro is on, it says “Welcome to Pro” and lists what's now on. For a trial it says when it runs until (“Cancel any time in Account.”)."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "**Almost there**: if it takes about 30 seconds, you'll see “Stripe is still confirming your payment. Pro switches on by itself as soon as it does, so you can carry on.” Tap **Check again** or **Back to my trips**.",
+            "**Your payment didn't go through**: tap **Go to Account** and update your card to keep Pro."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your Pro in Account"
+        },
+        {
+          "type": "paragraph",
+          "text": "Under **Your Pro**, the row reads “Trial ends …”, “Renews …” or, if Zotikos gave you Pro, “Given by Zotikos, until …”. **Manage** opens Stripe's secure billing portal, where you manage your subscription and card. If a payment failed, the button reads **Update card**. Pro that Zotikos gave you has no Manage button."
+        },
+        {
+          "type": "heading",
+          "text": "A trial"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a free trial is on offer, it begins when you check out. Each account can have one. During it you have the full Pro plan and the chip shows how many days are left. See [Guest, Free and Pro](/guides/zotikos/guest-free-and-pro) for what Pro includes."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Why did my tag disappear?",
+              "a": "While a payment is failing the tag is hidden, but Pro keeps working. Tap **Update card** in Account."
+            },
+            {
+              "q": "Can a guest turn on the tag?",
+              "a": "No. It needs an account."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "title": "Every trip, every split.",
+          "text": "",
+          "label": "See Pro",
+          "url": "https://zotikosapp.midnightpoetry.studio/upgrade"
         }
       ]
     }
