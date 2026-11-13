@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 function wordCount(blocks: Block[]): number {
   let text = "";
+  for (const b of blocks) if (b.type === "callout") text += " " + b.title;
   for (const b of blocks) {
     if ("text" in b) text += " " + b.text;
     if (b.type === "list") text += " " + b.items.join(" ");
@@ -53,11 +54,12 @@ export default async function GuidePage({ params }: { params: Params }) {
   const env = publicEnv();
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
+  const words = wordCount(guide.blocks);
   const network = await adsenseAllowed();
-  const plans = planAds({ settings: settings && !network ? { ...settings, network_enabled: false } : settings, ads, spots: guide.ad_spots, categoryId: guide.category_id, guideAdsEnabled: guide.ads_enabled, seed: guide.id });
+  const plans = planAds({ settings: settings && !network ? { ...settings, network_enabled: false } : settings, ads, spots: guide.ad_spots, categoryId: guide.category_id, guideAdsEnabled: guide.ads_enabled, seed: guide.id, words });
   const bySpot = (s: string) => plans.find((p) => p.spot === s);
   const toc = buildToc(guide.blocks);
-  const minutes = Math.max(1, Math.round(wordCount(guide.blocks) / 220));
+  const minutes = Math.max(1, Math.round(words / 220));
   const url = `${env.siteUrl}/guides/${product.slug}/${guide.slug}`;
 
   const faq = guide.blocks.find((b): b is Extract<Block, { type: "faq" }> => b.type === "faq");
@@ -122,7 +124,7 @@ export default async function GuidePage({ params }: { params: Params }) {
             <BlockRenderer blocks={guide.blocks} supabaseUrl={env.supabaseUrl} inlineAd={<AdSlot plan={bySpot("inline")} />} />
             <AdSlot plan={bySpot("end")} />
             <p style={{ marginTop: 48, paddingTop: 24, borderTop: "1px solid var(--line)", fontSize: 15, color: "var(--muted)" }}>
-              {guide.author_name ? `Written by ${guide.author_name}. ` : ""}Last updated {fmt(guide.updated_at)}. Spotted something wrong? Tell us and we&apos;ll fix it.
+              {guide.author_name ? `Written by ${guide.author_name}. ` : ""}Last updated {fmt(guide.updated_at)}. Spotted something wrong? <Link href="/contact">Tell us</Link> and we&apos;ll fix it.
             </p>
           </article>
 

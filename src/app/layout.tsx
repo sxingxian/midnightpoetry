@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { headers } from "next/headers";
+import { getAdSettings } from "@/lib/content/queries";
 import "./globals.css";
 
 const instrument = localFont({
@@ -40,9 +41,18 @@ const THEME_SCRIPT = `(function(){var d=document.documentElement;try{var t=local
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
+  // Tells Google which AdSense account this site belongs to (site verification). It loads no script and sets no cookie.
+  let adsenseAccount: string | null = null;
+  try {
+    const client = (await getAdSettings())?.adsense_client ?? null;
+    adsenseAccount = client && /^ca-pub-\d{16}$/.test(client) ? client : null;
+  } catch {
+    adsenseAccount = null;
+  }
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${instrument.variable}`} suppressHydrationWarning>
       <head>
+        {adsenseAccount ? <meta name="google-adsense-account" content={adsenseAccount} /> : null}
         {/* eslint-disable-next-line react/no-danger -- constant script, nonce-protected */}
         <script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>

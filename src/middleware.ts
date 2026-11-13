@@ -40,7 +40,8 @@ export async function middleware(request: NextRequest) {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
   const nonce = generateNonce();
 
-  const useAdsense = pathname.startsWith("/guides") && supabaseUrl && anonKey ? await adsenseActive(supabaseUrl, anonKey) : false;
+  // Guide articles only: the hub (/guides) is a list of links and never carries network ads.
+  const useAdsense = pathname.startsWith("/guides/") && supabaseUrl && anonKey ? await adsenseActive(supabaseUrl, anonKey) : false;
   const csp = useAdsense ? adsenseCsp({ nonce }) : strictCsp({ nonce, supabaseUrl: supabaseUrl || undefined, dev });
 
   const requestHeaders = new Headers(request.headers);

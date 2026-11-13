@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { AdSenseScript, AdSlot, adsenseAllowed } from "@/components/guides/Ads";
+import { AdSlot } from "@/components/guides/Ads";
 import { getAdSettings, getCategories, getLiveProducts, getPublishedGuides, getRunningAds } from "@/lib/content/queries";
 import { planAds } from "@/lib/ads";
 import { productTheme } from "@/components/site/productTheme";
@@ -51,8 +51,8 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
     grp.items.push(g);
   }
 
-  const network = await adsenseAllowed();
-  const plans = needle ? [] : planAds({ settings: settings && !network ? { ...settings, network_enabled: false } : settings, ads, spots: ["hub"], seed: "hub" });
+  // The hub is a list of links, so it only ever carries our own sponsor or house ad, never an ad network's.
+  const plans = needle ? [] : planAds({ settings: settings ? { ...settings, network_enabled: false } : settings, ads, spots: ["hub"], seed: "hub" });
   const href = (g: (typeof guides)[number]) => `/guides/${productById.get(g.product_id)!.slug}/${g.slug}`;
 
   return (
@@ -121,7 +121,6 @@ export default async function GuidesPage({ searchParams }: { searchParams: Searc
         ) : null}
 
         <AdSlot plan={plans[0]} />
-        <AdSenseScript plans={plans} />
 
         <section aria-labelledby="all-h" style={{ marginTop: 64 }}>
           <h2 id="all-h" style={{ margin: "0 0 6px", fontSize: 18, fontWeight: 600 }}>

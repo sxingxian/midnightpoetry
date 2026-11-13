@@ -1,6 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { createPublicClient } from "@/lib/supabase/server";
+import { DEFAULT_PAGES, type SitePage, type SitePageSlug } from "./site-pages";
 import { normaliseGuide, normaliseProduct, type Ad, type AdSettings, type Category, type Guide, type Product } from "./types";
 
 // The public (anon) role can only read these columns; "*" would be refused.
@@ -63,4 +64,31 @@ export const getRunningAds = cache(async (): Promise<Ad[]> => {
   const { data } = await createPublicClient().from("ads").select("id, kind, sponsor_name, eyebrow, headline, body, cta_label, url, image_path, spots, starts_at, ends_at, status");
   // The internal ad name stays private to the admin.
   return ((data ?? []) as Omit<Ad, "name">[]).map((a) => ({ ...a, name: "" }));
+});
+
+/** The studio's public contact email (set by an owner in the admin), or null. Never throws. */
+export const getContactEmail = cache(async (): Promise<string | null> => {
+  try {
+    const { data } = await createPublicClient().from("site_settings").select("contact_email").eq("id", 1).maybeSingle();
+    const email = (data as { contact_email: string | null } | null)?.contact_email ?? null;
+    return email && /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/.test(email) ? email : null;
+  } catch {
+    return null;
+  }
+});
+
+/**
+ * One standing page (About, Contact, Privacy, Terms). Falls back to the built-in
+ * text when the database has no row or can't be reached, so the page is never empty.
+ */
+export const getSitePage = cache(async (slug: SitePageSlug): Promise<SitePage> => {
+  const fallback: SitePage = { slug, title: DEFAULT_PAGES[slug].title, body: DEFAULT_PAGES[slug].body, updated_at: null };
+  try {
+    const { data, error } = await createPublicClient().from("site_pages").select("slug, title, body, updated_at").eq("slug", slug).maybeSingle();
+    if (error) logFailure(`site page ${slug}`, error);
+    const row = data as SitePage | null;
+    return row && row.title && row.body ? row : fallback;
+  } catch {
+    return fallback;
+  }
 });

@@ -34,7 +34,7 @@ if (ADMIN) {
     select public.promote_owner('owner@example.com');
     update public.guides set title = title || ' ' where true; update public.guides set title = trim(title) where true;`);
 }
-const TABLES = new Set(["products", "categories", "guides", "ad_settings", "ads", ...(ADMIN ? ["profiles", "guide_revisions", "ad_clicks", "audit_events"] : [])]);
+const TABLES = new Set(["products", "categories", "guides", "ad_settings", "ads", "site_settings", "site_pages", ...(ADMIN ? ["site_page_revisions", "profiles", "guide_revisions", "ad_clicks", "audit_events"] : [])]);
 const PUBLIC_FILTER = {
   products: "status = 'live'",
   guides: "(status = 'published' or (status = 'scheduled' and publish_at <= now()))",

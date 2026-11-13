@@ -8,6 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
     { url: `${base}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/guides`, changeFrequency: "weekly", priority: 0.8 },
+    ...["about", "contact", "privacy", "terms", "about-ads"].map((p) => ({ url: `${base}/${p}`, changeFrequency: "yearly" as const, priority: 0.3 })),
   ];
   try {
     const [products, guides] = await Promise.all([getLiveProducts(), getPublishedGuides()]);

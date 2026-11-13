@@ -18,6 +18,7 @@ export function AdminNav({ isOwner }: { isOwner: boolean }) {
     { href: "/admin/products", label: "Products", icon: I("M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z") },
     { href: "/admin/guides", label: "Guides", icon: I("M4 4h11l5 5v11H4zM8 12h8M8 16h6") },
     { href: "/admin/ads", label: "Ads on guides", icon: I("M3 10v4h3l6 4V6L6 10zM16 9a4 4 0 0 1 0 6") },
+    { href: "/admin/site", label: "Site & pages", icon: I("M4 5h16v14H4zM4 9h16M8 13h8M8 16h5") },
     ...(isOwner
       ? [
           { href: "/admin/users", label: "People & roles", icon: I("M9 11.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20a6.5 6.5 0 0 1 13 0M17 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6") },

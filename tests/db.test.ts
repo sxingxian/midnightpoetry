@@ -177,6 +177,58 @@ describe("database security", () => {
     await db.exec(`update public.ad_settings set adsense_client = 'ca-pub-0000000000000000'`);
   });
 
+  it("ships with guide ads switched off until an owner turns them on", async () => {
+    await as("postgres");
+    const r = await db.query<{ enabled: boolean }>(`select enabled from public.ad_settings where id = 1`);
+    expect(r.rows[0]!.enabled).toBe(false);
+    await as("authenticated", OWNER, "aal2");
+    expect((await db.query(`update public.ad_settings set enabled = true where id = 1 returning id`)).rows.length).toBe(1);
+    await db.exec(`update public.ad_settings set enabled = false where id = 1`);
+  });
+
+  it("lets everyone read the standing pages, and only owners with a second step edit them, keeping every version", async () => {
+    await as("anon");
+    const pages = await db.query<{ slug: string }>(`select slug, title, body, updated_at from public.site_pages order by slug`);
+    expect(pages.rows.map((p) => p.slug)).toEqual(["about", "contact", "privacy", "terms"]);
+    await expect(db.query(`select updated_by from public.site_pages`)).rejects.toThrow();
+    await expect(db.query(`select * from public.site_page_revisions`)).rejects.toThrow();
+    expect((await db.query(`update public.site_pages set title = 'Hacked' returning slug`)).rows.length).toBe(0);
+
+    await as("authenticated", EDITOR, "aal2");
+    expect((await db.query(`update public.site_pages set title = 'Hacked' returning slug`)).rows.length).toBe(0);
+    await as("authenticated", OWNER, "aal1");
+    expect((await db.query(`update public.site_pages set title = 'Hacked' returning slug`)).rows.length).toBe(0);
+
+    await as("authenticated", OWNER, "aal2");
+    await expect(db.exec(`insert into public.site_pages (slug, title, body) values ('about', 'x', 'y')`)).rejects.toThrow();
+    await expect(db.exec(`delete from public.site_pages where slug = 'terms'`)).rejects.toThrow();
+    await expect(db.exec(`update public.site_pages set slug = 'contact2' where slug = 'about'`)).rejects.toThrow();
+    await expect(db.exec(`update public.site_pages set body = '' where slug = 'about'`)).rejects.toThrow();
+    await db.exec(`update public.site_pages set title = 'About the studio' where slug = 'about'`);
+    await db.exec(`update public.site_pages set title = 'About the studio' where slug = 'about'`); // unchanged: no new version
+    const rev = await db.query<{ title: string }>(`select title from public.site_page_revisions where slug = 'about'`);
+    expect(rev.rows).toEqual([{ title: "About" }]);
+    await as("postgres");
+    const who = await db.query<{ updated_by: string }>(`select updated_by from public.site_pages where slug = 'about'`);
+    expect(who.rows[0]!.updated_by).toBe(OWNER);
+    expect((await db.query(`select 1 from public.audit_events where entity = 'site_pages'`)).rows.length).toBeGreaterThan(0);
+    await db.exec(`update public.site_pages set title = 'About' where slug = 'about'`);
+  });
+
+  it("only owners set the public contact email, and it must be a plain address", async () => {
+    await as("anon");
+    expect((await db.query(`select contact_email from public.site_settings`)).rows).toEqual([{ contact_email: null }]);
+    await expect(db.query(`select updated_by from public.site_settings`)).rejects.toThrow();
+    await as("authenticated", EDITOR, "aal2");
+    expect((await db.query(`update public.site_settings set contact_email = 'e@example.com' returning id`)).rows.length).toBe(0);
+    await as("authenticated", OWNER, "aal2");
+    await expect(db.exec(`update public.site_settings set contact_email = 'not an email'`)).rejects.toThrow();
+    await expect(db.exec(`update public.site_settings set contact_email = E'a@b.com\\nBcc: c@d.com'`)).rejects.toThrow();
+    await db.exec(`update public.site_settings set contact_email = 'hello@example.com'`);
+    await as("anon");
+    expect((await db.query(`select contact_email from public.site_settings`)).rows).toEqual([{ contact_email: "hello@example.com" }]);
+  });
+
   it("rejects non-https links and bad slugs", async () => {
     await as("authenticated", EDITOR, "aal2");
     await expect(db.exec(`insert into public.ads (name, kind, headline, url) values ('a', 'house', 'h', 'javascript:alert(1)')`)).rejects.toThrow();

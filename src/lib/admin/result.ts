@@ -38,6 +38,7 @@ const FIELD_NAMES: Record<string, string> = {
   url: "Link",
   max_per_page: "Most ads on one page",
   adsense_client: "AdSense publisher ID",
+  contact_email: "Contact email",
   adsense_units: "Ad unit IDs",
 };
 

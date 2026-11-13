@@ -280,6 +280,9 @@ html { scroll-padding-top: 96px; } /* anchors land below the sticky header */
 .ad.side a.ad-box { flex-direction: column; align-items: flex-start; min-height: 250px; }
 .ad .adsense { display: block; min-height: 140px; }
 .ad.side .adsense { min-height: 250px; }
+/* A network slot shows its label only once an ad has actually loaded, and disappears if none comes, so a page never carries an empty "Advertisement" box. */
+.ad:has(> .adsense:not([data-ad-status="filled"])) .ad-label { visibility: hidden; }
+.ad:has(> .adsense[data-ad-status="unfilled"]) { display: none; }
 
 /* Flat Zeno fallback animations */
 .zr-run .zr-bob { animation: zrBob 0.34s cubic-bezier(0.37, 0, 0.63, 1) infinite; }

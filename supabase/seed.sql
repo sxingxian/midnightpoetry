@@ -60,7 +60,7 @@ select 'Try Zyra — roster', 'house', 'From the studio · Zyra',
 where not exists (select 1 from public.ads where name = 'Try Zyra — roster');
 
 update public.ad_settings
-set enabled = true, house_enabled = true, network_enabled = false,
+set enabled = false, house_enabled = true, network_enabled = false,
     spots = array['inline', 'side', 'hub'], max_per_page = 2,
     excluded_category_ids = coalesce((select array_agg(c.id) from public.categories c join public.products p on p.id = c.product_id where p.slug = 'zeno' and c.slug = 'privacy'), '{}')
 where id = 1;

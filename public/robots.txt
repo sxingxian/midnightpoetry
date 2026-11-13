@@ -4,4 +4,10 @@ Disallow: /admin
 Disallow: /auth
 Disallow: /api
 
+# Google's ad crawler reads pages to match ads to them; it must be able to see everything a visitor can.
+User-agent: Mediapartners-Google
+Allow: /
+Disallow: /admin
+Disallow: /auth
+
 Sitemap: https://midnightpoetry.studio/sitemap.xml

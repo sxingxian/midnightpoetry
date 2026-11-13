@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { planAds, readableOn, contrast } from "@/lib/ads";
+import { readFileSync } from "node:fs";
+import { planAds, readableOn, contrast, adLimitForWords } from "@/lib/ads";
+import { DEFAULT_PAGES, SITE_PAGE_SLUGS, contactEmailSchema, parsePageBody } from "@/lib/content/site-pages";
 import { tokenize, safeHref } from "@/lib/content/inline-parse";
 import { blocksSchema, httpsUrl } from "@/lib/content/blocks";
 import { adsenseCsp, strictCsp } from "@/lib/csp";
@@ -60,6 +62,52 @@ describe("planAds", () => {
     const one = ad({ spots: ["inline", "side"] });
     const plan = planAds({ settings, ads: [one], spots: ["inline", "side"] });
     expect(plan.length).toBe(1);
+  });
+});
+
+describe("ads and page length", () => {
+  it("keeps ads off short pages and limits them on medium ones", () => {
+    expect([adLimitForWords(120), adLimitForWords(299), adLimitForWords(300), adLimitForWords(599), adLimitForWords(600)]).toEqual([0, 0, 1, 1, Infinity]);
+    const ads = [ad({ spots: ["inline"] }), ad({ spots: ["side"] })];
+    expect(planAds({ settings, ads, spots: ["inline", "side"], words: 160 })).toEqual([]);
+    expect(planAds({ settings, ads, spots: ["inline", "side"], words: 450 }).length).toBe(1);
+    expect(planAds({ settings, ads, spots: ["inline", "side"], words: 900 }).length).toBe(2);
+  });
+});
+
+describe("standing pages", () => {
+  it("turns plain text into headings, paragraphs and lists", () => {
+    const r = parsePageBody("Intro line one\nstill the intro.\n\n## What we do\n- one\n- two\n\n1. first\n2) second\n<script>alert(1)</script>");
+    expect(r.blocks).toEqual([
+      { type: "paragraph", text: "Intro line one still the intro." },
+      { type: "heading", text: "What we do" },
+      { type: "list", ordered: false, items: ["one", "two"] },
+      { type: "list", ordered: true, items: ["first", "second"] },
+      { type: "paragraph", text: "<script>alert(1)</script>" }, // kept as text: React escapes it, nothing is ever rendered as HTML
+    ]);
+  });
+  it("refuses empty or oversized text with a plain message", () => {
+    expect(parsePageBody("  \n ").error).toBe("The page is empty.");
+    expect(parsePageBody("## " + "x".repeat(130)).error).toMatch(/^A heading/);
+    expect(parsePageBody("y".repeat(4100)).error).toMatch(/^A paragraph/);
+  });
+  it("has complete built-in pages with no placeholders, seeded word for word by the migration", () => {
+    const sql = readFileSync("supabase/migrations/20261113000100_site_pages.sql", "utf8");
+    for (const slug of SITE_PAGE_SLUGS) {
+      const page = DEFAULT_PAGES[slug];
+      expect(parsePageBody(page.body).error, slug).toBeUndefined();
+      expect(page.body, slug).not.toMatch(/\[[^\]]*(to complete|todo|contact email|tbd)[^\]]*\]|lorem ipsum|Singapore/i);
+      expect(page.body.split(/\s+/).length, slug).toBeGreaterThan(200);
+      expect(sql, slug).toContain(`values ('${slug}', '${page.title}', $mp$${page.body}$mp$)`);
+    }
+    for (const needle of ["IP address", "web beacons", "Third-party vendors, including Google, use cookies", "https://www.google.com/settings/ads", "https://policies.google.com/technologies/partner-sites", "children under 13"]) {
+      expect(DEFAULT_PAGES.privacy.body).toContain(needle);
+    }
+  });
+  it("only accepts a plain email address for the public contact", () => {
+    expect(contactEmailSchema.parse("")).toBeNull();
+    expect(contactEmailSchema.parse(" hello@midnightpoetry.studio ")).toBe("hello@midnightpoetry.studio");
+    for (const bad of ["nope", "a@b", "a b@c.com", "x@y.com\nBcc: z@y.com", "x@y.com?subject=hi", "<a@b.com>", "javascript:alert(1)@x.com"]) expect(contactEmailSchema.safeParse(bad).success, bad).toBe(false);
   });
 });
 

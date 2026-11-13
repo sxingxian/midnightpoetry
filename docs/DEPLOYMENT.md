@@ -167,7 +167,8 @@ The Worker redeploys itself on every push (section 4).
 - [ ] Publish a guide for Zyra and one for Zeno; both should appear on `/guides`.
 - [ ] Click the house ad on a guide, then check **Ads on guides** shows one click (a second click from the same browser that day isn't counted).
 - [ ] Run `https://securityheaders.com` against `midnightpoetry.studio`. You should get an A.
-- [ ] AdSense (once approved): enter the publisher ID and units in the admin, then check `/ads.txt`.
+- [ ] Before asking AdSense to review the site: in the admin under **Site & pages**, set the contact email and the AdSense publisher ID (this fills in `/ads.txt` and adds the `google-adsense-account` tag to every page), read through About, Contact, Privacy and Terms, and leave **Show ads on guides** off. Have the Privacy and Terms text checked for where you and your visitors are.
+- [ ] AdSense (once approved): add the ad units under **Ads on guides**, switch Google AdSense on there, then switch **Show ads on guides** on. Guides under 300 words never carry ads, guides under 600 carry one at most, and the guides hub never carries a network ad.
 
 ## Release safety
 

@@ -16,9 +16,13 @@ export function planAds(input: {
   guideAdsEnabled?: boolean;
   seed?: string;
   now?: Date;
+  /** Words of our own writing on the page. Short pages get fewer ads, or none. */
+  words?: number;
 }): PlannedAd[] {
   const { settings, ads } = input;
   if (!settings || !settings.enabled) return [];
+  const limit = Math.min(settings.max_per_page, adLimitForWords(input.words));
+  if (limit <= 0) return [];
   if (input.guideAdsEnabled === false) return [];
   if (input.categoryId && settings.excluded_category_ids.includes(input.categoryId)) return [];
 
@@ -36,7 +40,7 @@ export function planAds(input: {
   const seed = hash(input.seed ?? now.toISOString().slice(0, 10));
 
   for (const spot of allowed) {
-    if (plan.length >= settings.max_per_page) break;
+    if (plan.length >= limit) break;
     let picked: Ad | undefined;
     if (settings.house_enabled) {
       for (const kind of ["sponsor", "house"] as const) {
@@ -58,6 +62,18 @@ export function planAds(input: {
     }
   }
   return plan;
+}
+
+/** A page needs this much of our own writing before it carries any ad, and this much before it carries more than one. */
+export const MIN_WORDS_FOR_ADS = 300;
+export const MIN_WORDS_FOR_TWO_ADS = 600;
+
+/** The most ads a page of this length may carry, so there is always clearly more content than advertising. */
+export function adLimitForWords(words: number | undefined): number {
+  if (words === undefined) return Infinity;
+  if (words < MIN_WORDS_FOR_ADS) return 0;
+  if (words < MIN_WORDS_FOR_TWO_ADS) return 1;
+  return Infinity;
 }
 
 function hash(s: string): number {

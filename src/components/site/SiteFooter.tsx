@@ -11,6 +11,8 @@ export function SiteFooter({ showCookieChoices = false, className = "" }: { show
         <a href="https://zora.midnightpoetry.studio/">Zora</a>
         <a href="https://zotikos.midnightpoetry.studio/">Zotikos</a>
         <Link href="/guides">Guides</Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>
         <Link href="/about-ads">About ads</Link>
