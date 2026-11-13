@@ -29,7 +29,7 @@ export function AdSettingsForm({ settings, categories, isOwner }: { settings: Ad
             Show ads on guides
           </label>
           <p className="a-help" style={{ margin: "4px 0 0 28px" }}>
-            Only on midnightpoetry.studio/guides. Never on the landing page, inside Zeno or Zyra, or in this admin.
+            Only on midnightpoetry.studio/guides. Never on the landing page or in this admin. Ads inside an app are managed in that app.
           </p>
         </section>
 
